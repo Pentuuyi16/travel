@@ -22,7 +22,7 @@ window.addEventListener("load", () => {
 });
 
 const titles = [
-  "image/sulak.png",
+  "image/sulaktext.png",
   "image/gunib.png",
   "image/derbent.png",
   "image/gamsutl.png",
