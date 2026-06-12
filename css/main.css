@@ -130,7 +130,14 @@ body {
 
 .hero-text.visible { opacity: 1; }
 .subtitle { font-size: 19px; font-weight: 500; color: #ffffff; margin-bottom: 20px; }
-.hero-title { display: block; margin-bottom: 15px; transition: opacity 0.4s ease; }
+
+.hero-title {
+  display: block;
+  margin-bottom: 15px;
+  transition: opacity 0.4s ease;
+  white-space: nowrap;
+}
+
 .cta { margin-top: 140px; }
 
 .btn {
