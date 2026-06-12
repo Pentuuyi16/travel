@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подтверждение бронирования — ДагТур</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/booking-confirm.css">
+</head>
+<body>
+
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="tours/tours.html#odnodnevnye">однодневные</a>
+          <a href="tours/tours.html#mnogodnevnye">многодневные</a>
+          <a href="tours/tours.html#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<div class="bc-page">
+
+  <!-- ХЛЕБНЫЕ КРОШКИ -->
+  <div class="bc-breadcrumb">
+    <a href="#">Мои заказы</a>
+    <span>›</span>
+    <span class="bc-breadcrumb-current">Сулакский каньон — 17 июня</span>
+    <div class="bc-order-status">
+      <span class="bc-status-badge">Ожидает оплаты</span>
+      <span class="bc-order-num">№ 0012847</span>
+    </div>
+  </div>
+
+  <div class="bc-layout">
+
+    <!-- ЛЕВАЯ КОЛОНКА -->
+    <div class="bc-main">
+
+      <!-- НАЗВАНИЕ ТУРА -->
+      <div class="bc-tour-header">
+        <div>
+          <h1 class="bc-tour-title">Сулакский каньон</h1>
+          <p class="bc-tour-type">Однодневная экскурсия · Дагестан</p>
+        </div>
+        <div class="bc-guide-block">
+          <div class="bc-guide-avatar">Р</div>
+          <div>
+            <p class="bc-guide-name">Руслан</p>
+            <p class="bc-guide-label">ваш гид</p>
+          </div>
+          <button class="bc-write-btn" onclick="document.getElementById('chatInput').focus()">Написать</button>
+        </div>
+      </div>
+
+      <!-- ДЕТАЛИ ТУРА -->
+      <div class="bc-tour-details">
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Дата</p>
+          <p class="bc-detail-val" id="detail-date">17 июн, ср</p>
+          <button class="bc-change-btn">Изменить</button>
+        </div>
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Длительность</p>
+          <p class="bc-detail-val">по договорённости</p>
+        </div>
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Участников</p>
+          <p class="bc-detail-val" id="participants-val">2</p>
+          <button class="bc-change-btn" onclick="toggleParticipants()">Изменить</button>
+        </div>
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Общая стоимость</p>
+          <p class="bc-detail-val bc-detail-price" id="total-price">5 980 ₽</p>
+        </div>
+      </div>
+
+      <!-- УЧАСТНИКИ ПОПАП -->
+      <div class="bc-participants-popup" id="participantsPopup" style="display:none;">
+        <p class="bc-popup-title">Количество участников</p>
+        <div class="bc-counter">
+          <button class="bc-counter-btn" onclick="changeCount(-1)">−</button>
+          <span class="bc-counter-val" id="counter-val">2</span>
+          <button class="bc-counter-btn" onclick="changeCount(1)">+</button>
+        </div>
+        <button class="bc-popup-save" onclick="saveParticipants()">Сохранить</button>
+      </div>
+
+      <!-- СТАТУС ЗАКАЗА -->
+      <div class="bc-status-block">
+        <div class="bc-status-icon">✓</div>
+        <div>
+          <h2 class="bc-status-title">Заказ подтверждён и ожидает оплаты</h2>
+          <ul class="bc-status-list">
+            <li>Внесите предоплату, чтобы завершить бронирование. Вы платите <strong>30% сейчас</strong> — <strong id="prepay-amount">1 794 ₽</strong>, остаток оплачивается гиду в день тура.</li>
+            <li>После оплаты вам станут доступны контакты гида и подробное описание места встречи.</li>
+            <li>Если хотите — обсудите с гидом детали до оплаты в чате ниже.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- БЛОК ОПЛАТЫ -->
+      <div class="bc-payment-block">
+        <h2 class="bc-section-title">Детали оплаты</h2>
+        <div class="bc-payment-rows">
+          <div class="bc-payment-row">
+            <span>Дата начала</span>
+            <span id="payment-date-val">17 июня, ср</span>
+          </div>
+          <div class="bc-payment-row">
+            <span>Количество участников</span>
+            <span id="payment-participants">2 человека</span>
+          </div>
+          <div class="bc-payment-row">
+            <span>Стоимость тура</span>
+            <span id="payment-total">5 980 ₽</span>
+          </div>
+          <div class="bc-payment-row">
+            <span>Предоплата (30%)</span>
+            <span id="payment-prepay">1 794 ₽</span>
+          </div>
+          <div class="bc-payment-row">
+            <span>Сервисный сбор</span>
+            <span>99 ₽</span>
+          </div>
+          <div class="bc-payment-row bc-payment-row--total">
+            <span>Итого к оплате сейчас</span>
+            <span id="payment-now">1 893 ₽</span>
+          </div>
+        </div>
+
+        <div class="bc-promo-row">
+          <input type="text" placeholder="Промокод (если есть)" class="bc-promo-input">
+          <button class="bc-promo-btn">Применить</button>
+        </div>
+
+        <div class="bc-pay-btns">
+          <button class="bc-pay-main" onclick="handlePayment()">
+            Оплатить предоплату <span id="pay-btn-amount">1 893 ₽</span>
+          </button>
+        </div>
+
+        <p class="bc-pay-note">🔒 Безопасная оплата через ЮКасса. Подключение скоро.</p>
+      </div>
+
+      <!-- ЧАТ С ГИДОМ -->
+      <div class="bc-chat-block">
+        <h2 class="bc-section-title">Чат с гидом</h2>
+        <p class="bc-chat-sub">Уточните детали до оплаты — гид ответит в течение часа</p>
+
+        <div class="bc-chat-messages" id="chatMessages">
+          <div class="bc-msg bc-msg--system">
+            <span>Вы оформили бронирование тура «Сулакский каньон»</span>
+          </div>
+        </div>
+
+        <div class="bc-chat-input-row">
+          <textarea
+            class="bc-chat-input"
+            id="chatInput"
+            placeholder="Напишите гиду — например, уточните место встречи или состав группы..."
+            rows="3"
+          ></textarea>
+          <button class="bc-chat-send" onclick="sendMessage()">Отправить</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА (sticky) -->
+    <aside class="bc-aside">
+      <div class="bc-aside-card">
+        <img src="tours/image/сулаккарточка.png" alt="Сулакский каньон" class="bc-aside-img">
+        <div class="bc-aside-body">
+          <p class="bc-aside-tour-name">Сулакский каньон</p>
+          <p class="bc-aside-tour-type">Однодневный · 7,5 часов</p>
+          <div class="bc-aside-row">
+            <span>Дата</span><span>17 июня, ср</span>
+          </div>
+          <div class="bc-aside-row">
+            <span>Участников</span><span id="aside-participants">2 чел.</span>
+          </div>
+          <div class="bc-aside-row">
+            <span>Цена за чел.</span><span>2 990 ₽</span>
+          </div>
+          <div class="bc-aside-divider"></div>
+          <div class="bc-aside-row bc-aside-row--total">
+            <span>Предоплата (30%)</span>
+            <span id="aside-prepay">1 794 ₽</span>
+          </div>
+          <button class="bc-aside-pay-btn" onclick="handlePayment()">
+            Оплатить <span id="aside-pay-amount">1 893 ₽</span>
+          </button>
+          <div class="bc-aside-checks">
+            <div class="bc-aside-check">✓ Бесплатная отмена 48 часов</div>
+            <div class="bc-aside-check">✓ Остаток — гиду в день тура</div>
+            <div class="bc-aside-check">✓ После оплаты — контакты гида</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ФУТЕР -->
+<footer class="footer">
+  <img src="image/footer.png" alt="" class="footer-bg">
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-col">
+        <a href="#">Главная</a>
+        <a href="#">Туры</a>
+        <a href="#">О компании</a>
+        <a href="#">Гидам</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+      </div>
+      <div class="footer-col">
+        <a href="#">@dagtour</a>
+        <a href="#">Написать в Telegram</a>
+        <a href="#">Написать в WhatsApp</a>
+        <a href="#">Написать отзыв</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- AUTH -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field"><label>Email</label><input type="email" id="loginEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+      <button class="auth-google" id="googleBtn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google</button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field"><label>Имя</label><input type="text" id="registerName" placeholder="Иван"></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="registerEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+      <button class="auth-google" id="googleBtn2"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/nav.js"></script>
+<script type="module" src="js/auth.js"></script>
+<script>
+  const PRICE_PER_PERSON = 2990;
+  const SERVICE_FEE = 99;
+
+  // Читаем данные из sessionStorage
+  let count = parseInt(sessionStorage.getItem('booking_count')) || 2;
+  const urlDate = sessionStorage.getItem('booking_date');
+  const urlName = sessionStorage.getItem('booking_name') || '';
+
+  // Форматируем дату
+  function formatDate(dateStr) {
+    if (!dateStr) return '—';
+    const d = new Date(dateStr);
+    const months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+    const days = ['вс','пн','вт','ср','чт','пт','сб'];
+    return d.getDate() + ' ' + months[d.getMonth()] + ', ' + days[d.getDay()];
+  }
+
+  // Подставляем дату
+  if (urlDate) {
+    const formatted = formatDate(urlDate);
+    document.getElementById('detail-date').textContent = formatted;
+    const payDateEl = document.getElementById('payment-date-val');
+    if (payDateEl) payDateEl.textContent = formatted;
+  }
+
+  function plural(n) {
+    if (n === 1) return 'человек';
+    if (n >= 2 && n <= 4) return 'человека';
+    return 'человек';
+  }
+
+  function updatePrices() {
+    const total = PRICE_PER_PERSON * count;
+    const prepay = Math.round(total * 0.3);
+    const now = prepay + SERVICE_FEE;
+
+    document.getElementById('participants-val').textContent = count;
+    document.getElementById('total-price').textContent = total.toLocaleString('ru') + ' ₽';
+    document.getElementById('prepay-amount').textContent = prepay.toLocaleString('ru') + ' ₽';
+    document.getElementById('payment-participants').textContent = count + ' ' + plural(count);
+    document.getElementById('payment-total').textContent = total.toLocaleString('ru') + ' ₽';
+    document.getElementById('payment-prepay').textContent = prepay.toLocaleString('ru') + ' ₽';
+    document.getElementById('payment-now').textContent = now.toLocaleString('ru') + ' ₽';
+    document.getElementById('pay-btn-amount').textContent = now.toLocaleString('ru') + ' ₽';
+    document.getElementById('aside-participants').textContent = count + ' чел.';
+    document.getElementById('aside-prepay').textContent = prepay.toLocaleString('ru') + ' ₽';
+    document.getElementById('aside-pay-amount').textContent = now.toLocaleString('ru') + ' ₽';
+    document.getElementById('counter-val').textContent = count;
+  }
+
+  function toggleParticipants() {
+    const popup = document.getElementById('participantsPopup');
+    popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function changeCount(delta) {
+    count = Math.max(1, Math.min(20, count + delta));
+    document.getElementById('counter-val').textContent = count;
+  }
+
+  function saveParticipants() {
+    document.getElementById('participantsPopup').style.display = 'none';
+    updatePrices();
+  }
+
+  function handlePayment() {
+    alert('Оплата через ЮКасса будет подключена скоро!');
+  }
+
+  // Чат
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    const messages = document.getElementById('chatMessages');
+
+    const msg = document.createElement('div');
+    msg.className = 'bc-msg bc-msg--user';
+    msg.innerHTML = `
+      <div class="bc-msg-bubble">${text}</div>
+      <span class="bc-msg-time">сейчас</span>
+    `;
+    messages.appendChild(msg);
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Имитация ответа гида
+    setTimeout(() => {
+      const reply = document.createElement('div');
+      reply.className = 'bc-msg bc-msg--guide';
+      reply.innerHTML = `
+        <div class="bc-msg-avatar">Р</div>
+        <div>
+          <div class="bc-msg-bubble">Добрый день! Получил ваше сообщение, отвечу в ближайшее время.</div>
+          <span class="bc-msg-time">только что</span>
+        </div>
+      `;
+      messages.appendChild(reply);
+      messages.scrollTop = messages.scrollHeight;
+    }, 1500);
+  }
+
+  document.getElementById('chatInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  updatePrices();
+</script>
+
+</body>
+</html>

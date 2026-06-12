@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Однодневные туры — Дагтур</title>
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/tours-list.css">
+<link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="../image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="../main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="#odnodnevnye">однодневные</a>
+          <a href="#mnogodnevnye">многодневные</a>
+          <a href="#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="../gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<section class="tours-list">
+  <div class="tours-list-header">
+    <p class="tours-label">покорили сердца многих</p>
+    <h1 class="tours-list-title">Однодневные туры</h1>
+    <p class="tours-sub">когда не хочешь много ходить</p>
+  </div>
+
+  <div class="tours-list-grid">
+
+    <a href="#" class="tl-card">
+      <div class="tl-card-img">
+        <img src="../image/derbent to.png" alt="Дербент">
+      </div>
+      <div class="tl-card-body">
+        <p class="tl-card-name">Дербент</p>
+        <p class="tl-card-type">однодневная прогулка экскурсия</p>
+        <p class="tl-card-price">15 000 р · 3 дня</p>
+      </div>
+    </a>
+
+    <a href="#" class="tl-card">
+      <div class="tl-card-img">
+        <img src="../image/kahib bg.png.png" alt="Кахиб-Гоор">
+      </div>
+      <div class="tl-card-body">
+        <p class="tl-card-name">Кахиб-гоор</p>
+        <p class="tl-card-type">однодневная прогулка экскурсия</p>
+        <p class="tl-card-price">15 000 р · 3 дня</p>
+      </div>
+    </a>
+
+    <a href="sulak.html" class="tl-card">
+      <div class="tl-card-img">
+        <img src="../image/sulak to.jpg" alt="Сулакский каньон">
+      </div>
+      <div class="tl-card-body">
+        <p class="tl-card-name">Сулакский каньон</p>
+        <p class="tl-card-type">однодневная прогулка экскурсия</p>
+        <p class="tl-card-price">15 000 р · 3 дня</p>
+      </div>
+    </a>
+
+    <a href="#" class="tl-card">
+      <div class="tl-card-img">
+        <img src="../image/gamsutl to.png" alt="Гамсутль">
+      </div>
+      <div class="tl-card-body">
+        <p class="tl-card-name">Гамсутль</p>
+        <p class="tl-card-type">однодневная прогулка экскурсия</p>
+        <p class="tl-card-price">15 000 р · 3 дня</p>
+      </div>
+    </a>
+
+    <a href="#" class="tl-card">
+      <div class="tl-card-img">
+        <img src="../image/hunzah bg.png" alt="Хунзах">
+      </div>
+      <div class="tl-card-body">
+        <p class="tl-card-name">Хунзах</p>
+        <p class="tl-card-type">однодневная прогулка экскурсия</p>
+        <p class="tl-card-price">15 000 р · 3 дня</p>
+      </div>
+    </a>
+
+    <a href="#" class="tl-card">
+      <div class="tl-card-img">
+        <img src="../image/derbent bg.png" alt="Дербент вид">
+      </div>
+      <div class="tl-card-body">
+        <p class="tl-card-name">Дербент</p>
+        <p class="tl-card-type">однодневная прогулка экскурсия</p>
+        <p class="tl-card-price">15 000 р · 3 дня</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="../image/footer.png" alt="" class="footer-bg">
+  <div class="footer-content">
+    <div class="footer-col">
+      <a href="#">Главная</a>
+      <a href="#">Туры</a>
+      <a href="#">О компании</a>
+      <a href="#">Гидам</a>
+      <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+      <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+      <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+    </div>
+    <div class="footer-col">
+      <a href="#">@dagtour</a>
+      <a href="#">Написать ВКонтакте</a>
+      <a href="#">Написать нам в Telegram</a>
+      <a href="#">Написать нам в WhatsApp</a>
+      <a href="#">Написать нам в Instagram</a>
+      <a href="#">Разработка сайта</a>
+      <a href="#">Написать отзыв</a>
+    </div>
+  </div>
+</footer>
+
+<!-- AUTH МОДАЛКА -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="example@mail.ru">
+      </div>
+      <div class="auth-field">
+        <label>Пароль</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+      <button class="auth-google" id="googleBtn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google
+      </button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field">
+        <label>Имя</label>
+        <input type="text" id="registerName" placeholder="Иван">
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="registerEmail" placeholder="example@mail.ru">
+      </div>
+      <div class="auth-field">
+        <label>Пароль</label>
+        <input type="password" id="registerPassword" placeholder="••••••••">
+      </div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+      <button class="auth-google" id="googleBtn2">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+<script type="module" src="../js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гидам — ДагТур</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/footer.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/gidy.css">
+</head>
+<body>
+
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="tours/tours.html#odnodnevnye">однодневные</a>
+          <a href="tours/tours.html#mnogodnevnye">многодневные</a>
+          <a href="tours/tours.html#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="guide-hero">
+  <div class="guide-hero-bg-shapes">
+    <div class="guide-hero-shape1"></div>
+    <div class="guide-hero-shape2"></div>
+  </div>
+  <div class="guide-hero-content">
+    <div class="guide-hero-left">
+      <div class="guide-hero-label"><div class="guide-hero-label-dot"></div>более 50 гидов уже в команде</div>
+      <h1 class="guide-hero-title">Стань гидом<br>в <span>ДагТур</span></h1>
+      <p class="guide-hero-sub">Превращай знание родного Дагестана в стабильный доход. Заполни анкету и присоединяйся к команде настоящих проводников.</p>
+      <div class="guide-hero-stats">
+        <div><div class="hstat-val">50+</div><div class="hstat-label">гидов в команде</div></div>
+        <div><div class="hstat-val">2 300+</div><div class="hstat-label">туристов за год</div></div>
+        <div><div class="hstat-val">4.9 ★</div><div class="hstat-label">средний рейтинг</div></div>
+      </div>
+    </div>
+    <div class="guide-hero-right">
+      <div class="guide-hero-form-preview">
+        <div class="hfp-title">Как это работает?</div>
+        <div class="hfp-sub">Три шага до первого тура</div>
+        <div class="hfp-steps">
+          <div class="hfp-step"><div class="hfp-step-num">1</div><div class="hfp-step-text">Заполни анкету — расскажи о себе и опыте</div></div>
+          <div class="hfp-step"><div class="hfp-step-num">2</div><div class="hfp-step-text">Пройди собеседование с командой</div></div>
+          <div class="hfp-step"><div class="hfp-step-num">3</div><div class="hfp-step-text">Получай заявки и начинай зарабатывать</div></div>
+        </div>
+        <button class="hfp-btn" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">Заполнить анкету →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BECOME A GUIDE -->
+<div class="section">
+  <div class="why-title">Почему ДагТур</div>
+  <h2 class="why-headline">Зарабатывай на том,<br>что <span>любишь</span></h2>
+  <p class="why-desc">Мы берём на себя маркетинг, платежи и поддержку — ты занимаешься только туристами и маршрутами.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка1.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Стабильный доход</div><div class="benefit-desc">Средний гид зарабатывает от 40 000 ₽ в месяц в сезон. Прозрачные выплаты без задержек.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка2.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Поток туристов</div><div class="benefit-desc">Мы привлекаем клиентов через рекламу и SEO. Тебе не нужно искать людей самому.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка3.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Страховка и защита</div><div class="benefit-desc">Каждый тур застрахован. Поддержка команды 24/7 в любой ситуации на маршруте.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка4.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Личный кабинет</div><div class="benefit-desc">Управляй расписанием, смотри заявки и доход в одном удобном приложении.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка5.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Обучение и рост</div><div class="benefit-desc">Тренинги по сервису, первой помощи и навыкам гида. Помогаем расти профессионально.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка6.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Команда рядом</div><div class="benefit-desc">Чат гидов, совместные поездки, корпоративы. Ты не один — ты часть семьи ДагТур.</div></div>
+  </div>
+</div>
+
+<!-- INCOME CALCULATOR -->
+<section class="calc-section">
+  <div class="calc-inner">
+    <div class="calc-label">Калькулятор дохода</div>
+    <h2 class="calc-headline">Сколько ты можешь зарабатывать?</h2>
+    <p class="calc-sub">Подбери параметры и узнай свой потенциальный доход</p>
+    <div class="calc-grid">
+      <div class="calc-controls">
+        <div class="calc-row">
+          <div class="calc-row-label">Туров в месяц <span id="tours-count">8</span></div>
+          <input type="range" min="2" max="20" value="8" id="tours-slider" oninput="calcIncome()">
+        </div>
+        <div class="calc-row">
+          <div class="calc-row-label">Средняя цена тура (₽) <span id="price-count">3 000</span></div>
+          <input type="range" min="1000" max="15000" step="500" value="3000" id="price-slider" oninput="calcIncome()">
+        </div>
+        <div class="calc-row">
+          <div class="calc-row-label">Человек в группе <span id="group-count">8</span></div>
+          <input type="range" min="2" max="20" value="8" id="group-slider" oninput="calcIncome()">
+        </div>
+      </div>
+      <div class="calc-result-card">
+        <div class="calc-result-label">Ваш доход в месяц</div>
+        <div class="calc-result-val"><span id="income-val">115 200</span> ₽</div>
+        <div class="calc-result-per">при комиссии гида 60%</div>
+        <div class="calc-breakdown">
+          <div class="calc-row-item"><span class="calc-row-item-label">Выручка с туров</span><span class="calc-row-item-val" id="revenue-val">192 000 ₽</span></div>
+          <div class="calc-row-item"><span class="calc-row-item-label">Комиссия гида (60%)</span><span class="calc-row-item-val" id="commission-val">115 200 ₽</span></div>
+          <div class="calc-row-item"><span class="calc-row-item-label">Комиссия платформы</span><span class="calc-row-item-val">40%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="how-label">Процесс</div>
+    <h2 class="how-headline">Как стать гидом ДагТур</h2>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num filled">1</div><div class="step-title">Заполни анкету</div><div class="step-desc">Расскажи о себе, опыте и любимых маршрутах. Займёт 5 минут.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-title">Собеседование</div><div class="step-desc">Созвон с командой. Расскажем об условиях и ответим на вопросы.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-title">Проверка</div><div class="step-desc">Пробный тур с куратором. Помогаем отработать сервис и навигацию.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-title">Первые заявки</div><div class="step-desc">Получай бронирования и начинай зарабатывать уже через неделю.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section" id="form-section">
+  <div class="form-inner">
+    <div class="form-left">
+      <div class="form-label">Анкета</div>
+      <h2 class="form-headline">Стань частью<br>команды <span>ДагТур</span></h2>
+      <p class="form-desc">Заполни анкету — мы рассмотрим её в течение 2 рабочих дней и свяжемся с тобой в WhatsApp.</p>
+      <div class="form-progress" id="fp-display">
+        <div class="fp-step active" id="fp1"><div class="fp-num">1</div><div class="fp-text">О себе</div></div>
+        <div class="fp-step" id="fp2"><div class="fp-num">2</div><div class="fp-text">Опыт</div></div>
+        <div class="fp-step" id="fp3"><div class="fp-num">3</div><div class="fp-text">Контакты</div></div>
+      </div>
+      <div class="guide-testimonials">
+        <div class="gt-card"><div class="gt-avatar gt-av1">АХ</div><div><div class="gt-name">Ахмед Хасавов</div><div class="gt-role">Гид · 3 года в ДагТур</div><div class="gt-text">«Начинал с нуля — теперь провожу 12–15 туров в месяц. Команда помогла с первыми группами и рекламой.»</div><div class="gt-income">Зарабатывает от 80 000 ₽/мес</div></div></div>
+        <div class="gt-card"><div class="gt-avatar gt-av2">МА</div><div><div class="gt-name">Магомед Алиев</div><div class="gt-role">Гид-водитель · 2 года</div><div class="gt-text">«Мне нравится что всё через приложение — расписание, деньги, связь с туристами. Легко планировать.»</div><div class="gt-income">Зарабатывает от 55 000 ₽/мес</div></div></div>
+        <div class="gt-card"><div class="gt-avatar gt-av3">ЗА</div><div><div class="gt-name">Зарема Абдуллаева</div><div class="gt-role">Гид-историк · 1.5 года</div><div class="gt-text">«Я историк по образованию — не думала, что это можно монетизировать. ДагТур открыл новое направление.»</div><div class="gt-income">Зарабатывает от 45 000 ₽/мес</div></div></div>
+      </div>
+    </div>
+    <div class="the-form">
+      <div class="form-progress-bar"><div class="form-progress-fill" id="progress-fill" style="width:33%"></div></div>
+      <div class="form-step active" id="step1">
+        <div class="form-step-title">О себе</div>
+        <div class="form-step-sub">Добавь фото и расскажи кто ты</div>
+        <div class="photo-upload"><div class="photo-upload-ico">📷</div><div class="photo-upload-text">Добавить фото</div><div class="photo-upload-hint">1000×1000, jpg/png до 20 МБ</div></div>
+        <div class="type-options">
+          <label class="type-option selected" onclick="selectType(this)"><input type="radio" name="type" checked><div><div class="type-option-title">Гид</div><div class="type-option-desc">Лично встречаюсь с путешественниками</div></div></label>
+          <label class="type-option" onclick="selectType(this)"><input type="radio" name="type"><div><div class="type-option-title">Команда гидов</div><div class="type-option-desc">Работаю в команде, встречу провожу я или напарники</div></div></label>
+          <label class="type-option" onclick="selectType(this)"><input type="radio" name="type"><div><div class="type-option-title">Агентство</div><div class="type-option-desc">Встречи проводят наши сотрудники</div></div></label>
+        </div>
+        <div class="field"><div class="field-label">Имя и фамилия</div><input type="text" placeholder="Ахмед Хасавов"></div>
+        <div class="field"><div class="field-label">Описание</div><textarea rows="3" placeholder="Как давно живёте в Дагестане, в каких темах разбираетесь..."></textarea></div>
+        <div class="form-nav"><button class="form-nav-next" onclick="goStep(2)">Далее →</button></div>
+      </div>
+      <div class="form-step" id="step2">
+        <div class="form-step-title">Опыт и маршруты</div>
+        <div class="form-step-sub">Расскажи о своих направлениях</div>
+        <div class="field"><div class="field-label">Специализация</div><div class="tags-wrap"><span class="tag selected" onclick="toggleTag(this)">Горные маршруты</span><span class="tag" onclick="toggleTag(this)">Джип-туры</span><span class="tag" onclick="toggleTag(this)">Историко-культурные</span><span class="tag" onclick="toggleTag(this)">Рафтинг</span><span class="tag" onclick="toggleTag(this)">Гастро-туры</span><span class="tag" onclick="toggleTag(this)">Фото-туры</span><span class="tag" onclick="toggleTag(this)">Однодневные</span><span class="tag" onclick="toggleTag(this)">Многодневные</span></div></div>
+        <div class="field"><div class="field-label">Любимые маршруты / места</div><textarea rows="2" placeholder="Сулакский каньон, Гамсутль, Шалбуздаг..."></textarea></div>
+        <div class="field-row">
+          <div class="field"><div class="field-label">Опыт в туризме</div><select><option>До 1 года</option><option>1–3 года</option><option selected>3–5 лет</option><option>Более 5 лет</option></select></div>
+          <div class="field"><div class="field-label">Транспорт</div><select><option>Нет</option><option>Легковой авто</option><option selected>Внедорожник</option><option>Микроавтобус</option></select></div>
+        </div>
+        <div class="field"><div class="field-label">Сертификаты</div><div class="tags-wrap"><span class="tag" onclick="toggleTag(this)">Сертификат МЧС</span><span class="tag" onclick="toggleTag(this)">Первая помощь</span><span class="tag" onclick="toggleTag(this)">Лицензия гида</span><span class="tag" onclick="toggleTag(this)">Водительское В/С</span></div></div>
+        <div class="form-nav"><button class="form-nav-back" onclick="goStep(1)">← Назад</button><button class="form-nav-next" onclick="goStep(3)">Далее →</button></div>
+      </div>
+      <div class="form-step" id="step3">
+        <div class="form-step-title">Контакты</div>
+        <div class="form-step-sub">Как с тобой связаться</div>
+        <div class="field"><div class="field-label">Номер телефона</div><input type="tel" placeholder="+7 900 000 00 00"></div>
+        <div class="field"><div class="field-label">Email</div><input type="email" placeholder="guide@example.com"></div>
+        <div class="field"><div class="field-label">Мессенджер</div><div class="tags-wrap"><span class="tag selected" onclick="toggleTag(this)">WhatsApp</span><span class="tag" onclick="toggleTag(this)">Telegram</span><span class="tag" onclick="toggleTag(this)">ВКонтакте</span></div></div>
+        <div class="field"><div class="field-label">Сайт или соцсеть (по желанию)</div><input type="url" placeholder="https://instagram.com/..."></div>
+        <div class="form-nav"><button class="form-nav-back" onclick="goStep(2)">← Назад</button><button class="form-nav-next" onclick="submitForm()">Отправить анкету ✓</button></div>
+      </div>
+      <div class="form-success" id="form-success">
+        <div class="form-success-ico">🎉</div>
+        <div class="form-success-title">Анкета отправлена!</div>
+        <div class="form-success-sub">Мы рассмотрим её в течение 2 рабочих дней и напишем в WhatsApp. Добро пожаловать в команду ДагТур!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDES PREVIEW -->
+<section class="guides-preview">
+  <div class="guides-inner">
+    <div class="gp-label">Наша команда</div>
+    <h2 class="gp-headline">Познакомься с гидами ДагТур</h2>
+    <p class="gp-sub">Опытные проводники, влюблённые в Дагестан — скоро ты один из них.</p>
+    <div class="guides-grid">
+      <div class="guide-card"><div class="guide-photo"><div class="guide-photo-bg gp1"></div><div class="guide-photo-overlay"></div><div class="guide-name-badge">Ахмед Х.</div><div class="guide-rating">★ 4.9</div></div><div class="guide-body"><div class="guide-gname">Ахмед Хасавов</div><div class="guide-spec">Горные маршруты · 8 лет</div><div class="guide-tags"><span class="gtag">Каньон</span><span class="gtag">Джип</span><span class="gtag">МЧС</span></div></div></div>
+      <div class="guide-card"><div class="guide-photo"><div class="guide-photo-bg gp2"></div><div class="guide-photo-overlay"></div><div class="guide-name-badge">Магомед А.</div><div class="guide-rating">★ 4.8</div></div><div class="guide-body"><div class="guide-gname">Магомед Алиев</div><div class="guide-spec">Джип-туры · 6 лет</div><div class="guide-tags"><span class="gtag">Кахиб-Гоор</span><span class="gtag">Горные дороги</span></div></div></div>
+      <div class="guide-card"><div class="guide-photo"><div class="guide-photo-bg gp3"></div><div class="guide-photo-overlay"></div><div class="guide-name-badge">Зарема А.</div><div class="guide-rating">★ 5.0</div></div><div class="guide-body"><div class="guide-gname">Зарема Абдуллаева</div><div class="guide-spec">Историко-культурные · 4 года</div><div class="guide-tags"><span class="gtag">Гамсутль</span><span class="gtag">Дербент</span></div></div></div>
+      <div class="guide-card" style="border:2px dashed var(--border-m);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;min-height:220px;" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
+        <div style="font-size:32px;margin-bottom:10px;">+</div>
+        <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px;">Это можешь быть ты</div>
+        <div style="font-size:12px;color:var(--muted);">Присоединяйся к команде</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-left">
+      <div class="faq-label">FAQ</div>
+      <h2 class="faq-headline">Часто задаваемые вопросы</h2>
+      <p class="faq-desc">Не нашёл ответ? Напиши нам — ответим в течение часа.</p>
+      <a href="#" class="faq-contact-btn">💬 Написать в WhatsApp</a>
+    </div>
+    <div class="faq-right">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Нужен ли опыт в туризме?</div><div class="faq-toggle">+</div></div><div class="faq-a">Нет. Мы берём людей с нулевым опытом — главное знание региона, общительность и желание развиваться.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Сколько я буду зарабатывать?</div><div class="faq-toggle">+</div></div><div class="faq-a">Комиссия гида — 60% от стоимости тура. Средний доход в сезон: 40–100 000 ₽/месяц.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Нужен ли свой транспорт?</div><div class="faq-toggle">+</div></div><div class="faq-a">Не обязательно. Для пеших и культурных туров транспорт не нужен.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Как долго рассматривается анкета?</div><div class="faq-toggle">+</div></div><div class="faq-a">В течение 2 рабочих дней. После этого мы напишем в WhatsApp.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Можно ли совмещать с другой работой?</div><div class="faq-toggle">+</div></div><div class="faq-a">Да. Расписание гибкое — ты сам выбираешь даты и количество туров.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Что если турист оставит плохой отзыв?</div><div class="faq-toggle">+</div></div><div class="faq-a">Команда поддержки разбирает каждую ситуацию и защищает гидов от несправедливых отзывов.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <img src="image/footer.png" alt="" class="footer-bg">
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-col">
+        <a href="#">Главная</a>
+        <a href="#">Туры</a>
+        <a href="#">О компании</a>
+        <a href="#">Гидам</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+      </div>
+      <div class="footer-col">
+        <a href="#">@dagtour</a>
+        <a href="#">Написать ВКонтакте</a>
+        <a href="#">Написать нам в Telegram</a>
+        <a href="#">Написать нам в WhatsApp</a>
+        <a href="#">Написать нам в Instagram</a>
+        <a href="#">Разработка сайта</a>
+        <a href="#">Написать отзыв</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- AUTH -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field"><label>Email</label><input type="email" id="loginEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+      <button class="auth-google" id="googleBtn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google</button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field"><label>Имя</label><input type="text" id="registerName" placeholder="Иван"></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="registerEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+      <button class="auth-google" id="googleBtn2"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/nav.js"></script>
+<script type="module" src="js/auth.js"></script>
+<script>
+function calcIncome() {
+  const tours = +document.getElementById('tours-slider').value;
+  const price = +document.getElementById('price-slider').value;
+  const group = +document.getElementById('group-slider').value;
+  const revenue = tours * price * group;
+  const income = Math.round(revenue * 0.6);
+  document.getElementById('tours-count').textContent = tours;
+  document.getElementById('price-count').textContent = price.toLocaleString('ru');
+  document.getElementById('group-count').textContent = group;
+  document.getElementById('revenue-val').textContent = revenue.toLocaleString('ru') + ' ₽';
+  document.getElementById('commission-val').textContent = income.toLocaleString('ru') + ' ₽';
+  document.getElementById('income-val').textContent = income.toLocaleString('ru');
+}
+calcIncome();
+
+function goStep(n) {
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+  document.getElementById('progress-fill').style.width = (n / 3 * 100) + '%';
+  for (let i = 1; i <= 3; i++) {
+    const el = document.getElementById('fp' + i);
+    el.classList.remove('active', 'done');
+    if (i < n) el.classList.add('done');
+    else if (i === n) el.classList.add('active');
+  }
+  document.querySelectorAll('.fp-step.done .fp-num').forEach(el => el.textContent = '✓');
+  document.getElementById('fp' + n).querySelector('.fp-num').textContent = n;
+  document.getElementById('form-section').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function submitForm() {
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('form-success').style.display = 'block';
+  document.getElementById('progress-fill').style.width = '100%';
+  for (let i = 1; i <= 3; i++) {
+    const el = document.getElementById('fp' + i);
+    el.classList.remove('active');
+    el.classList.add('done');
+    el.querySelector('.fp-num').textContent = '✓';
+  }
+}
+
+function selectType(el) {
+  document.querySelectorAll('.type-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function toggleTag(el) { el.classList.toggle('selected'); }
+
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

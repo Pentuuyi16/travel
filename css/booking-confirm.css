@@ -1,0 +1,654 @@
+/* ── PAGE ── */
+.bc-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+}
+
+/* ── BREADCRUMB ── */
+.bc-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  flex-wrap: wrap;
+}
+
+.bc-breadcrumb a {
+  color: #4e75a6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.bc-breadcrumb a:hover { text-decoration: underline; }
+
+.bc-breadcrumb span {
+  color: #aaa;
+}
+
+.bc-breadcrumb-current {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.bc-order-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bc-status-badge {
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bc-order-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: #727056;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ── LAYOUT ── */
+.bc-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── TOUR HEADER ── */
+.bc-tour-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.bc-tour-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.bc-tour-type {
+  font-size: 13px;
+  color: #727056;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bc-guide-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.bc-guide-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #4e75a6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bc-guide-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bc-guide-label {
+  font-size: 11px;
+  color: #aaa;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bc-write-btn {
+  padding: 8px 20px;
+  border-radius: 100px;
+  border: 1.5px solid #1a1a1a;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.bc-write-btn:hover { background: rgba(0,0,0,0.05); }
+
+/* ── TOUR DETAILS ── */
+.bc-tour-details {
+  display: flex;
+  gap: 0;
+  background: #e6effe;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.bc-detail-item {
+  flex: 1;
+  padding-right: 20px;
+  border-right: 1px solid rgba(78,117,166,0.2);
+  margin-right: 20px;
+}
+
+.bc-detail-item:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.bc-detail-label {
+  font-size: 12px;
+  color: #727056;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 4px;
+}
+
+.bc-detail-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 6px;
+}
+
+.bc-detail-price { color: #4e75a6; }
+
+.bc-change-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #4e75a6;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* ── PARTICIPANTS POPUP ── */
+.bc-participants-popup {
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  max-width: 280px;
+}
+
+.bc-popup-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 16px;
+}
+
+.bc-counter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.bc-counter-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #1a1a1a;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+
+.bc-counter-btn:hover { background: #f5f5f2; }
+
+.bc-counter-val {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  min-width: 30px;
+  text-align: center;
+}
+
+.bc-popup-save {
+  width: 100%;
+  padding: 11px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.bc-popup-save:hover { background: #333; }
+
+/* ── STATUS BLOCK ── */
+.bc-status-block {
+  display: flex;
+  gap: 16px;
+  background: #fffbf0;
+  border: 1.5px solid #ffe0a0;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.bc-status-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #4e75a6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bc-status-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 12px;
+}
+
+.bc-status-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bc-status-list li {
+  font-size: 14px;
+  color: #4a4a3a;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.bc-status-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #4e75a6;
+  font-weight: 700;
+}
+
+/* ── PAYMENT BLOCK ── */
+.bc-payment-block {
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.bc-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+.bc-payment-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+  background: #f5f5f2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bc-payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.bc-payment-row:last-child { border-bottom: none; }
+.bc-payment-row span:first-child { color: #727056; }
+.bc-payment-row span:last-child { font-weight: 600; color: #1a1a1a; }
+
+.bc-payment-row--total {
+  background: #e6effe;
+}
+
+.bc-payment-row--total span:first-child {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.bc-payment-row--total span:last-child {
+  color: #4e75a6;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bc-promo-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.bc-promo-input {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #f5f5f2;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.bc-promo-input:focus { border-color: #4e75a6; background: #fff; }
+
+.bc-promo-btn {
+  padding: 11px 20px;
+  border-radius: 10px;
+  border: 1.5px solid #1a1a1a;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.bc-promo-btn:hover { background: #f5f5f2; }
+
+.bc-pay-btns { margin-bottom: 12px; }
+
+.bc-pay-main {
+  width: 100%;
+  padding: 16px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.bc-pay-main:hover { background: #333; }
+
+.bc-pay-note {
+  font-size: 12px;
+  color: #aaa;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+/* ── CHAT ── */
+.bc-chat-block {
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.bc-chat-sub {
+  font-size: 13px;
+  color: #727056;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+  margin-top: -12px;
+}
+
+.bc-chat-messages {
+  min-height: 120px;
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 4px 0;
+}
+
+.bc-msg { display: flex; flex-direction: column; }
+
+.bc-msg--system {
+  align-items: center;
+}
+
+.bc-msg--system span {
+  font-size: 12px;
+  color: #aaa;
+  font-family: 'Montserrat', sans-serif;
+  background: #f5f5f2;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+.bc-msg--user { align-items: flex-end; }
+
+.bc-msg--guide {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.bc-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #4e75a6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  flex-shrink: 0;
+}
+
+.bc-msg-bubble {
+  max-width: 420px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
+}
+
+.bc-msg--user .bc-msg-bubble {
+  background: #4e75a6;
+  color: #fff;
+  border-radius: 14px 14px 4px 14px;
+}
+
+.bc-msg--guide .bc-msg-bubble {
+  background: #f5f5f2;
+  color: #1a1a1a;
+  border-radius: 14px 14px 14px 4px;
+}
+
+.bc-msg-time {
+  font-size: 11px;
+  color: #aaa;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.bc-chat-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.bc-chat-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #f5f5f2;
+  outline: none;
+  resize: none;
+  transition: border-color .2s;
+}
+
+.bc-chat-input:focus { border-color: #4e75a6; background: #fff; }
+
+.bc-chat-send {
+  padding: 12px 24px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background .2s;
+  white-space: nowrap;
+}
+
+.bc-chat-send:hover { background: #333; }
+
+/* ── ASIDE ── */
+.bc-aside { position: sticky; top: 100px; }
+
+.bc-aside-card {
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.bc-aside-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.bc-aside-body { padding: 20px; }
+
+.bc-aside-tour-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 4px;
+}
+
+.bc-aside-tour-type {
+  font-size: 12px;
+  color: #727056;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 16px;
+}
+
+.bc-aside-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  padding: 6px 0;
+  color: #727056;
+}
+
+.bc-aside-row span:last-child { font-weight: 600; color: #1a1a1a; }
+
+.bc-aside-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+  margin: 12px 0;
+}
+
+.bc-aside-row--total {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.bc-aside-row--total span:first-child { color: #1a1a1a; font-weight: 600; }
+.bc-aside-row--total span:last-child { color: #4e75a6; font-size: 18px; }
+
+.bc-aside-pay-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background .2s;
+}
+
+.bc-aside-pay-btn:hover { background: #333; }
+
+.bc-aside-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bc-aside-check {
+  font-size: 12px;
+  color: #727056;
+  font-family: 'Montserrat', sans-serif;
+}

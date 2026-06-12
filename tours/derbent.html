@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дербент — Дагтур</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/booking.css">
+<link rel="stylesheet" href="../css/auth.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/derbent.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="../image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="../main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="tours.html#odnodnevnye">однодневные</a>
+          <a href="tours.html#mnogodnevnye">многодневные</a>
+          <a href="tours.html#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="../gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<div class="tp-page">
+
+  <!-- HERO -->
+  <div class="tp-hero">
+    <img src="../image/дербент.png" alt="Дербент" id="heroImg">
+    <div class="tp-hero-overlay"></div>
+    <button class="tp-hero-gallery-btn">Смотреть галерею 14 фото</button>
+    <div class="tp-hero-bottom">
+      <span class="tp-hero-tag">Экскурсионный тур · однодневный</span>
+      <div class="tp-hero-title">Дербент</div>
+      <div class="tp-hero-rating">
+        <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:20px; vertical-align:middle; display:inline-block;">
+        <span class="tp-hero-rating-text">4.9 · 95 отзывов · 89 человек заказали</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tp-content">
+  <!-- ИКОНКИ -->
+  <div class="tp-icons-row">
+    <div style="display:flex;gap:24px;width:100%;">
+      <div class="tp-icon-item tp-icon-item--green">
+        <img src="../image/bus.png" alt="">
+        <span>на автобусе</span>
+      </div>
+      <div class="tp-icon-item tp-icon-item--blue">
+        <img src="../image/kids.png" alt="">
+        <span>можно с детьми</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;width:100%;">
+      <div class="tp-icon-item tp-icon-item--orange">
+        <img src="../image/time.png" alt="">
+        <span>8 часов</span>
+      </div>
+      <div class="tp-icon-item tp-icon-item--green tp-icon-item--people">
+        <img src="../image/people.png" alt="">
+        <span>до 20 человек</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYOUT: ЛЕВО + ПРАВО -->
+  <div class="tp-layout">
+
+    <!-- ЛЕВАЯ КОЛОНКА -->
+    <div class="tp-main">
+
+      <p class="tp-desc">
+        Дербент — один из древнейших городов мира, хранящий тысячелетнюю историю на стыке Европы и Азии.
+        Здесь каждый камень дышит прошлым, а узкие улочки старого города ведут к величественной крепости Нарын-Кала.<br><br>
+        Каспийское море, горный воздух и тёплое гостеприимство местных жителей делают этот город особенным.
+        Мы проведём вас по самым живописным местам Дербента, расскажем легенды и предания этого удивительного края.
+      </p>
+
+      <!-- ЧТО ВАС ОЖИДАЕТ -->
+      <h2 class="tp-section-title">Что вас ожидает?</h2>
+      <div class="tp-expect-grid">
+        <div class="tp-expect-card" style="background:#EFF7DF;">Посещение крепости Нарын-Кала — объекта ЮНЕСКО с видом на город и море</div>
+        <div class="tp-expect-card" style="background:#E6EFFE;">Прогулка по Магалам — историческому кварталу с традиционной архитектурой</div>
+        <div class="tp-expect-card" style="background:#E6EFFE;">Осмотр Джума-мечети — одной из старейших мечетей России</div>
+        <div class="tp-expect-card" style="background:#FFF1E8;">Посещение Дербентского ханского дворца и старинных бань</div>
+        <div class="tp-expect-card" style="background:#FFF1E8;">Прогулка по набережной Каспийского моря</div>
+        <div class="tp-expect-card" style="background:#EFF7DF;">Дегустация местных блюд и дербентских вин (по желанию)</div>
+      </div>
+
+      <!-- ТАЙМИНГ -->
+      <h2 class="tp-section-title">Тайминг поездки</h2>
+      <div class="tp-timeline">
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">08:00</div>
+          <div class="tp-timeline-desc">сбор участников и выезд из Махачкалы</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">10:30</div>
+          <div class="tp-timeline-desc">прибытие в Дербент, начало экскурсии</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">11:00</div>
+          <div class="tp-timeline-desc">посещение крепости Нарын-Кала</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">12:30</div>
+          <div class="tp-timeline-desc">прогулка по историческим Магалам</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">13:30</div>
+          <div class="tp-timeline-desc">обед в местном ресторане</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">15:00</div>
+          <div class="tp-timeline-desc">осмотр Джума-мечети и ханского дворца</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">16:30</div>
+          <div class="tp-timeline-desc">прогулка по набережной</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">17:30</div>
+          <div class="tp-timeline-desc">отправление обратно</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">20:00</div>
+          <div class="tp-timeline-desc">возвращение в Махачкалу</div>
+        </div>
+      </div>
+
+      <!-- МАРШРУТ НА КАРТЕ -->
+      <h2 class="tp-section-title">Маршрут на карте:</h2>
+      <div class="tp-map-block">
+        <div id="derbentMap" style="width:100%; height:340px; border-radius:16px;"></div>
+      </div>
+
+      <!-- ОРГАНИЗАЦИОННЫЕ ДЕТАЛИ -->
+      <h2 class="tp-section-title" style="margin-top:40px;">Организационные детали</h2>
+      <p class="tp-text">
+        Поездка проводится на комфортабельном транспорте в зависимости от размера группы: микроавтобус, минивэн или легковой автомобиль.
+      </p>
+      <p class="tp-text"><strong>Дополнительные расходы (по желанию):</strong><br>
+        • вход в крепость Нарын-Кала: взрослые — 300 ₽, дети — 100 ₽<br>
+        • дегустация местных вин — 500 ₽<br>
+        • обед в ресторане — от 600 ₽
+      </p>
+      <p class="tp-text">
+        Опытный гид проведёт вас по всем ключевым достопримечательностям, поделится историческими фактами и сделает путешествие максимально насыщенным.
+      </p>
+
+      <!-- ОТЗЫВЫ -->
+      <h2 class="tp-section-title" style="margin-top:40px;">Отзывы о данном туре</h2>
+      <div class="tp-reviews-avg-row">
+        <span class="tp-reviews-big-num">4.9</span>
+        <div>
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:18px; vertical-align:middle;">
+          <div style="font-size:12px; color:#888; font-family:'Montserrat',sans-serif; margin-top:4px;">95 верифицированных отзывов</div>
+        </div>
+      </div>
+      <div class="tp-reviews-grid">
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#F2B5C0;">М</div>
+            <div>
+              <div class="tp-review-name">Марина Волкова</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 5.0</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Дербент — это отдельная вселенная! Крепость Нарын-Кала просто захватывает дух. Гид знал каждый камень. Обязательно вернусь!</div>
+        </div>
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#B5D4F2;">А</div>
+            <div>
+              <div class="tp-review-name">Алексей Романов</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 5.0</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Ездили с семьёй, дети были в полном восторге от крепости. Магалы — как машина времени. Вина дербентские — отдельная история 🍷</div>
+        </div>
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#B5E8C8;">О</div>
+            <div>
+              <div class="tp-review-name">Оля Степанова</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 4.9</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Потрясающий город! Набережная вечером — просто сказка. Гид рассказывал так интересно, что 8 часов пролетели незаметно.</div>
+        </div>
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#D4B5F2;">Р</div>
+            <div>
+              <div class="tp-review-name">Рустам Исаев</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 5.0</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Второй раз еду именно с ДагТуром. Организация на высшем уровне, транспорт комфортный. Дербент — must visit для каждого!</div>
+        </div>
+      </div>
+
+      <!-- ПОХОЖИЕ ТУРЫ -->
+      <h2 class="tp-section-title" style="margin-top:40px;">Похожие туры</h2>
+      <div class="tp-similar-grid">
+        <a href="sulak.html" class="tp-similar-card">
+          <img src="../image/сулаккарточка.png" alt="Сулакский каньон">
+          <div class="tp-similar-info">
+            <div class="tp-similar-name">Сулакский каньон</div>
+            <div class="tp-similar-type">Однодневный · 2990 ₽</div>
+          </div>
+        </a>
+        <a href="#" class="tp-similar-card">
+          <img src="../image/гамсутлькарточка.png" alt="Гамсутль">
+          <div class="tp-similar-info">
+            <div class="tp-similar-name">Гамсутль</div>
+            <div class="tp-similar-type">Однодневный · 2990 ₽</div>
+          </div>
+        </a>
+        <a href="#" class="tp-similar-card">
+          <img src="../image/kahib bg.png.png" alt="Кахиб-гоор">
+          <div class="tp-similar-info">
+            <div class="tp-similar-name">Кахиб-гоор</div>
+            <div class="tp-similar-type">Однодневный · 2990 ₽</div>
+          </div>
+        </a>
+        <a href="#" class="tp-similar-card">
+          <img src="../image/гунибкарточка.png" alt="Гуниб">
+          <div class="tp-similar-info">
+            <div class="tp-similar-name">Гуниб</div>
+            <div class="tp-similar-type">Однодневный · 2990 ₽</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ПРАВАЯ ПЛАШКА -->
+    <aside class="tp-aside">
+      <div class="tp-aside-card">
+        <div class="tp-price-row"><span class="tp-price">2990</span></div>
+        <div class="tp-price-label">за 1 человека</div>
+        <button class="tp-btn-primary" id="bookingOpenBtn">забронировать</button>
+        <button class="tp-btn-outline" onclick="document.getElementById('questionOverlay').classList.add('active')">задать вопрос</button>
+        <a href="https://wa.me/79999999999" class="tp-btn-whatsapp">написать в WhatsApp</a>
+        <div class="tp-aside-checks">
+          <div class="tp-aside-check"><div class="tp-aside-check-icon">✓</div><span>Бесплатная отмена 48 часов</span></div>
+          <div class="tp-aside-check"><div class="tp-aside-check-icon">✓</div><span>Оплата на месте или онлайн</span></div>
+          <div class="tp-aside-check"><div class="tp-aside-check-icon">✓</div><span>Опытный гид включён в стоимость</span></div>
+          <div class="tp-aside-check"><div class="tp-aside-check-icon">✓</div><span>Персонализированный маршрут</span></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+  </div><!-- /tp-content -->
+</div><!-- /tp-page -->
+
+<!-- ФУТЕР -->
+<footer class="footer">
+  <img src="../image/footer.png" alt="" class="footer-bg">
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-col">
+        <a href="#">Главная</a>
+        <a href="#">Туры</a>
+        <a href="#">О компании</a>
+        <a href="#">Гидам</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+      </div>
+      <div class="footer-col">
+        <a href="#">@dagtour</a>
+        <a href="#">Написать ВКонтакте</a>
+        <a href="#">Написать нам в Telegram</a>
+        <a href="#">Написать нам в WhatsApp</a>
+        <a href="#">Написать нам в Instagram</a>
+        <a href="#">Разработка сайта</a>
+        <a href="#">Написать отзыв</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- БРОНИРОВАНИЕ -->
+<div class="booking-overlay" id="bookingOverlay">
+  <div class="booking-modal">
+    <button class="booking-close" id="bookingClose">✕</button>
+    <h2 class="booking-title">Выберите дату</h2>
+    <div class="booking-calendar" id="bookingCalendar"></div>
+    <div class="booking-legend">
+      <span class="legend-item legend-busy">День занят</span>
+      <span class="legend-item legend-free">День свободен</span>
+    </div>
+    <div class="booking-form">
+      <div class="booking-form-row">
+        <div class="booking-field"><label>Как вас зовут?</label><input type="text" placeholder="Иванов Иван"></div>
+        <div class="booking-field"><label>Ваш телефон</label><input type="tel" placeholder="+7 999 999 99 99"></div>
+        <div class="booking-field"><label>Ваша эл. почта</label><input type="email" placeholder="ivanov@mail.ru"></div>
+      </div>
+      <div class="booking-form-row booking-form-row--small">
+        <div class="booking-field"><label>Сколько вас будет?</label><input type="number" placeholder="2" min="1" max="20"></div>
+      </div>
+      <div class="booking-field"><label>Вопросы и комментарии</label><textarea placeholder=""></textarea></div>
+      <button class="booking-submit">забронировать</button>
+    </div>
+  </div>
+</div>
+
+<!-- ВОПРОС -->
+<div class="question-overlay" id="questionOverlay">
+  <div class="question-modal">
+    <button class="booking-close" id="questionClose">✕</button>
+    <h2 class="booking-title">Задать вопрос</h2>
+    <div class="booking-form-row">
+      <div class="booking-field"><label>Как вас зовут?</label><input type="text" placeholder="Иванов Иван"></div>
+      <div class="booking-field"><label>Ваш телефон</label><input type="tel" placeholder="+7 999 999 99 99"></div>
+      <div class="booking-field"><label>Ваша эл. почта</label><input type="email" placeholder="ivanov@mail.ru"></div>
+    </div>
+    <div class="booking-field"><label>Ваш вопрос:</label><textarea placeholder=""></textarea></div>
+    <button class="booking-submit">забронировать</button>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field"><label>Email</label><input type="email" id="loginEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+      <button class="auth-google" id="googleBtn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google
+      </button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field"><label>Имя</label><input type="text" id="registerName" placeholder="Иван"></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="registerEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+      <button class="auth-google" id="googleBtn2">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+<script src="../js/booking.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script>
+  const heroImg = document.getElementById('heroImg');
+  const images = ['../image/дербент.png', '../image/дербент2.png', '../image/дербент3.png', '../image/дербент4.png'];
+  let current = 0;
+  setInterval(() => {
+    heroImg.style.opacity = '0';
+    setTimeout(() => {
+      current = (current + 1) % images.length;
+      heroImg.src = images[current];
+      heroImg.style.opacity = '1';
+    }, 500);
+  }, 5000);
+
+  document.getElementById('bookingOpenBtn').addEventListener('click', () => {
+    document.getElementById('bookingOverlay').classList.add('active');
+  });
+</script>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
+<script>
+  ymaps.ready(function() {
+    var derbentMap = new ymaps.Map('derbentMap', {
+      center: [42.0583, 48.2945],
+      zoom: 13,
+      controls: ['zoomControl']
+    });
+    var placemark = new ymaps.Placemark([42.0583, 48.2945], {
+      hintContent: 'Дербент',
+      balloonContent: '<b>Дербент</b><br>Один из древнейших городов мира'
+    }, { preset: 'islands#redDotIcon' });
+    derbentMap.geoObjects.add(placemark);
+  });
+</script>
+</body>
+</html>

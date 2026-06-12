@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сулакский каньон — Дагтур</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/booking.css">
+<link rel="stylesheet" href="../css/auth.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/sulak.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="../image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="../main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="tours.html#odnodnevnye">однодневные</a>
+          <a href="tours.html#mnogodnevnye">многодневные</a>
+          <a href="tours.html#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="../gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<div class="tp-page">
+
+  <!-- HERO -->
+  <div class="tp-hero">
+    <img src="../image/Сулакскийканьон.png" alt="Сулакский каньон" id="heroImg">
+    <div class="tp-hero-overlay"></div>
+    <button class="tp-hero-gallery-btn">Смотреть галерею 14 фото</button>
+    <div class="tp-hero-bottom">
+      <span class="tp-hero-tag">Экскурсионный тур · однодневный</span>
+      <div class="tp-hero-title">Сулакский каньон</div>
+      <div class="tp-hero-rating">
+        <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:20px; vertical-align:middle; display:inline-block;">
+        <span class="tp-hero-rating-text">4.9 · 87 отзывов · 120 человек заказали</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tp-content">
+  <!-- ИКОНКИ -->
+  <div class="tp-icons-row">
+    <div style="display:flex;gap:24px;width:100%;">
+      <div class="tp-icon-item tp-icon-item--green">
+        <img src="../image/bus.png" alt="">
+        <span>на автобусе</span>
+      </div>
+      <div class="tp-icon-item tp-icon-item--blue">
+        <img src="../image/kids.png" alt="">
+        <span>можно с детьми</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;width:100%;">
+      <div class="tp-icon-item tp-icon-item--orange">
+        <img src="../image/time.png" alt="">
+        <span>7,5 часа</span>
+      </div>
+      <div class="tp-icon-item tp-icon-item--green tp-icon-item--people">
+        <img src="../image/people.png" alt="">
+        <span>до 20 человек</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYOUT: ЛЕВО + ПРАВО -->
+  <div class="tp-layout">
+
+    <!-- ЛЕВАЯ КОЛОНКА -->
+    <div class="tp-main">
+
+      <p class="tp-desc">
+        Сулакский каньон — место, где природа словно раскрывает свои самые сокровенные тайны.
+        Здесь редкие растения и животные соседствуют с величественными скалами, а горный воздух
+        наполнен спокойствием и силой.<br><br>
+        Бирюзовые воды и отвесные обрывы будто переносят в мир древних преданий. Мы отправимся
+        к каньону из Дербента по живописной дороге, полной удивительных видов и неожиданных
+        остановок. По пути познакомимся с традициями и культурой народов Дагестана.
+      </p>
+
+      <!-- ЧТО ВАС ОЖИДАЕТ -->
+      <h2 class="tp-section-title">Что вас ожидает?</h2>
+      <div class="tp-expect-grid">
+        <div class="tp-expect-card" style="background:#EFF7DF;">Панорамные виды с главной смотровой площадки на вершине каньона</div>
+        <div class="tp-expect-card" style="background:#E6EFFE;">Поездка на катере по Чиркейскому водохранилищу</div>
+        <div class="tp-expect-card" style="background:#E6EFFE;">Посещение пещеры Нохъо, с подвесными мостами</div>
+        <div class="tp-expect-card" style="background:#FFF1E8;">Форелевое хозяйство-отдых и свежие блюда</div>
+        <div class="tp-expect-card" style="background:#FFF1E8;">Посещение дополнительной обзорной точки, другой ракурс на ущелье.</div>
+        <div class="tp-expect-card" style="background:#EFF7DF;">Поездка в горную местность на джипах</div>
+      </div>
+
+      <!-- ТАЙМИНГ -->
+      <h2 class="tp-section-title">Тайминг поездки</h2>
+      <div class="tp-timeline">
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">08:30</div>
+          <div class="tp-timeline-desc">сбор участников и выезд из Махачкалы</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">12:00</div>
+          <div class="tp-timeline-desc">остановка на основной смотровой площадке с панорамными видами на каньон</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">12:40</div>
+          <div class="tp-timeline-desc">посещение второй обзорной точки</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">13:20</div>
+          <div class="tp-timeline-desc">переезд с остановкой у Чиркейского водохранилища</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">14:00</div>
+          <div class="tp-timeline-desc">прогулка на катере по водохранилищу</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">15:00</div>
+          <div class="tp-timeline-desc">обед в форелевом хозяйстве, отдых и кормление рыбы</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">16:30</div>
+          <div class="tp-timeline-desc">посещение пещеры</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">18:00</div>
+          <div class="tp-timeline-desc">отправление обратно</div>
+        </div>
+        <div class="tp-timeline-item">
+          <div class="tp-timeline-dot"></div>
+          <div class="tp-timeline-time">19:30</div>
+          <div class="tp-timeline-desc">возвращение в город</div>
+        </div>
+      </div>
+
+      <!-- МАРШРУТ НА КАРТЕ -->
+      <h2 class="tp-section-title">Маршрут на карте:</h2>
+      <div class="tp-map-block">
+        <div id="sulakMap" style="width:100%; height:340px; border-radius:16px;"></div>
+      </div>
+
+      <!-- ОРГАНИЗАЦИОННЫЕ ДЕТАЛИ -->
+      <h2 class="tp-section-title" style="margin-top:40px;">Организационные детали</h2>
+      <p class="tp-text">
+        В зависимости от размера группы поездка проводится на удобном транспорте: микроавтобусе Mercedes Sprinter, минивэне (до 10 пассажиров) или легковом автомобиле (до 5 человек).
+      </p>
+      <p class="tp-text"><strong>Дополнительные расходы (по желанию):</strong><br>
+        • прогулка на катере по Чиркейскому водохранилищу — 800 ₽<br>
+        • обед в форелевом хозяйстве — 800 ₽<br>
+        • посещение пещеры Нохъо с подвесными мостами:<br>
+        &nbsp;&nbsp;взрослые — 500 ₽ в будние дни / 700 ₽ в выходные<br>
+        &nbsp;&nbsp;дети до 14 лет — 300 ₽ в будни / 400 ₽ в выходные<br>
+        &nbsp;&nbsp;дошкольники — бесплатно
+      </p>
+      <p class="tp-text">
+        В поездке вас будет сопровождать один из опытных гидов-водителей нашей команды. Он поделится интересными фактами и легендами региона, покажет самые живописные смотровые точки и сделает путешествие максимально комфортным и насыщенным.
+      </p>
+
+      <!-- ОТЗЫВЫ -->
+      <h2 class="tp-section-title" style="margin-top:40px;">Отзывы о данном туре</h2>
+      <div class="tp-reviews-avg-row">
+        <span class="tp-reviews-big-num">4.9</span>
+        <div>
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:18px; vertical-align:middle;">
+          <div style="font-size:12px; color:#888; font-family:'Montserrat',sans-serif; margin-top:4px;">87 верифицированных отзывов</div>
+        </div>
+      </div>
+      <div class="tp-reviews-grid">
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#F2B5C0;">А</div>
+            <div>
+              <div class="tp-review-name">Аня Краснова</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 5.0</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Вообще не ожидала такого! Каньон живьём — это совсем другое, фото не передают. Гид Руслан рассказывал так, что слушали не отрываясь. Пещера с мостами — отдельный восторг, сердце ушло в пятки 😄</div>
+        </div>
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#B5D4F2;">М</div>
+            <div>
+              <div class="tp-review-name">Миша Орлов</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 5.0</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Ездили вчетвером, все остались довольны. Трансфер удобный, нигде не торопили. Катер по водохранилищу — must have, берите доп опцию не пожалеете. Форель свежайшая!</div>
+        </div>
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#B5E8C8;">К</div>
+            <div>
+              <div class="tp-review-name">Катя Белова</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 4.9</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Приехала одна, немного боялась — зря. Группа подобралась классная, атмосфера тёплая. Смотровая площадка — просто космос. Единственное — хотелось бы чуть больше времени там постоять.</div>
+        </div>
+        <div class="tp-review-card">
+          <div class="tp-review-top">
+            <div class="tp-review-avatar" style="background:#D4B5F2;">Д</div>
+            <div>
+              <div class="tp-review-name">Дима Захаров</div>
+              <div class="tp-review-stars-row"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★" style="height:12px;"> 5.0</div>
+            </div>
+          </div>
+          <div class="tp-review-text">Третий раз с ДагТуром и каждый раз по-новому. Гиды не читают по бумажке — живые истории, местные шутки. Каньон не надоедает никогда. Уже планирую следующую поездку!</div>
+        </div>
+      </div>
+
+      <!-- ПОХОЖИЕ ТУРЫ -->
+      <h2 class="tp-section-title" style="margin-top:40px;">Похожие туры</h2>
+      <div class="tp-similar-grid">
+        <a href="sulak.html" class="tp-similar-card">
+          <img src="../image/sulak to.jpg" alt="Сулакский каньон">
+          <div class="tp-similar-info"><div class="tp-similar-name">Сулакский каньон</div><div class="tp-similar-type">Однодневный</div></div>
+        </a>
+        <a href="#" class="tp-similar-card">
+          <img src="../image/kahib bg.png.png" alt="Кахиб-Гоор">
+          <div class="tp-similar-info"><div class="tp-similar-name">Кахиб-гоор</div><div class="tp-similar-type">Однодневный</div></div>
+        </a>
+        <a href="#" class="tp-similar-card">
+          <img src="../image/gamsutl to.png" alt="Гамсутль">
+          <div class="tp-similar-info"><div class="tp-similar-name">Гамсутль</div><div class="tp-similar-type">Однодневный</div></div>
+        </a>
+        <a href="#" class="tp-similar-card">
+          <img src="../image/gunib to.jpg" alt="Гуниб">
+          <div class="tp-similar-info"><div class="tp-similar-name">Гуниб</div><div class="tp-similar-type">Однодневный</div></div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ПРАВАЯ ПЛАШКА -->
+    <aside class="tp-aside">
+      <div class="tp-aside-card">
+        <div class="tp-price-row">
+          <span class="tp-price">2990</span>
+        </div>
+        <div class="tp-price-label">за 1 человека</div>
+
+        <button class="tp-btn-primary" id="bookingOpenBtn">забронировать</button>
+        <button class="tp-btn-outline" onclick="document.getElementById('questionOverlay').classList.add('active')">задать вопрос</button>
+        <a href="https://wa.me/79999999999" class="tp-btn-whatsapp">
+          написать в WhatsApp
+        </a>
+
+        <div class="tp-aside-checks">
+          <div class="tp-aside-check">
+            <div class="tp-aside-check-icon">✓</div>
+            <span>Бесплатная отмена 48 часов</span>
+          </div>
+          <div class="tp-aside-check">
+            <div class="tp-aside-check-icon">✓</div>
+            <span>Оплата на месте или онлайн</span>
+          </div>
+          <div class="tp-aside-check">
+            <div class="tp-aside-check-icon">✓</div>
+            <span>Опытный гид включён в стоимость</span>
+          </div>
+          <div class="tp-aside-check">
+            <div class="tp-aside-check-icon">✓</div>
+            <span>Персонализированный маршрут</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+  </div><!-- /tp-content -->
+</div><!-- /tp-page -->
+
+<!-- ФУТЕР -->
+<footer class="footer">
+  <img src="../image/footer.png" alt="" class="footer-bg">
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-col">
+        <a href="#">Главная</a>
+        <a href="#">Туры</a>
+        <a href="#">О компании</a>
+        <a href="#">Гидам</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+      </div>
+      <div class="footer-col">
+        <a href="#">@dagtour</a>
+        <a href="#">Написать ВКонтакте</a>
+        <a href="#">Написать нам в Telegram</a>
+        <a href="#">Написать нам в WhatsApp</a>
+        <a href="#">Написать нам в Instagram</a>
+        <a href="#">Разработка сайта</a>
+        <a href="#">Написать отзыв</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- БРОНИРОВАНИЕ -->
+<div class="booking-overlay" id="bookingOverlay">
+  <div class="booking-modal">
+    <button class="booking-close" id="bookingClose">✕</button>
+    <h2 class="booking-title">Выберите дату</h2>
+    <div class="booking-calendar" id="bookingCalendar"></div>
+    <div class="booking-legend">
+      <span class="legend-item legend-busy">День занят</span>
+      <span class="legend-item legend-free">День свободен</span>
+    </div>
+    <div class="booking-form">
+      <div class="booking-form-row">
+        <div class="booking-field">
+          <label>Как вас зовут?</label>
+          <input type="text" placeholder="Иванов Иван">
+        </div>
+        <div class="booking-field">
+          <label>Ваш телефон</label>
+          <input type="tel" placeholder="+7 999 999 99 99">
+        </div>
+        <div class="booking-field">
+          <label>Ваша эл. почта</label>
+          <input type="email" placeholder="ivanov@mail.ru">
+        </div>
+      </div>
+      <div class="booking-form-row booking-form-row--small">
+        <div class="booking-field">
+          <label>Сколько вас будет?</label>
+          <input type="number" placeholder="2" min="1" max="20">
+        </div>
+      </div>
+      <div class="booking-field">
+        <label>Вопросы и комментарии</label>
+        <textarea placeholder=""></textarea>
+      </div>
+      <button class="booking-submit">забронировать</button>
+    </div>
+  </div>
+</div>
+
+<!-- ВОПРОС -->
+<div class="question-overlay" id="questionOverlay">
+  <div class="question-modal">
+    <button class="booking-close" id="questionClose">✕</button>
+    <h2 class="booking-title">Задать вопрос</h2>
+    <div class="booking-form-row">
+      <div class="booking-field">
+        <label>Как вас зовут?</label>
+        <input type="text" placeholder="Иванов Иван">
+      </div>
+      <div class="booking-field">
+        <label>Ваш телефон</label>
+        <input type="tel" placeholder="+7 999 999 99 99">
+      </div>
+      <div class="booking-field">
+        <label>Ваша эл. почта</label>
+        <input type="email" placeholder="ivanov@mail.ru">
+      </div>
+    </div>
+    <div class="booking-field">
+      <label>Ваш вопрос:</label>
+      <textarea placeholder=""></textarea>
+    </div>
+    <button class="booking-submit">забронировать</button>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="example@mail.ru">
+      </div>
+      <div class="auth-field">
+        <label>Пароль</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+      <button class="auth-google" id="googleBtn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google
+      </button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field">
+        <label>Имя</label>
+        <input type="text" id="registerName" placeholder="Иван">
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="registerEmail" placeholder="example@mail.ru">
+      </div>
+      <div class="auth-field">
+        <label>Пароль</label>
+        <input type="password" id="registerPassword" placeholder="••••••••">
+      </div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+      <button class="auth-google" id="googleBtn2">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt=""> Войти через Google
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+<script src="../js/booking.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script>
+  // Слайдер hero
+  const heroImg = document.getElementById('heroImg');
+  const images = [
+    '../image/Сулакскийканьон.png',
+    '../image/сулакскийканьон2.png',
+    '../image/сулакскийканьон3.png',
+    '../image/сулакскийканьон4.png'
+  ];
+  let current = 0;
+  setInterval(() => {
+    heroImg.style.opacity = '0';
+    setTimeout(() => {
+      current = (current + 1) % images.length;
+      heroImg.src = images[current];
+      heroImg.style.opacity = '1';
+    }, 500);
+  }, 5000);
+
+  // Открытие бронирования
+  document.getElementById('bookingOpenBtn').addEventListener('click', () => {
+    document.getElementById('bookingOverlay').classList.add('active');
+  });
+</script>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
+<script>
+  ymaps.ready(function() {
+    var sulakMap = new ymaps.Map('sulakMap', {
+      center: [43.0167, 46.8333],
+      zoom: 11,
+      controls: ['zoomControl']
+    });
+    var placemark = new ymaps.Placemark([43.0167, 46.8333], {
+      hintContent: 'Сулакский каньон',
+      balloonContent: '<b>Сулакский каньон</b><br>Один из глубочайших каньонов в мире'
+    }, { preset: 'islands#redDotIcon' });
+    sulakMap.geoObjects.add(placemark);
+  });
+</script>
+</body>
+</html>

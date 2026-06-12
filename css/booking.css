@@ -1,0 +1,273 @@
+  /* BOOKING MODAL */
+
+  .booking-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .booking-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .booking-modal {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 36px 40px;
+    width: 740px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .booking-overlay.active .booking-modal {
+    transform: translateY(0);
+  }
+
+  .booking-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #727056;
+    line-height: 1;
+    padding: 4px 8px;
+  }
+
+  .booking-close:hover { color: #1a1a1a; }
+
+  .booking-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  /* CALENDAR */
+
+  .booking-calendar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .cal-month-title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+  }
+
+  .cal-weekday {
+    text-align: center;
+    font-size: 12px;
+    color: #727056;
+    font-weight: 500;
+    padding-bottom: 6px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+    cursor: default;
+  }
+
+  .cal-day--empty { background: transparent; }
+
+  .cal-day--free {
+    background: #00C853;
+    color: #ffffff;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .cal-day--free:hover { opacity: 0.85; }
+
+  .cal-day--free.selected {
+    outline: 3px solid #1a1a1a;
+    outline-offset: -2px;
+  }
+
+  .cal-day--busy {
+    background: #ffcdd2;
+    color: #e53935;
+  }
+
+  .cal-day--past {
+    background: transparent;
+    color: #ccc;
+  }
+
+  .cal-day-num {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .cal-day-price {
+    font-size: 9px;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  /* ЛЕГЕНДА */
+
+  .booking-legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #1a1a1a;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .legend-item::before {
+    content: "";
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .legend-busy::before { background: #e53935; }
+  .legend-free::before { background: #00C853; }
+
+  /* ФОРМА */
+
+  .booking-form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+  .booking-form-row--small {
+    grid-template-columns: 120px;
+  }
+
+  .booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .booking-field label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .booking-field input,
+  .booking-field textarea {
+    background: #ffffff;
+    border: 2.5px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    color: #1a1a1a;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .booking-field input:focus,
+  .booking-field textarea:focus {
+    border-color: #4e75a6;
+  }
+
+  .booking-field textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  .booking-submit {
+    background: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .booking-submit:hover {
+    background: #333333;
+  }
+
+
+
+.question-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+  .question-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+.question-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  width: 700px;
+  max-width: 95vw;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+  .question-overlay.active .question-modal {
+    transform: translateY(0);
+  }

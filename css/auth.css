@@ -1,0 +1,219 @@
+/* AUTH MODAL */
+
+.auth-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.auth-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.auth-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 36px;
+  width: 380px;
+  max-width: 95vw;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.auth-overlay.active .auth-modal {
+  transform: translateY(0);
+}
+
+.auth-close {
+  position: absolute;
+  top: 14px; right: 18px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #4e75a6;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+.auth-close:hover { color: #1a1a1a; }
+
+/* ВКЛАДКИ */
+.auth-tabs {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  background: #e8eef5;
+  padding: 4px;
+  gap: 4px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Helvetica";
+  color: #4e75a6;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.auth-tab.active {
+  background: #4e75a6;
+  color: #ffffff;
+}
+
+/* ПОЛЯ */
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.auth-field label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: "Helvetica";
+}
+
+.auth-field input {
+  background: #ffffff;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 15px;
+  font-family: "Helvetica";
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-field input:focus {
+  border-color: #4e75a6;
+}
+
+/* КНОПКА */
+.auth-submit {
+  width: 100%;
+  background: #4e75a6;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Helvetica";
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s ease;
+}
+
+.auth-submit:hover {
+  background: #3a5d8a;
+}
+
+.auth-google {
+  width: 100%;
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Helvetica";
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s ease;
+}
+
+.auth-google:hover {
+  background: #f5f5f5;
+}
+
+.auth-google img {
+  width: 20px;
+  height: 20px;
+}
+
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 200;
+}
+
+.user-dropdown.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.user-dropdown a {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  transition: background 0.2s ease;
+}
+
+.user-dropdown a:hover {
+  background: #f0f4fa;
+  color: #4e75a6;
+}
+
+.user-dropdown a:last-child {
+  color: #e53935;
+}
+
+.user-dropdown a:last-child:hover {
+  background: #fff0f0;
+  color: #e53935;
+}
+
+
+.user-menu-btn {
+  background: #4e75a6 !important;
+  color: #ffffff !important;
+  border-color: #4e75a6 !important;
+}
+
+.user-menu-btn:hover {
+  background: #3a5d8a !important;
+  border-color: #3a5d8a !important;
+}

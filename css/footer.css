@@ -1,0 +1,52 @@
+/* FOOTER */
+
+.footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.footer-bg {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  min-height: 500px;
+}
+
+.footer-inner {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.footer-content {
+  display: flex;
+  gap: 120px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-col a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.footer-col a:hover {
+  opacity: 0.6;
+}
+
+.footer-col .footer-phone {
+  color: rgba(255,255,255,0.55);
+}

@@ -1,0 +1,350 @@
+/* TOURS LIST PAGE */
+
+body {
+  background: #ffffff;
+}
+
+/* Шапка на этой странице — статичная */
+.header.visible {
+  position: fixed !important;
+  top: 16px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 120px) !important;
+  max-width: 1200px !important;
+  border-radius: 100px !important;
+  background: #e6effe !important;
+}
+
+.header.visible .nav a,
+.header.visible .nav-item--tours > a {
+  color: #1a1a1a;
+}
+
+/* ====== БАННЕР ====== */
+.tours-banner {
+  width: 100%;
+  margin-top: 0;
+  position: relative;
+}
+
+.tours-banner img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  min-height: 480px;
+}
+
+.tours-banner-content {
+  position: absolute;
+  bottom: 100px;
+  left: 260px;
+  z-index: 2;
+}
+
+.tours-banner-title {
+  font-size: 52px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.tours-banner-stats {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.tours-banner-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  min-width: 90px;
+}
+
+.tours-banner-stat-num {
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+}
+
+.tours-banner-stat-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ====== ФИЛЬТРЫ ====== */
+.tours-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 32px 0 8px;
+  background: #ffffff;
+}
+
+.tours-filters-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tours-filter-tab {
+  padding: 10px 24px;
+  border-radius: 100px;
+  border: 1.5px solid #1a1a1a;
+  background: transparent;
+  color: #1a1a1a;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tours-filter-tab.active {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.tours-filter-tab:hover:not(.active) {
+  background: rgba(0,0,0,0.05);
+}
+
+.tours-filters-dropdowns {
+  display: flex;
+  gap: 10px;
+}
+
+.tours-filter-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1.5px solid #1a1a1a;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tours-filter-dropdown:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* ====== СЕКЦИЯ ТУРОВ ====== */
+
+.tours-list {
+  padding: 100px 140px 120px;
+}
+
+.tours-list-header {
+  margin-bottom: 50px;
+}
+
+.tours-list-title {
+  font-size: 46px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* СЕТКА КАРТОЧЕК */
+
+.tours-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* КАРТОЧКА */
+
+.tl-card {
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 360px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+  transition: transform 0.3s ease;
+}
+
+.tl-card:hover { transform: scale(1.02); }
+
+/* Фото */
+.tl-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.tl-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Градиент сверху */
+.tl-card::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 60%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+
+/* Бейдж ХИТ */
+.tl-card-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 3;
+  background: #FF6B00;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  padding: 5px 12px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Контент сверху */
+.tl-card-body {
+  position: relative;
+  z-index: 2;
+  padding: 46px 38px 0;
+}
+
+.tl-card-name {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.tl-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.tl-card-price-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tl-card-duration {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tl-card-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.tl-card-rating {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tl-card-reviews {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 0;
+}
+
+/* Кнопка снизу */
+.tl-card-price {
+  position: relative;
+  z-index: 2;
+  margin: 0 16px 16px;
+  background: rgba(255,255,255,0.95);
+  padding: 12px 12px 12px 20px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tl-card-price::after {
+  content: "›";
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+/* Секции с якорями */
+.tours-section-divider {
+  padding: 0 140px 40px;
+}
+
+.tours-section-divider h1 {
+  font-size: 46px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tours-section-divider p,
+.tours-sub {
+  font-size: 16px;
+  color: #727056;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+}
+
+.tl-card-price-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  font-family: "Montserrat", sans-serif;
+}
