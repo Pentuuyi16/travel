@@ -135,7 +135,8 @@ body {
   display: block;
   margin-bottom: 15px;
   transition: opacity 0.4s ease;
-  white-space: nowrap;
+  max-width: 600px;
+  height: auto;
 }
 
 .cta { margin-top: 140px; }
