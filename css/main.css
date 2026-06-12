@@ -135,7 +135,7 @@ body {
   display: block;
   margin-bottom: 15px;
   transition: opacity 0.4s ease;
-  max-height: 120px;
+  max-height: 200px;
   width: auto;
 }
 
