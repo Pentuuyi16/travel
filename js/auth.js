@@ -212,9 +212,14 @@ window.showInfoBanner = function (title, text, opts = {}) {
 function showBanner(n, onClose) {
   const wrap = document.createElement('div');
   wrap.className = 'dg-banner-wrap';
-  const kind = n.type === 'guide_accepted' ? 'accepted' : 'rejected';
-  const ico = n.type === 'guide_accepted' ? '🏔️' : '🤝';
-  const btnText = n.type === 'guide_accepted' ? 'Перейти в профиль гида' : 'Понятно';
+  let kind, ico, btnText;
+    if (n.type === 'guide_accepted') {
+      kind = 'accepted'; ico = '🏔️'; btnText = 'Перейти в профиль гида';
+    } else if (n.type === 'new_booking') {
+      kind = 'accepted'; ico = '🎒'; btnText = 'Смотреть заказы';
+    } else {
+      kind = 'rejected'; ico = '🤝'; btnText = 'Понятно';
+    }
 
   wrap.innerHTML = `
     <div class="dg-banner dg-banner--${kind}">
@@ -236,6 +241,7 @@ function showBanner(n, onClose) {
     setTimeout(() => {
       wrap.remove();
       if (goProfile && n.type === 'guide_accepted') location.href = ROOT + 'profile.html';
+      else if (goProfile && n.type === 'new_booking') location.href = ROOT + 'orders.html';
       else if (onClose) onClose();
     }, 350);
   }

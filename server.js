@@ -378,6 +378,21 @@ app.post('/api/booking/create', requireAuth, (req, res) => {
     return res.status(409).json({ error: 'Гид только что был занят. Повторите бронирование.' });
   }
 
+  // Оповещаем выбранного гида о новом заказе
+  const tourName = TOUR_TITLES[tourSlug] || 'тур';
+  const niceDate = new Date(date + 'T00:00:00').toLocaleDateString('ru', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  db.prepare(`
+    INSERT INTO notifications (user_id, type, title, message)
+    VALUES (?, 'new_booking', ?, ?)
+  `).run(
+    guide.id,
+    'Новый заказ! 🎒',
+    `Вас выбрали гидом на «${tourName}» — ${niceDate}, ${people} чел. ` +
+    `Загляните в раздел «Заказы клиентов», чтобы связаться с путешественником.`
+  );
+
   res.json({
     bookingId: info.lastInsertRowid,
     date,
