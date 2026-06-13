@@ -412,10 +412,22 @@ app.get('/api/guide/bookings', requireAuth, (req, res) => {
            u.name AS client_name, u.email AS client_email
     FROM bookings b
     JOIN users u ON u.id = b.user_id
-    WHERE b.guide_id = ?
+    WHERE b.guide_id = ? AND b.guide_hidden = 0
     ORDER BY b.date DESC, b.id DESC
   `).all(req.user.id);
   res.json({ bookings: list });
+});
+
+// Гид скрывает все свои отменённые заказы из списка
+app.post('/api/guide/bookings/clear-cancelled', requireAuth, (req, res) => {
+  if (req.user.role !== 'guide') {
+    return res.status(403).json({ error: 'Доступно только гидам' });
+  }
+  const info = db.prepare(`
+    UPDATE bookings SET guide_hidden = 1
+    WHERE guide_id = ? AND status = 'cancelled' AND guide_hidden = 0
+  `).run(req.user.id);
+  res.json({ cleared: info.changes });
 });
 
 // ════════════════════ ЧАТ ПО ЗАКАЗУ ════════════════════

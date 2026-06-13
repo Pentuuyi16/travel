@@ -89,6 +89,13 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_messages_booking ON messages(booking_id);
 `);
 
+// Добавляем поле guide_hidden, если его ещё нет (миграция)
+try {
+  db.exec(`ALTER TABLE bookings ADD COLUMN guide_hidden INTEGER NOT NULL DEFAULT 0`);
+} catch (e) {
+  // колонка уже существует — игнорируем
+}
+
 // ── Сид: админ по умолчанию (поменяй пароль после первого входа!) ──
 const ADMIN_EMAIL = 'admin@dagtur.ru';
 const ADMIN_PASSWORD = 'admin123';

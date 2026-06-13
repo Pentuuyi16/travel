@@ -78,6 +78,13 @@
     .gb-card{grid-template-columns:1fr;grid-template-areas:"main""side"}
     .gb-side{align-items:flex-start}
   }
+
+  .gb-head-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  .gb-clear-btn{background:#fff;color:#e53935;border:1.5px solid #e53935;padding:10px 22px;
+    border-radius:100px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;
+    cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:6px;transition:background .2s}
+  .gb-clear-btn:hover{background:#fff0f0}
+
 </style>
 </head>
 <body>
@@ -113,8 +120,13 @@
 </div>
 
 <div class="gb-page" id="gbPage" style="display:none">
-  <h1 class="gb-title">Заказы клиентов</h1>
-  <p class="gb-sub">Здесь заказы, в которых вас выбрали гидом. Откройте заказ, чтобы связаться с клиентом.</p>
+  <div class="gb-head-row">
+    <div>
+      <h1 class="gb-title">Заказы клиентов</h1>
+      <p class="gb-sub">Здесь заказы, в которых вас выбрали гидом. Откройте заказ, чтобы связаться с клиентом.</p>
+    </div>
+    <button class="gb-clear-btn" id="gbClearBtn" style="display:none">Очистить отменённые</button>
+  </div>
   <div class="gb-list" id="gbList"></div>
 </div>
 
@@ -163,7 +175,11 @@ function render(bookings){
       Пока нет заказов. Как только кто-то забронирует тур и вас выберут гидом — заказ появится здесь.</div>`;
     return;
   }
+    const hasCancelled = bookings.some(b => b.status === 'cancelled');
+    const clearBtn = document.getElementById('gbClearBtn');
+    if (clearBtn) clearBtn.style.display = hasCancelled ? '' : 'none';
   list.innerHTML=bookings.map(b=>{
+    
     const cancelled=b.status==='cancelled';
     const phone=b.customer_phone
       ? `<div class="gb-client-row">📞 <a href="tel:${esc(b.customer_phone)}" onclick="event.stopPropagation()">${esc(b.customer_phone)}</a></div>`
@@ -203,6 +219,14 @@ function render(bookings){
     document.getElementById('gbGuard').style.display='block';
   }
 })();
+document.getElementById('gbClearBtn').addEventListener('click', async () => {
+  if (!confirm('Скрыть все отменённые заказы из списка? Данные сохранятся в системе.')) return;
+  try {
+    await call('/api/guide/bookings/clear-cancelled', { method: 'POST' });
+    const { bookings } = await call('/api/guide/bookings');
+    render(bookings);
+  } catch (e) { alert(e.message); }
+});
 </script>
 </body>
 </html>
