@@ -112,7 +112,9 @@ function updateHeader(user) {
     dropdown.id = 'userDropdown';
     dropdown.className = 'user-dropdown';
     dropdown.innerHTML = `
-      <a href="${ROOT}orders.html">Мои заказы</a>
+      ${isGuide
+        ? `<a href="${ROOT}guide-bookings.html">Заказы клиентов</a>`
+        : `<a href="${ROOT}orders.html">Мои заказы</a>`}
       <a href="#">Промокоды</a>
       <a href="${ROOT}profile.html">${isGuide ? 'Профиль гида' : 'Профиль'}</a>
       ${isAdmin ? `<a href="${ROOT}admin.html">Админ-панель</a>` : ''}
