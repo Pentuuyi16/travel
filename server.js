@@ -521,8 +521,10 @@ app.get('/api/booking/:id', requireAuth, (req, res) => {
   `).get(id);
   if (!b) return res.status(404).json({ error: 'Заказ не найден' });
   // смотреть может владелец или админ
-  const owner = db.prepare('SELECT user_id FROM bookings WHERE id = ?').get(id);
-  if (owner.user_id !== req.user.id && req.user.role !== 'admin') {
+  const owner = db.prepare('SELECT user_id, guide_id FROM bookings WHERE id = ?').get(id);
+  if (owner.user_id !== req.user.id
+      && owner.guide_id !== req.user.id
+      && req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Это не ваш заказ' });
   }
   res.json({ booking: b });
