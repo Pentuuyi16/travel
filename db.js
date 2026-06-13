@@ -72,10 +72,21 @@ db.exec(`
     author     TEXT NOT NULL,
     rating     INTEGER NOT NULL DEFAULT 5,
     text       TEXT NOT NULL,
-    status     TEXT NOT NULL DEFAULT 'pending',  -- pending | approved | rejected
+    status     TEXT NOT NULL DEFAULT 'pending',
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     decided_at TEXT
   );
+
+  CREATE TABLE IF NOT EXISTS messages (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_id INTEGER NOT NULL REFERENCES bookings(id),
+    sender_id  INTEGER NOT NULL REFERENCES users(id),
+    sender_role TEXT NOT NULL,       -- 'client' | 'guide'
+    text       TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_messages_booking ON messages(booking_id);
 `);
 
 // ── Сид: админ по умолчанию (поменяй пароль после первого входа!) ──
