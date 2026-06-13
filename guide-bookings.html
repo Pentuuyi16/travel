@@ -35,6 +35,7 @@
     color:inherit;
     box-sizing:border-box;
     transition:transform .15s, box-shadow .15s;
+    cursor:pointer;
   }
   .gb-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
 
@@ -48,11 +49,11 @@
   .gb-client a:hover{text-decoration:underline}
 
   .gb-side{
-    grid-area:side !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:flex-end !important;
-    gap:12px !important;
+    grid-area:side;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:12px;
     white-space:nowrap;
   }
   .gb-status{font-size:12px;font-weight:700;padding:6px 16px;border-radius:100px}
@@ -165,13 +166,13 @@ function render(bookings){
   list.innerHTML=bookings.map(b=>{
     const cancelled=b.status==='cancelled';
     const phone=b.customer_phone
-      ? `<div class="gb-client-row">📞 <a href="tel:${esc(b.customer_phone)}">${esc(b.customer_phone)}</a></div>`
+      ? `<div class="gb-client-row">📞 <a href="tel:${esc(b.customer_phone)}" onclick="event.stopPropagation()">${esc(b.customer_phone)}</a></div>`
       : '';
     const email=b.customer_email
-      ? `<div class="gb-client-row">✉️ <a href="mailto:${esc(b.customer_email)}">${esc(b.customer_email)}</a></div>`
+      ? `<div class="gb-client-row">✉️ <a href="mailto:${esc(b.customer_email)}" onclick="event.stopPropagation()">${esc(b.customer_email)}</a></div>`
       : '';
     return `
-      <a class="gb-card" href="guide-order.html?id=${b.id}">
+      <div class="gb-card" onclick="location.href='guide-order.html?id=${b.id}'">
         <div class="gb-main">
           <div class="gb-tour">${esc(b.tour_title||'Тур')}</div>
           <div class="gb-date">📅 ${fmtDate(b.date)} · ${b.people} чел. · заказ №${String(b.id).padStart(6,'0')}</div>
@@ -184,7 +185,7 @@ function render(bookings){
           <span class="gb-status gb-status--${b.status}">${cancelled?'Отменён':'Активен'}</span>
           <span class="gb-open-btn">Открыть чат →</span>
         </div>
-      </a>`;
+      </div>`;
   }).join('');
 }
 
