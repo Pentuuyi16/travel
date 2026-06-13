@@ -401,6 +401,91 @@ app.post('/api/booking/create', requireAuth, (req, res) => {
 });
 
 // Мои бронирования
+// Заказы, где текущий пользователь назначен гидом (кабинет гида)
+app.get('/api/guide/bookings', requireAuth, (req, res) => {
+  if (req.user.role !== 'guide') {
+    return res.status(403).json({ error: 'Доступно только гидам' });
+  }
+  const list = db.prepare(`
+    SELECT b.id, b.tour_slug, b.tour_title, b.date, b.people, b.status, b.created_at,
+           b.customer_name, b.customer_phone, b.customer_email,
+           u.name AS client_name, u.email AS client_email
+    FROM bookings b
+    JOIN users u ON u.id = b.user_id
+    WHERE b.guide_id = ?
+    ORDER BY b.date DESC, b.id DESC
+  `).all(req.user.id);
+  res.json({ bookings: list });
+});
+
+// ════════════════════ ЧАТ ПО ЗАКАЗУ ════════════════════
+
+function canAccessBookingChat(booking, user) {
+  if (!booking) return false;
+  if (user.role === 'admin') return true;
+  if (booking.user_id === user.id) return true;
+  if (booking.guide_id === user.id) return true;
+  return false;
+}
+
+app.get('/api/booking/:id/messages', requireAuth, (req, res) => {
+  const id = Number(req.params.id);
+  const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(id);
+  if (!canAccessBookingChat(booking, req.user)) {
+    return res.status(403).json({ error: 'Нет доступа к этому чату' });
+  }
+  const messages = db.prepare(`
+    SELECT m.id, m.sender_id, m.sender_role, m.text, m.created_at,
+           u.name AS sender_name
+    FROM messages m
+    JOIN users u ON u.id = m.sender_id
+    WHERE m.booking_id = ?
+    ORDER BY m.id ASC
+  `).all(id);
+  let myRole = 'client';
+  if (req.user.id === booking.guide_id) myRole = 'guide';
+  res.json({ messages, myRole });
+});
+
+app.post('/api/booking/:id/messages', requireAuth, (req, res) => {
+  const id = Number(req.params.id);
+  const text = (req.body.text || '').trim();
+  if (!text) return res.status(400).json({ error: 'Пустое сообщение' });
+  if (text.length > 2000) return res.status(400).json({ error: 'Сообщение слишком длинное' });
+
+  const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(id);
+  if (!canAccessBookingChat(booking, req.user)) {
+    return res.status(403).json({ error: 'Нет доступа к этому чату' });
+  }
+
+  const senderRole = (req.user.id === booking.guide_id) ? 'guide' : 'client';
+  const info = db.prepare(`
+    INSERT INTO messages (booking_id, sender_id, sender_role, text)
+    VALUES (?, ?, ?, ?)
+  `).run(id, req.user.id, senderRole, text);
+
+  const recipientId = (senderRole === 'guide') ? booking.user_id : booking.guide_id;
+  const fromName = req.user.name || (senderRole === 'guide' ? 'Гид' : 'Клиент');
+  db.prepare(`
+    INSERT INTO notifications (user_id, type, title, message)
+    VALUES (?, 'new_message', ?, ?)
+  `).run(
+    recipientId,
+    'Новое сообщение 💬',
+    `${fromName} написал(а) вам по заказу «${booking.tour_title || 'тур'}».`
+  );
+
+  res.json({
+    message: {
+      id: info.lastInsertRowid,
+      sender_id: req.user.id,
+      sender_role: senderRole,
+      sender_name: req.user.name,
+      text,
+      created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+    }
+  });
+});
 app.get('/api/booking/my', requireAuth, (req, res) => {
   const list = db.prepare(`
     SELECT b.id, b.tour_slug, b.tour_title, b.date, b.people, b.status, b.created_at,
