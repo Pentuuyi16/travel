@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Написать отзыв — ДагТур</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/footer.css">
+<style>
+  body{background:#f5f5f2}
+  .header.visible{background:#e6effe}
+  .header.visible .nav a{color:#1a1a1a}
+
+  .rv-page{max-width:620px;margin:0 auto;padding:130px 24px 90px;font-family:'Montserrat',sans-serif}
+  .rv-title{font-size:32px;font-weight:700;letter-spacing:-.5px;color:#1a1a1a;margin-bottom:6px}
+  .rv-sub{font-size:14px;color:#727056;margin-bottom:28px;line-height:1.6}
+
+  .rv-card{background:#fff;border-radius:24px;padding:32px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .rv-label{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:10px}
+
+  .rv-stars{display:flex;gap:6px;margin-bottom:22px}
+  .rv-star{font-size:34px;color:#ddd;cursor:pointer;transition:color .15s,transform .15s;line-height:1}
+  .rv-star:hover{transform:scale(1.15)}
+  .rv-star.on{color:#FFD600}
+
+  .rv-textarea{width:100%;border:1.5px solid rgba(0,0,0,.15);border-radius:14px;padding:14px 16px;
+    font-family:inherit;font-size:14px;color:#1a1a1a;line-height:1.6;outline:none;resize:vertical;
+    min-height:150px;transition:border-color .2s;margin-bottom:6px;box-sizing:border-box}
+  .rv-textarea:focus{border-color:#4e75a6}
+  .rv-counter{font-size:12px;color:#aaa;text-align:right;margin-bottom:18px}
+
+  .rv-submit{background:#1a1a1a;color:#fff;border:none;padding:14px 40px;border-radius:100px;
+    font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}
+  .rv-submit:hover{background:#333}
+  .rv-submit:disabled{opacity:.6;cursor:default}
+
+  .rv-as{font-size:13px;color:#727056;margin-bottom:20px}
+  .rv-as b{color:#1a1a1a}
+
+  .rv-guard{max-width:480px;margin:0 auto;padding:180px 24px;text-align:center;
+    font-family:'Montserrat',sans-serif;display:none}
+  .rv-guard .ico{font-size:46px;margin-bottom:14px}
+  .rv-guard h2{font-size:22px;font-weight:700;margin-bottom:10px;color:#1a1a1a}
+  .rv-guard p{font-size:14px;color:#727056;margin-bottom:24px}
+  .rv-guard button{background:#1a1a1a;color:#fff;border:none;padding:13px 36px;border-radius:100px;
+    font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+
+  .rv-done{display:none;text-align:center;padding:40px 20px}
+  .rv-done .ico{font-size:48px;margin-bottom:16px}
+  .rv-done h2{font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
+  .rv-done p{font-size:14px;color:#727056;line-height:1.6;margin-bottom:24px}
+  .rv-done a{color:#4e75a6;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="tours/tours.html#odnodnevnye">однодневные</a>
+          <a href="tours/tours.html#mnogodnevnye">многодневные</a>
+          <a href="tours/tours.html#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<div class="rv-guard" id="rvGuard">
+  <div class="ico">🔒</div>
+  <h2>Нужен вход в аккаунт</h2>
+  <p>Войдите, чтобы оставить отзыв.</p>
+  <button onclick="window.openAuth && window.openAuth('login')">Войти</button>
+</div>
+
+<div class="rv-page" id="rvPage" style="display:none">
+  <h1 class="rv-title">Написать отзыв</h1>
+  <p class="rv-sub">Расскажите о поездке — про гида, тур или сервис в целом. После проверки отзыв появится на сайте.</p>
+
+  <div class="rv-card" id="rvForm">
+    <p class="rv-as">Отзыв от имени: <b id="rvAuthor">—</b></p>
+
+    <div class="rv-label">Ваша оценка</div>
+    <div class="rv-stars" id="rvStars">
+      <span class="rv-star" data-v="1">★</span>
+      <span class="rv-star" data-v="2">★</span>
+      <span class="rv-star" data-v="3">★</span>
+      <span class="rv-star" data-v="4">★</span>
+      <span class="rv-star" data-v="5">★</span>
+    </div>
+
+    <div class="rv-label">Текст отзыва</div>
+    <textarea class="rv-textarea" id="rvText" maxlength="2000"
+      placeholder="Поделитесь впечатлениями: что понравилось, какой был гид, рекомендуете ли тур..."></textarea>
+    <div class="rv-counter"><span id="rvCount">0</span> / 2000</div>
+
+    <button class="rv-submit" id="rvSubmit">Отправить отзыв</button>
+  </div>
+
+  <div class="rv-done" id="rvDone">
+    <div class="ico">🎉</div>
+    <h2>Спасибо за отзыв!</h2>
+    <p>Мы проверим его и скоро опубликуем на сайте.<br>Ваше мнение помогает нам и другим путешественникам.</p>
+    <a href="main.html">← на главную</a>
+  </div>
+</div>
+
+<!-- AUTH МОДАЛКА -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field"><label>Email</label><input type="email" id="loginEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field"><label>Имя</label><input type="text" id="registerName" placeholder="Иван"></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="registerEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/auth.js"></script>
+<script>
+let rating = 5;
+
+async function call(url, options = {}) {
+  const res = await fetch(url, { credentials: 'same-origin', ...options });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Ошибка сервера');
+  return data;
+}
+
+// звёзды
+const stars = document.querySelectorAll('#rvStars .rv-star');
+function paintStars(v) {
+  stars.forEach(s => s.classList.toggle('on', Number(s.dataset.v) <= v));
+}
+stars.forEach(s => {
+  s.addEventListener('click', () => { rating = Number(s.dataset.v); paintStars(rating); });
+  s.addEventListener('mouseenter', () => paintStars(Number(s.dataset.v)));
+});
+document.getElementById('rvStars').addEventListener('mouseleave', () => paintStars(rating));
+paintStars(rating);
+
+// счётчик символов
+const textEl = document.getElementById('rvText');
+textEl.addEventListener('input', () => {
+  document.getElementById('rvCount').textContent = textEl.value.length;
+});
+
+// отправка
+document.getElementById('rvSubmit').addEventListener('click', async () => {
+  const text = textEl.value.trim();
+  if (text.length < 10) { alert('Отзыв слишком короткий — напишите хотя бы пару предложений'); return; }
+  const btn = document.getElementById('rvSubmit');
+  btn.disabled = true; btn.textContent = 'Отправляем…';
+  try {
+    await call('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating, text })
+    });
+    document.getElementById('rvForm').style.display = 'none';
+    document.getElementById('rvDone').style.display = 'block';
+  } catch (e) {
+    alert(e.message);
+    btn.disabled = false; btn.textContent = 'Отправить отзыв';
+  }
+});
+
+// проверка входа
+(async () => {
+  try {
+    const { user } = await call('/api/me');
+    if (user) {
+      document.getElementById('rvPage').style.display = 'block';
+      document.getElementById('rvAuthor').textContent = user.name || user.email;
+    } else {
+      document.getElementById('rvGuard').style.display = 'block';
+    }
+  } catch {
+    document.getElementById('rvGuard').style.display = 'block';
+  }
+})();
+</script>
+</body>
+</html>
