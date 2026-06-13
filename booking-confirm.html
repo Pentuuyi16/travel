@@ -42,7 +42,7 @@
   <div class="bc-breadcrumb">
     <a href="#">Мои заказы</a>
     <span>›</span>
-    <span class="bc-breadcrumb-current">Сулакский каньон — 17 июня</span>
+    <span class="bc-breadcrumb-current" id="crumb-title">Сулакский каньон — 17 июня</span>
     <div class="bc-order-status">
       <span class="bc-status-badge">Ожидает оплаты</span>
       <span class="bc-order-num">№ 0012847</span>
@@ -61,9 +61,9 @@
           <p class="bc-tour-type">Однодневная экскурсия · Дагестан</p>
         </div>
         <div class="bc-guide-block">
-          <div class="bc-guide-avatar">Р</div>
+          <div class="bc-guide-avatar" id="guide-avatar">Р</div>
           <div>
-            <p class="bc-guide-name">Руслан</p>
+            <p class="bc-guide-name" id="guide-name">Руслан</p>
             <p class="bc-guide-label">ваш гид</p>
           </div>
           <button class="bc-write-btn" onclick="document.getElementById('chatInput').focus()">Написать</button>
@@ -155,6 +155,9 @@
           <button class="bc-pay-main" onclick="handlePayment()">
             Оплатить предоплату <span id="pay-btn-amount">1 893 ₽</span>
           </button>
+          <button class="bc-cancel-btn" onclick="cancelBooking()">
+            Отменить бронь
+          </button>
         </div>
 
         <p class="bc-pay-note">🔒 Безопасная оплата через ЮКасса. Подключение скоро.</p>
@@ -192,7 +195,7 @@
           <p class="bc-aside-tour-name">Сулакский каньон</p>
           <p class="bc-aside-tour-type">Однодневный · 7,5 часов</p>
           <div class="bc-aside-row">
-            <span>Дата</span><span>17 июня, ср</span>
+            <span>Дата</span><span id="aside-date">17 июня, ср</span>
           </div>
           <div class="bc-aside-row">
             <span>Участников</span><span id="aside-participants">2 чел.</span>
@@ -287,11 +290,46 @@
   }
 
   // Подставляем дату
+  // Назначенный гид (из брони)
+  const guideName = sessionStorage.getItem('booking_guide_name') || '';
+  const guideAvatar = sessionStorage.getItem('booking_guide_avatar') || '';
+  const bookingId = sessionStorage.getItem('booking_id') || '';
+  const tourSlug = sessionStorage.getItem('booking_tour') || '';
+
+  const TOUR_NAMES = {
+    sulak: 'Сулакский каньон', derbent: 'Дербент', hunzah: 'Хунзах',
+    gamsutl: 'Гамсутль', gunib: 'Гуниб', kahib: 'Кахиб-Гоор'
+  };
+
+  if (guideName) {
+    const nameEl = document.getElementById('guide-name');
+    const avEl = document.getElementById('guide-avatar');
+    if (nameEl) nameEl.textContent = guideName;
+    if (avEl) {
+      if (guideAvatar) {
+        avEl.innerHTML = `<img src="${guideAvatar}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+      } else {
+        avEl.textContent = guideName.trim()[0].toUpperCase();
+      }
+    }
+  }
+
+  // Подставляем дату везде
   if (urlDate) {
     const formatted = formatDate(urlDate);
-    document.getElementById('detail-date').textContent = formatted;
+    const detailEl = document.getElementById('detail-date');
+    if (detailEl) detailEl.textContent = formatted;
     const payDateEl = document.getElementById('payment-date-val');
     if (payDateEl) payDateEl.textContent = formatted;
+    const asideDateEl = document.getElementById('aside-date');
+    if (asideDateEl) asideDateEl.textContent = formatted;
+
+    // хлебные крошки: «Название — дата»
+    const crumb = document.getElementById('crumb-title');
+    if (crumb) {
+      const tourName = TOUR_NAMES[tourSlug] || 'Тур';
+      crumb.textContent = `${tourName} — ${formatted}`;
+    }
   }
 
   function plural(n) {
@@ -378,6 +416,29 @@
       sendMessage();
     }
   });
+
+// Отмена брони
+  function cancelBooking() {
+    if (!bookingId) { alert('Бронь не найдена'); return; }
+    if (!confirm('Отменить бронирование? Дата освободится.')) return;
+    fetch('/api/booking/' + bookingId + '/cancel', {
+      method: 'POST', credentials: 'same-origin'
+    })
+      .then(r => r.json().then(d => ({ ok: r.ok, d })))
+      .then(({ ok, d }) => {
+        if (!ok) { alert(d.error || 'Не удалось отменить'); return; }
+        if (window.showInfoBanner) {
+          window.showInfoBanner('Бронь отменена',
+            'Ваше бронирование отменено, дата снова свободна. Будем рады видеть вас снова!',
+            { ico: '✓', btnText: 'На главную', onButton: () => location.href = 'main.html' });
+        } else {
+          alert('Бронь отменена');
+          location.href = 'main.html';
+        }
+      })
+      .catch(() => alert('Сервер недоступен'));
+  }
+  window.cancelBooking = cancelBooking;
 
   updatePrices();
 </script>

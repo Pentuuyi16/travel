@@ -652,3 +652,19 @@
   color: #727056;
   font-family: 'Montserrat', sans-serif;
 }
+
+.bc-cancel-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  background: #fff;
+  color: #e53935;
+  border: 1.5px solid #e53935;
+  border-radius: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+}
+.bc-cancel-btn:hover { background: #fff0f0; }
