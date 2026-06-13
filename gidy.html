@@ -161,29 +161,29 @@
           <label class="type-option" onclick="selectType(this)"><input type="radio" name="type"><div><div class="type-option-title">Команда гидов</div><div class="type-option-desc">Работаю в команде, встречу провожу я или напарники</div></div></label>
           <label class="type-option" onclick="selectType(this)"><input type="radio" name="type"><div><div class="type-option-title">Агентство</div><div class="type-option-desc">Встречи проводят наши сотрудники</div></div></label>
         </div>
-        <div class="field"><div class="field-label">Имя и фамилия</div><input type="text" placeholder="Ахмед Хасавов"></div>
-        <div class="field"><div class="field-label">Описание</div><textarea rows="3" placeholder="Как давно живёте в Дагестане, в каких темах разбираетесь..."></textarea></div>
+        <div class="field"><div class="field-label">Имя и фамилия</div><input type="text" id="gName" placeholder="Ахмед Хасавов"></div>
+        <div class="field"><div class="field-label">Описание</div><textarea rows="3" id="gAbout" placeholder="Как давно живёте в Дагестане, в каких темах разбираетесь..."></textarea></div>
         <div class="form-nav"><button class="form-nav-next" onclick="goStep(2)">Далее →</button></div>
       </div>
       <div class="form-step" id="step2">
         <div class="form-step-title">Опыт и маршруты</div>
         <div class="form-step-sub">Расскажи о своих направлениях</div>
-        <div class="field"><div class="field-label">Специализация</div><div class="tags-wrap"><span class="tag selected" onclick="toggleTag(this)">Горные маршруты</span><span class="tag" onclick="toggleTag(this)">Джип-туры</span><span class="tag" onclick="toggleTag(this)">Историко-культурные</span><span class="tag" onclick="toggleTag(this)">Рафтинг</span><span class="tag" onclick="toggleTag(this)">Гастро-туры</span><span class="tag" onclick="toggleTag(this)">Фото-туры</span><span class="tag" onclick="toggleTag(this)">Однодневные</span><span class="tag" onclick="toggleTag(this)">Многодневные</span></div></div>
-        <div class="field"><div class="field-label">Любимые маршруты / места</div><textarea rows="2" placeholder="Сулакский каньон, Гамсутль, Шалбуздаг..."></textarea></div>
+        <div class="field"><div class="field-label">Специализация</div><div class="tags-wrap" id="gSpecTags"><span class="tag selected" onclick="toggleTag(this)">Горные маршруты</span><span class="tag" onclick="toggleTag(this)">Джип-туры</span><span class="tag" onclick="toggleTag(this)">Историко-культурные</span><span class="tag" onclick="toggleTag(this)">Рафтинг</span><span class="tag" onclick="toggleTag(this)">Гастро-туры</span><span class="tag" onclick="toggleTag(this)">Фото-туры</span><span class="tag" onclick="toggleTag(this)">Однодневные</span><span class="tag" onclick="toggleTag(this)">Многодневные</span></div></div>
+        <div class="field"><div class="field-label">Любимые маршруты / места</div><textarea rows="2" id="gRoutes" placeholder="Сулакский каньон, Гамсутль, Шалбуздаг..."></textarea></div>
         <div class="field-row">
-          <div class="field"><div class="field-label">Опыт в туризме</div><select><option>До 1 года</option><option>1–3 года</option><option selected>3–5 лет</option><option>Более 5 лет</option></select></div>
-          <div class="field"><div class="field-label">Транспорт</div><select><option>Нет</option><option>Легковой авто</option><option selected>Внедорожник</option><option>Микроавтобус</option></select></div>
+          <div class="field"><div class="field-label">Опыт в туризме</div><select id="gExp"><option>До 1 года</option><option>1–3 года</option><option selected>3–5 лет</option><option>Более 5 лет</option></select></div>
+          <div class="field"><div class="field-label">Транспорт</div><select id="gTransport"><option>Нет</option><option>Легковой авто</option><option selected>Внедорожник</option><option>Микроавтобус</option></select></div>
         </div>
-        <div class="field"><div class="field-label">Сертификаты</div><div class="tags-wrap"><span class="tag" onclick="toggleTag(this)">Сертификат МЧС</span><span class="tag" onclick="toggleTag(this)">Первая помощь</span><span class="tag" onclick="toggleTag(this)">Лицензия гида</span><span class="tag" onclick="toggleTag(this)">Водительское В/С</span></div></div>
+        <div class="field"><div class="field-label">Сертификаты</div><div class="tags-wrap" id="gCertTags"><span class="tag" onclick="toggleTag(this)">Сертификат МЧС</span><span class="tag" onclick="toggleTag(this)">Первая помощь</span><span class="tag" onclick="toggleTag(this)">Лицензия гида</span><span class="tag" onclick="toggleTag(this)">Водительское В/С</span></div></div>
         <div class="form-nav"><button class="form-nav-back" onclick="goStep(1)">← Назад</button><button class="form-nav-next" onclick="goStep(3)">Далее →</button></div>
       </div>
       <div class="form-step" id="step3">
         <div class="form-step-title">Контакты</div>
         <div class="form-step-sub">Как с тобой связаться</div>
-        <div class="field"><div class="field-label">Номер телефона</div><input type="tel" placeholder="+7 900 000 00 00"></div>
-        <div class="field"><div class="field-label">Email</div><input type="email" placeholder="guide@example.com"></div>
-        <div class="field"><div class="field-label">Мессенджер</div><div class="tags-wrap"><span class="tag selected" onclick="toggleTag(this)">WhatsApp</span><span class="tag" onclick="toggleTag(this)">Telegram</span><span class="tag" onclick="toggleTag(this)">ВКонтакте</span></div></div>
-        <div class="field"><div class="field-label">Сайт или соцсеть (по желанию)</div><input type="url" placeholder="https://instagram.com/..."></div>
+        <div class="field"><div class="field-label">Номер телефона</div><input type="tel" id="gPhone" placeholder="+7 900 000 00 00"></div>
+        <div class="field"><div class="field-label">Email</div><input type="email" id="gEmail" placeholder="guide@example.com"></div>
+        <div class="field"><div class="field-label">Мессенджер</div><div class="tags-wrap" id="gMsgTags"><span class="tag selected" onclick="toggleTag(this)">WhatsApp</span><span class="tag" onclick="toggleTag(this)">Telegram</span><span class="tag" onclick="toggleTag(this)">ВКонтакте</span></div></div>
+        <div class="field"><div class="field-label">Сайт или соцсеть (по желанию)</div><input type="url" id="gLink" placeholder="https://instagram.com/..."></div>
         <div class="form-nav"><button class="form-nav-back" onclick="goStep(2)">← Назад</button><button class="form-nav-next" onclick="submitForm()">Отправить анкету ✓</button></div>
       </div>
       <div class="form-success" id="form-success">
@@ -318,15 +318,58 @@ function goStep(n) {
   document.getElementById('form-section').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function submitForm() {
-  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('form-success').style.display = 'block';
-  document.getElementById('progress-fill').style.width = '100%';
-  for (let i = 1; i <= 3; i++) {
-    const el = document.getElementById('fp' + i);
-    el.classList.remove('active');
-    el.classList.add('done');
-    el.querySelector('.fp-num').textContent = '✓';
+function tagsOf(id) {
+  return Array.from(document.querySelectorAll('#' + id + ' .tag.selected'))
+    .map(t => t.textContent.trim()).join(', ');
+}
+
+async function submitForm() {
+  const payload = {
+    guideType: document.querySelector('.type-option.selected .type-option-title')?.textContent.trim(),
+    name: document.getElementById('gName').value.trim(),
+    about: document.getElementById('gAbout').value.trim(),
+    specializations: tagsOf('gSpecTags'),
+    routes: document.getElementById('gRoutes').value.trim(),
+    experience: document.getElementById('gExp').value,
+    transport: document.getElementById('gTransport').value,
+    certificates: tagsOf('gCertTags'),
+    phone: document.getElementById('gPhone').value.trim(),
+    email: document.getElementById('gEmail').value.trim(),
+    messengers: tagsOf('gMsgTags'),
+    link: document.getElementById('gLink').value.trim()
+  };
+
+  if (!payload.name)  { goStep(1); alert('Укажите имя и фамилию'); return; }
+  if (!payload.phone) { alert('Укажите номер телефона'); return; }
+  if (!payload.email) { alert('Укажите email'); return; }
+
+  try {
+    const res = await fetch('/api/guide/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (res.status === 401) {
+      alert('Чтобы отправить анкету, войдите или зарегистрируйтесь');
+      if (window.openAuth) window.openAuth('register');
+      return;
+    }
+    if (!res.ok) { alert(data.error || 'Не удалось отправить анкету'); return; }
+
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('form-success').style.display = 'block';
+    document.getElementById('progress-fill').style.width = '100%';
+    for (let i = 1; i <= 3; i++) {
+      const el = document.getElementById('fp' + i);
+      el.classList.remove('active');
+      el.classList.add('done');
+      el.querySelector('.fp-num').textContent = '✓';
+    }
+  } catch (e) {
+    alert('Сервер недоступен. Запущен ли node server.js?');
   }
 }
 

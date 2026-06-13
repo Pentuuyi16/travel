@@ -1,0 +1,7 @@
+node_modules/
+dagtur.db
+dagtur.db-wal
+dagtur.db-shm
+uploads/avatars/*
+!uploads/avatars/.gitkeep
+*.log
