@@ -429,6 +429,60 @@ app.post('/api/booking/:id/cancel', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
+// ════════════════════ ОТЗЫВЫ ════════════════════
+
+// Оставить отзыв (только залогиненный) — уходит на модерацию
+app.post('/api/reviews', requireAuth, (req, res) => {
+  const text = (req.body.text || '').trim();
+  let rating = parseInt(req.body.rating) || 5;
+  rating = Math.max(1, Math.min(5, rating));
+  if (text.length < 10) {
+    return res.status(400).json({ error: 'Отзыв слишком короткий (минимум 10 символов)' });
+  }
+  if (text.length > 2000) {
+    return res.status(400).json({ error: 'Отзыв слишком длинный (максимум 2000 символов)' });
+  }
+  db.prepare(`
+    INSERT INTO reviews (user_id, author, rating, text)
+    VALUES (?, ?, ?, ?)
+  `).run(req.user.id, req.user.name || 'Гость', rating, text);
+  res.json({ ok: true });
+});
+
+// Одобренные отзывы для главной (публично)
+app.get('/api/reviews', (req, res) => {
+  const list = db.prepare(`
+    SELECT id, author, rating, text, created_at
+    FROM reviews WHERE status = 'approved'
+    ORDER BY id DESC LIMIT 30
+  `).all();
+  res.json({ reviews: list });
+});
+
+// Админ: список отзывов по статусу
+app.get('/api/admin/reviews', requireAdmin, (req, res) => {
+  const status = req.query.status || 'pending';
+  const list = db.prepare(`
+    SELECT r.*, u.email AS user_email
+    FROM reviews r JOIN users u ON u.id = r.user_id
+    WHERE r.status = ? ORDER BY r.id DESC
+  `).all(status);
+  res.json({ reviews: list });
+});
+
+// Админ: одобрить / отклонить отзыв
+app.post('/api/admin/reviews/:id/:action', requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  const action = req.params.action; // approve | reject
+  const status = action === 'approve' ? 'approved' : action === 'reject' ? 'rejected' : null;
+  if (!status) return res.status(400).json({ error: 'Неизвестное действие' });
+  const r = db.prepare('SELECT status FROM reviews WHERE id = ?').get(id);
+  if (!r) return res.status(404).json({ error: 'Отзыв не найден' });
+  db.prepare(`UPDATE reviews SET status = ?, decided_at = datetime('now') WHERE id = ?`)
+    .run(status, id);
+  res.json({ ok: true });
+});
+
 
 // ════════════════════ СТАТИКА ════════════════════
 

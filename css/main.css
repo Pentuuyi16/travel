@@ -793,3 +793,60 @@ body {
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(0,0,0,0.1);
 }
+
+
+/* Текстовые карточки отзывов */
+.review-card-inner {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.rc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.rc-tag {
+  font-size: 12px;
+  color: #727056;
+  font-weight: 500;
+}
+.rc-date {
+  font-size: 12px;
+  color: #aaa;
+}
+.rc-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  letter-spacing: -.3px;
+}
+.rc-stars {
+  color: #FFD600;
+  font-size: 15px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.rc-stars span { color: #ddd; }
+.rc-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  overflow-y: auto;
+  flex: 1;
+}
+.reviews-empty {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  opacity: .85;
+  width: 100%;
+}

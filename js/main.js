@@ -141,40 +141,91 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 statNums.forEach(num => observer.observe(num));
-// Карусель отзывов — центрированная
-const reviewCards = document.querySelectorAll(".review-card");
+
+const reviewsTrack = document.getElementById("reviewsTrack");
 const arrowLeft  = document.querySelector(".reviews-arrow--left");
 const arrowRight = document.querySelector(".reviews-arrow--right");
-const totalReviews = reviewCards.length;
-let activeIndex = 2; // начинаем с Алены (индекс 2)
+
+let reviewCards = [];
+let totalReviews = 0;
+let activeIndex = 0;
+
+function escHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+function starsHtml(rating){
+  const r = Math.max(1, Math.min(5, rating || 5));
+  return '★'.repeat(r) + '<span>' + '★'.repeat(5 - r) + '</span>';
+}
+
+function reviewDate(s){
+  const d = new Date((s || '').replace(' ', 'T') + 'Z');
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('ru', { day:'2-digit', month:'2-digit', year:'numeric' });
+}
+
+function buildReviewCard(rev, i){
+  const card = document.createElement('div');
+  card.className = 'review-card';
+  card.dataset.index = i;
+  card.innerHTML = `
+    <div class="review-card-inner">
+      <div class="rc-head">
+        <span class="rc-tag">Отзыв</span>
+        <span class="rc-date">${reviewDate(rev.created_at)}</span>
+      </div>
+      <div class="rc-name">${escHtml(rev.author)}</div>
+      <div class="rc-stars">${starsHtml(rev.rating)}</div>
+      <div class="rc-text">${escHtml(rev.text)}</div>
+    </div>`;
+  return card;
+}
 
 function updateCarousel() {
+  if (!totalReviews) return;
   reviewCards.forEach((card, i) => {
     card.classList.remove("rc-active", "rc-prev", "rc-next", "rc-hidden");
-
     const prev = (activeIndex - 1 + totalReviews) % totalReviews;
     const next = (activeIndex + 1) % totalReviews;
-
-    if (i === activeIndex) {
-      card.classList.add("rc-active");
-    } else if (i === prev) {
-      card.classList.add("rc-prev");
-    } else if (i === next) {
-      card.classList.add("rc-next");
-    } else {
-      card.classList.add("rc-hidden");
-    }
+    if (i === activeIndex) card.classList.add("rc-active");
+    else if (i === prev)   card.classList.add("rc-prev");
+    else if (i === next)   card.classList.add("rc-next");
+    else                   card.classList.add("rc-hidden");
   });
 }
 
-arrowRight.addEventListener("click", () => {
+if (arrowRight) arrowRight.addEventListener("click", () => {
+  if (!totalReviews) return;
   activeIndex = (activeIndex + 1) % totalReviews;
   updateCarousel();
 });
-
-arrowLeft.addEventListener("click", () => {
+if (arrowLeft) arrowLeft.addEventListener("click", () => {
+  if (!totalReviews) return;
   activeIndex = (activeIndex - 1 + totalReviews) % totalReviews;
   updateCarousel();
 });
 
-updateCarousel();
+async function loadReviews() {
+  if (!reviewsTrack) return;
+  try {
+    const res = await fetch('/api/reviews', { credentials: 'same-origin' });
+    const data = await res.json();
+    const reviews = data.reviews || [];
+
+    reviewsTrack.innerHTML = '';
+    if (!reviews.length) {
+      reviewsTrack.innerHTML = '<div class="reviews-empty">Пока нет отзывов. Станьте первым!</div>';
+      reviewCards = [];
+      totalReviews = 0;
+      return;
+    }
+    reviews.forEach((rev, i) => reviewsTrack.appendChild(buildReviewCard(rev, i)));
+    reviewCards = Array.from(reviewsTrack.querySelectorAll('.review-card'));
+    totalReviews = reviewCards.length;
+    activeIndex = Math.min(2, totalReviews - 1); // центр, как было
+    updateCarousel();
+  } catch {
+    reviewsTrack.innerHTML = '<div class="reviews-empty">Не удалось загрузить отзывы</div>';
+  }
+}
+
+loadReviews();

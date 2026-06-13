@@ -65,6 +65,17 @@ db.exec(`
 
   CREATE UNIQUE INDEX IF NOT EXISTS idx_guide_date
     ON bookings(guide_id, date) WHERE status = 'paid';
+
+  CREATE TABLE IF NOT EXISTS reviews (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id    INTEGER NOT NULL REFERENCES users(id),
+    author     TEXT NOT NULL,
+    rating     INTEGER NOT NULL DEFAULT 5,
+    text       TEXT NOT NULL,
+    status     TEXT NOT NULL DEFAULT 'pending',  -- pending | approved | rejected
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    decided_at TEXT
+  );
 `);
 
 // ── Сид: админ по умолчанию (поменяй пароль после первого входа!) ──
