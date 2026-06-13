@@ -174,6 +174,9 @@
         Заявки гидов<span class="badge" id="appsBadge" style="display:none">0</span>
       </button>
       <button class="adm-section-tab" data-section="users">Пользователи</button>
+      <button class="adm-section-tab" data-section="reviews">
+        Отзывы<span class="badge" id="reviewsBadge" style="display:none">0</span>
+      </button>
     </div>
 
     <!-- ════ РАЗДЕЛ: ЗАЯВКИ ════ -->
@@ -203,8 +206,21 @@
       </div>
       <div id="usersBox"></div>
     </div>
+    <!-- ════ РАЗДЕЛ: ОТЗЫВЫ ════ -->
+    <div id="sectionReviews" class="hidden">
+      <h1 class="adm-title">Отзывы</h1>
+      <p class="adm-sub">Одобряйте отзывы — принятые показываются на главной. Отклонённые не публикуются.</p>
+      <div class="adm-tabs">
+        <button class="adm-tab active" data-rstatus="pending">Новые<span class="cnt" id="rvPendingCnt"></span></button>
+        <button class="adm-tab" data-rstatus="approved">Одобренные</button>
+        <button class="adm-tab" data-rstatus="rejected">Отклонённые</button>
+      </div>
+      <div class="apps" id="reviewsList"></div>
+    </div>
   </div>
 </div>
+
+
 
 <script>
 let section = 'apps';
@@ -234,7 +250,10 @@ document.querySelectorAll('.adm-section-tab').forEach(t => {
     section = t.dataset.section;
     document.getElementById('sectionApps').classList.toggle('hidden', section !== 'apps');
     document.getElementById('sectionUsers').classList.toggle('hidden', section !== 'users');
-    if (section === 'apps') loadApps(); else loadUsers();
+    document.getElementById('sectionReviews').classList.toggle('hidden', section !== 'reviews');
+    if (section === 'apps') loadApps();
+    else if (section === 'users') loadUsers();
+    else loadReviews();
   });
 });
 
@@ -361,13 +380,93 @@ document.getElementById('userSearch').addEventListener('input',()=>{
   clearTimeout(searchTimer);
   searchTimer=setTimeout(loadUsers,300);
 });
+/* ════ ОТЗЫВЫ ════ */
+let reviewStatus = 'pending';
 
+function reviewStars(r){
+  r = Math.max(1, Math.min(5, r || 5));
+  return '★'.repeat(r) + '☆'.repeat(5 - r);
+}
+
+function renderReviews(reviews){
+  const box = document.getElementById('reviewsList');
+  if(!reviews.length){
+    const txt = reviewStatus === 'pending' ? 'Новых отзывов нет' : 'Здесь пока пусто';
+    box.innerHTML = `<div class="empty"><div class="ico">💬</div>${txt}</div>`;
+    return;
+  }
+  box.innerHTML = reviews.map(r => `
+    <div class="app-card">
+      <div class="app-top">
+        <div class="app-who">
+          <div class="app-avatar">${esc(initials(r.author))}</div>
+          <div>
+            <div class="app-name">${esc(r.author)}</div>
+            <div class="app-mail">аккаунт: ${esc(r.user_email)}</div>
+          </div>
+        </div>
+        <div class="app-date">${fmtDate(r.created_at)}</div>
+      </div>
+      <div style="font-size:18px;color:#FFD600;letter-spacing:2px;margin-bottom:10px">${reviewStars(r.rating)}</div>
+      <div class="app-about" style="margin-bottom:18px">${esc(r.text)}</div>
+      <div class="app-actions">
+        ${r.status === 'pending' ? `
+          <button class="btn-accept" onclick="decideReview(${r.id},'approve')">✓ Одобрить</button>
+          <button class="btn-reject" onclick="decideReview(${r.id},'reject')">Отклонить</button>
+        ` : `
+          <span class="app-status app-status--${r.status === 'approved' ? 'accepted' : 'rejected'}">
+            ${r.status === 'approved' ? 'Одобрен' : 'Отклонён'} · ${fmtDate(r.decided_at)}
+          </span>
+        `}
+      </div>
+    </div>
+  `).join('');
+}
+
+async function loadReviews(){
+  try{
+    const {reviews} = await api('/api/admin/reviews?status=' + reviewStatus);
+    renderReviews(reviews);
+    if(reviewStatus === 'pending'){
+      document.getElementById('rvPendingCnt').textContent = reviews.length ? ` ${reviews.length}` : '';
+    }
+    refreshReviewsBadge();
+  }catch(e){alert(e.message);}
+}
+
+async function refreshReviewsBadge(){
+  try{
+    const {reviews} = await api('/api/admin/reviews?status=pending');
+    const b = document.getElementById('reviewsBadge');
+    b.textContent = reviews.length;
+    b.style.display = reviews.length ? '' : 'none';
+  }catch{}
+}
+
+async function decideReview(id, action){
+  if(action === 'reject' && !confirm('Отклонить этот отзыв?')) return;
+  try{
+    await api(`/api/admin/reviews/${id}/${action}`, {method:'POST'});
+    loadReviews();
+  }catch(e){alert(e.message);}
+}
+window.decideReview = decideReview;
+
+document.querySelectorAll('#sectionReviews .adm-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('#sectionReviews .adm-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    reviewStatus = t.dataset.rstatus;
+    loadReviews();
+  });
+});
 /* ── вход / выход ── */
 function showPanel(user){
   document.getElementById('loginScreen').classList.add('hidden');
   document.getElementById('panel').classList.remove('hidden');
   document.getElementById('admUser').textContent=user.email;
   loadApps();
+  refreshReviewsBadge();
 }
 document.getElementById('admLoginBtn').addEventListener('click',async()=>{
   const err=document.getElementById('loginErr');err.style.display='none';
