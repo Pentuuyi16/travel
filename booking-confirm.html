@@ -293,7 +293,8 @@
   // Назначенный гид (из брони)
   const guideName = sessionStorage.getItem('booking_guide_name') || '';
   const guideAvatar = sessionStorage.getItem('booking_guide_avatar') || '';
-  const bookingId = sessionStorage.getItem('booking_id') || '';
+  const bookingId = new URLSearchParams(location.search).get('id')
+    || sessionStorage.getItem('booking_id') || '';
   const tourSlug = sessionStorage.getItem('booking_tour') || '';
 
   const TOUR_NAMES = {
@@ -377,37 +378,73 @@
   }
 
   // Чат
-  function sendMessage() {
+  // ── НАСТОЯЩИЙ ЧАТ ──
+  let chatLastCount = 0;
+  let chatPollTimer = null;
+
+  function chatEsc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function chatTime(s){
+    const d=new Date((s||'').replace(' ','T')+'Z');
+    if(isNaN(d))return '';
+    return d.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  function renderChat(messages){
+    const box = document.getElementById('chatMessages');
+    const atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 60;
+    let html = `<div class="bc-msg bc-msg--system">
+      <span>Вы оформили бронирование тура</span></div>`;
+    messages.forEach(m => {
+      // для клиента "мои" = client; гид = guide (слева)
+      if (m.sender_role === 'client') {
+        html += `<div class="bc-msg bc-msg--user">
+          <div class="bc-msg-bubble">${chatEsc(m.text)}</div>
+          <span class="bc-msg-time">${chatTime(m.created_at)}</span></div>`;
+      } else {
+        html += `<div class="bc-msg bc-msg--guide">
+          <div class="bc-msg-avatar">${chatEsc((m.sender_name||'Г')[0].toUpperCase())}</div>
+          <div>
+            <div class="bc-msg-bubble">${chatEsc(m.text)}</div>
+            <span class="bc-msg-time">${chatEsc(m.sender_name||'Гид')} · ${chatTime(m.created_at)}</span>
+          </div></div>`;
+      }
+    });
+    box.innerHTML = html;
+    if(atBottom || messages.length !== chatLastCount) box.scrollTop = box.scrollHeight;
+    chatLastCount = messages.length;
+  }
+
+  async function loadChat(){
+    if(!bookingId) return;
+    try{
+      const res = await fetch(`/api/booking/${bookingId}/messages`, { credentials:'same-origin' });
+      if(!res.ok) return;
+      const data = await res.json();
+      renderChat(data.messages || []);
+    }catch(e){}
+  }
+
+  async function sendMessage(){
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
-    if (!text) return;
-
-    const messages = document.getElementById('chatMessages');
-
-    const msg = document.createElement('div');
-    msg.className = 'bc-msg bc-msg--user';
-    msg.innerHTML = `
-      <div class="bc-msg-bubble">${text}</div>
-      <span class="bc-msg-time">сейчас</span>
-    `;
-    messages.appendChild(msg);
+    if(!text) return;
+    if(!bookingId){ alert('Заказ не найден'); return; }
     input.value = '';
-    messages.scrollTop = messages.scrollHeight;
-
-    // Имитация ответа гида
-    setTimeout(() => {
-      const reply = document.createElement('div');
-      reply.className = 'bc-msg bc-msg--guide';
-      reply.innerHTML = `
-        <div class="bc-msg-avatar">Р</div>
-        <div>
-          <div class="bc-msg-bubble">Добрый день! Получил ваше сообщение, отвечу в ближайшее время.</div>
-          <span class="bc-msg-time">только что</span>
-        </div>
-      `;
-      messages.appendChild(reply);
-      messages.scrollTop = messages.scrollHeight;
-    }, 1500);
+    try{
+      const res = await fetch(`/api/booking/${bookingId}/messages`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        credentials:'same-origin',
+        body: JSON.stringify({ text })
+      });
+      if(!res.ok){
+        const d = await res.json().catch(()=>({}));
+        alert(d.error || 'Не удалось отправить');
+        input.value = text;
+        return;
+      }
+      loadChat();
+    }catch(e){ alert('Сервер недоступен'); input.value = text; }
   }
 
   document.getElementById('chatInput').addEventListener('keydown', (e) => {
@@ -416,6 +453,13 @@
       sendMessage();
     }
   });
+
+  // запуск чата
+  if(bookingId){
+    loadChat();
+    chatPollTimer = setInterval(loadChat, 4000);
+    window.addEventListener('beforeunload', ()=>{ if(chatPollTimer) clearInterval(chatPollTimer); });
+  }
 
 // Отмена брони
   function cancelBooking() {
