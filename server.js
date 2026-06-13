@@ -397,6 +397,25 @@ app.get('/api/booking/my', requireAuth, (req, res) => {
   res.json({ bookings: list });
 });
 
+// Один заказ по id (для страницы оплаты по ссылке ?id=)
+app.get('/api/booking/:id', requireAuth, (req, res) => {
+  const id = Number(req.params.id);
+  const b = db.prepare(`
+    SELECT b.id, b.tour_slug, b.tour_title, b.date, b.people, b.status,
+           b.customer_name, b.customer_phone, b.customer_email, b.created_at,
+           g.name AS guide_name, g.avatar AS guide_avatar
+    FROM bookings b JOIN users g ON g.id = b.guide_id
+    WHERE b.id = ?
+  `).get(id);
+  if (!b) return res.status(404).json({ error: 'Заказ не найден' });
+  // смотреть может владелец или админ
+  const owner = db.prepare('SELECT user_id FROM bookings WHERE id = ?').get(id);
+  if (owner.user_id !== req.user.id && req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Это не ваш заказ' });
+  }
+  res.json({ booking: b });
+});
+
 // Отмена брони (мягкая) — дата освобождается
 app.post('/api/booking/:id/cancel', requireAuth, (req, res) => {
   const id = Number(req.params.id);
