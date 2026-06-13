@@ -10,35 +10,59 @@
 <link rel="stylesheet" href="css/auth.css">
 <link rel="stylesheet" href="css/footer.css">
 <style>
-  body{background:#f5f5f2}
+  body{background:#f5f5f2;margin:0}
   .header.visible{background:#e6effe}
   .header.visible .nav a{color:#1a1a1a}
 
-  .gb-page{max-width:880px;margin:0 auto;padding:130px 24px 90px;font-family:'Montserrat',sans-serif}
-  .gb-title{font-size:34px;font-weight:700;letter-spacing:-.5px;color:#1a1a1a;margin-bottom:6px}
-  .gb-sub{font-size:14px;color:#727056;margin-bottom:30px}
+  .gb-page{max-width:880px;margin:0 auto;padding:130px 24px 90px;
+    font-family:'Montserrat',sans-serif;box-sizing:border-box}
+  .gb-title{font-size:34px;font-weight:700;letter-spacing:-.5px;color:#1a1a1a;margin:0 0 6px}
+  .gb-sub{font-size:14px;color:#727056;margin:0 0 30px}
 
   .gb-list{display:flex;flex-direction:column;gap:16px}
-  .gb-card{background:#fff;border-radius:20px;padding:24px 26px;box-shadow:0 4px 24px rgba(0,0,0,.06);
-    display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;text-decoration:none;color:inherit;
-    transition:transform .15s, box-shadow .15s}
+
+  .gb-card{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-areas:"main side";
+    gap:16px 24px;
+    align-items:center;
+    background:#fff;
+    border-radius:20px;
+    padding:24px 26px;
+    box-shadow:0 4px 24px rgba(0,0,0,.06);
+    text-decoration:none;
+    color:inherit;
+    box-sizing:border-box;
+    transition:transform .15s, box-shadow .15s;
+  }
   .gb-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
-  .gb-main{flex:1;min-width:240px}
-  .gb-tour{font-size:19px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+
+  .gb-main{grid-area:main;min-width:0}
+  .gb-tour{font-size:19px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
   .gb-date{font-size:13px;color:#727056;margin-bottom:14px}
-  .gb-client{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#444}
+  .gb-client{display:flex;flex-direction:column;gap:5px;font-size:13px;color:#444}
+  .gb-client-row{display:flex;align-items:center;gap:7px}
   .gb-client b{color:#1a1a1a}
   .gb-client a{color:#4e75a6;text-decoration:none}
-  .gb-status{font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;white-space:nowrap}
+  .gb-client a:hover{text-decoration:underline}
+
+  .gb-side{
+    grid-area:side;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:12px;
+    white-space:nowrap;
+  }
+  .gb-status{font-size:12px;font-weight:700;padding:6px 16px;border-radius:100px}
   .gb-status--paid{background:#fff3e0;color:#e65100}
   .gb-status--cancelled{background:#eee;color:#888}
-  .gb-open{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:6px;min-width:130px}
-  .gb-open-btn{background:#1a1a1a;color:#fff;border:none;padding:11px 22px;border-radius:100px;
-    font-family:inherit;font-size:13px;font-weight:600;text-align:center;text-decoration:none;display:block}
-  .gb-arrow{font-size:12px;color:#aaa}
+  .gb-open-btn{background:#1a1a1a;color:#fff;padding:11px 26px;border-radius:100px;
+    font-size:13px;font-weight:600;text-align:center}
 
   .gb-empty{background:#fff;border-radius:20px;padding:60px 20px;text-align:center;color:#727056;
-    box-shadow:0 4px 24px rgba(0,0,0,.06)}
+    box-shadow:0 4px 24px rgba(0,0,0,.06);line-height:1.6}
   .gb-empty .ico{font-size:44px;margin-bottom:14px}
 
   .gb-guard{max-width:480px;margin:0 auto;padding:180px 24px;text-align:center;
@@ -46,9 +70,13 @@
   .gb-guard .ico{font-size:46px;margin-bottom:14px}
   .gb-guard h2{font-size:22px;font-weight:700;margin-bottom:10px;color:#1a1a1a}
   .gb-guard p{font-size:14px;color:#727056;margin-bottom:24px}
-  .gb-guard button,.gb-guard a{background:#1a1a1a;color:#fff;border:none;padding:13px 36px;
-    border-radius:100px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
-    text-decoration:none;display:inline-block}
+  .gb-guard a{background:#1a1a1a;color:#fff;padding:13px 36px;border-radius:100px;
+    font-size:14px;font-weight:600;text-decoration:none;display:inline-block}
+
+  @media(max-width:600px){
+    .gb-card{grid-template-columns:1fr;grid-template-areas:"main""side"}
+    .gb-side{align-items:flex-start}
+  }
 </style>
 </head>
 <body>
@@ -136,22 +164,25 @@ function render(bookings){
   }
   list.innerHTML=bookings.map(b=>{
     const cancelled=b.status==='cancelled';
-    const phone=b.customer_phone?`<span>📞 <a href="tel:${esc(b.customer_phone)}">${esc(b.customer_phone)}</a></span>`:'';
-    const email=b.customer_email?`<span>✉️ <a href="mailto:${esc(b.customer_email)}">${esc(b.customer_email)}</a></span>`:'';
+    const phone=b.customer_phone
+      ? `<div class="gb-client-row">📞 <a href="tel:${esc(b.customer_phone)}">${esc(b.customer_phone)}</a></div>`
+      : '';
+    const email=b.customer_email
+      ? `<div class="gb-client-row">✉️ <a href="mailto:${esc(b.customer_email)}">${esc(b.customer_email)}</a></div>`
+      : '';
     return `
       <a class="gb-card" href="guide-order.html?id=${b.id}">
         <div class="gb-main">
           <div class="gb-tour">${esc(b.tour_title||'Тур')}</div>
           <div class="gb-date">📅 ${fmtDate(b.date)} · ${b.people} чел. · заказ №${String(b.id).padStart(6,'0')}</div>
           <div class="gb-client">
-            <span>Клиент: <b>${esc(b.customer_name||b.client_name||'—')}</b></span>
+            <div class="gb-client-row">Клиент: <b>${esc(b.customer_name||b.client_name||'—')}</b></div>
             ${phone}${email}
           </div>
         </div>
-        <span class="gb-status gb-status--${b.status}">${cancelled?'Отменён':'Активен'}</span>
-        <div class="gb-open">
-          <span class="gb-open-btn">Открыть чат</span>
-          <span class="gb-arrow">подробнее →</span>
+        <div class="gb-side">
+          <span class="gb-status gb-status--${b.status}">${cancelled?'Отменён':'Активен'}</span>
+          <span class="gb-open-btn">Открыть чат →</span>
         </div>
       </a>`;
   }).join('');
