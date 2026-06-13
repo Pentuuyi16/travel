@@ -9,7 +9,7 @@
   :root{
     --accent:#4e75a6; --accent-d:#3a5d8a; --accent-l:#e6effe;
     --black:#1a1a1a; --muted:#727056; --surface:#f5f5f2;
-    --green:#eff7df; --orange:#fff1e8; --red:#e53935;
+    --green:#eff7df; --green-d:#3c7a1e; --orange:#fff1e8; --red:#e53935;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Montserrat',sans-serif;background:var(--surface);color:var(--black);min-height:100vh}
@@ -26,18 +26,38 @@
   .adm-exit:hover{background:rgba(0,0,0,.05)}
   .adm-site-link{color:var(--accent);text-decoration:none;font-weight:600}
 
-  .adm-page{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+  .adm-page{max-width:1100px;margin:0 auto;padding:34px 24px 80px}
   .adm-title{font-size:34px;font-weight:700;letter-spacing:-.5px;margin-bottom:6px}
-  .adm-sub{font-size:14px;color:var(--muted);margin-bottom:28px}
+  .adm-sub{font-size:14px;color:var(--muted);margin-bottom:26px}
 
-  .adm-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
-  .adm-tab{padding:10px 24px;border-radius:100px;border:1.5px solid var(--black);background:transparent;
-    font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:.2s}
+  /* верхние разделы */
+  .adm-sections{display:flex;gap:8px;margin-bottom:30px;border-bottom:2px solid rgba(0,0,0,.07);
+    padding-bottom:0}
+  .adm-section-tab{padding:12px 26px;border:none;background:none;font-family:inherit;font-size:15px;
+    font-weight:600;color:var(--muted);cursor:pointer;position:relative;transition:color .2s}
+  .adm-section-tab:hover{color:var(--black)}
+  .adm-section-tab.active{color:var(--black)}
+  .adm-section-tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
+    background:var(--accent)}
+  .adm-section-tab .badge{display:inline-block;margin-left:8px;background:var(--accent);color:#fff;
+    border-radius:100px;padding:1px 9px;font-size:11px;font-weight:700;vertical-align:middle}
+
+  /* внутренние вкладки-пилюли */
+  .adm-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+  .adm-tab{padding:9px 22px;border-radius:100px;border:1.5px solid var(--black);background:transparent;
+    font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;transition:.2s}
   .adm-tab.active{background:var(--black);color:#fff}
   .adm-tab:hover:not(.active){background:rgba(0,0,0,.05)}
-  .adm-tab .cnt{display:inline-block;margin-left:6px;background:var(--accent);color:#fff;
-    border-radius:100px;padding:1px 8px;font-size:11px;font-weight:700}
+  .adm-tab .cnt{display:inline-block;margin-left:6px;opacity:.7;font-weight:700}
 
+  .adm-search{margin-left:auto;position:relative}
+  .adm-search input{border:1.5px solid rgba(0,0,0,.15);border-radius:100px;padding:9px 16px 9px 38px;
+    font-family:inherit;font-size:13.5px;width:240px;outline:none;transition:border-color .2s}
+  .adm-search input:focus{border-color:var(--accent)}
+  .adm-search::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    font-size:12px;opacity:.5}
+
+  /* карточки заявок */
   .apps{display:flex;flex-direction:column;gap:18px}
   .app-card{background:#fff;border-radius:24px;padding:26px 28px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
   .app-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px;flex-wrap:wrap}
@@ -49,7 +69,6 @@
   .app-name{font-size:17px;font-weight:700}
   .app-mail{font-size:12px;color:var(--muted)}
   .app-date{font-size:12px;color:#aaa;white-space:nowrap}
-
   .app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px;margin-bottom:16px}
   .app-field b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
     color:#aaa;font-weight:600;margin-bottom:3px}
@@ -58,8 +77,7 @@
     line-height:1.6;margin-bottom:18px}
   .app-about b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
     color:#aaa;font-weight:600;margin-bottom:5px}
-
-  .app-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .app-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   .btn-accept{background:var(--black);color:#fff;border:none;padding:12px 32px;border-radius:100px;
     font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
   .btn-accept:hover{background:#333}
@@ -67,12 +85,36 @@
     border-radius:100px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
   .btn-reject:hover{background:#fff0f0}
   .app-status{font-size:12px;font-weight:700;padding:6px 16px;border-radius:100px}
-  .app-status--accepted{background:var(--green);color:#3c7a1e}
+  .app-status--accepted{background:var(--green);color:var(--green-d)}
   .app-status--rejected{background:#ffe5e3;color:var(--red)}
+
+  /* таблица пользователей */
+  .users-table{background:#fff;border-radius:24px;box-shadow:0 4px 24px rgba(0,0,0,.06);overflow:hidden}
+  .ut-head,.ut-row{display:grid;grid-template-columns:54px 1fr 1.3fr 130px 150px;gap:14px;
+    align-items:center;padding:14px 24px}
+  .ut-head{background:var(--surface);font-size:11px;text-transform:uppercase;letter-spacing:.07em;
+    color:#aaa;font-weight:700}
+  .ut-row{border-top:1px solid rgba(0,0,0,.05);font-size:14px}
+  .ut-row:hover{background:#fafaf8}
+  .ut-av{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;
+    align-items:center;justify-content:center;font-weight:700;font-size:15px;overflow:hidden}
+  .ut-av img{width:100%;height:100%;object-fit:cover}
+  .ut-av--admin{background:var(--black)}
+  .ut-av--guide{background:var(--accent)}
+  .ut-av--user{background:#b9b9ad}
+  .ut-name{font-weight:600}
+  .ut-meta{font-size:11px;color:#aaa;margin-top:2px}
+  .ut-mail{color:var(--muted);font-size:13px;word-break:break-all}
+  .ut-role{font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;width:fit-content}
+  .ut-role--admin{background:#ecebff;color:#5b4bd6}
+  .ut-role--guide{background:var(--green);color:var(--green-d)}
+  .ut-role--user{background:#eee;color:#666}
+  .ut-date{font-size:12px;color:#aaa}
 
   .empty{background:#fff;border-radius:24px;padding:60px 20px;text-align:center;color:var(--muted);
     font-size:15px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
   .empty .ico{font-size:40px;margin-bottom:12px}
+  .hidden{display:none}
 
   /* экран входа */
   .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
@@ -89,7 +131,13 @@
     border-radius:100px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer}
   .login-btn:hover{background:var(--accent-d)}
   .login-err{color:var(--red);font-size:13px;margin-bottom:12px;display:none}
-  .hidden{display:none}
+
+  @media(max-width:640px){
+    .ut-head{display:none}
+    .ut-row{grid-template-columns:44px 1fr;grid-template-areas:"av name""av mail""role role""date date";
+      gap:4px 12px}
+    .ut-row .ut-av{grid-area:av}
+  }
 </style>
 </head>
 <body>
@@ -120,167 +168,226 @@
   </header>
 
   <div class="adm-page">
-    <h1 class="adm-title">Заявки гидов</h1>
-    <p class="adm-sub">Принимайте людей в команду или отклоняйте анкеты — пользователь получит уведомление на сайте.</p>
-
-    <div class="adm-tabs">
-      <button class="adm-tab active" data-status="pending">Новые<span class="cnt" id="pendingCnt" style="display:none">0</span></button>
-      <button class="adm-tab" data-status="accepted">Принятые</button>
-      <button class="adm-tab" data-status="rejected">Отклонённые</button>
+    <!-- ВЕРХНИЕ РАЗДЕЛЫ -->
+    <div class="adm-sections">
+      <button class="adm-section-tab active" data-section="apps">
+        Заявки гидов<span class="badge" id="appsBadge" style="display:none">0</span>
+      </button>
+      <button class="adm-section-tab" data-section="users">Пользователи</button>
     </div>
 
-    <div class="apps" id="appsList"></div>
+    <!-- ════ РАЗДЕЛ: ЗАЯВКИ ════ -->
+    <div id="sectionApps">
+      <h1 class="adm-title">Заявки гидов</h1>
+      <p class="adm-sub">Принимайте людей в команду или отклоняйте анкеты — пользователь получит уведомление на сайте.</p>
+      <div class="adm-tabs">
+        <button class="adm-tab active" data-status="pending">Новые<span class="cnt" id="pendingCnt"></span></button>
+        <button class="adm-tab" data-status="accepted">Принятые</button>
+        <button class="adm-tab" data-status="rejected">Отклонённые</button>
+      </div>
+      <div class="apps" id="appsList"></div>
+    </div>
+
+    <!-- ════ РАЗДЕЛ: ПОЛЬЗОВАТЕЛИ ════ -->
+    <div id="sectionUsers" class="hidden">
+      <h1 class="adm-title">Пользователи</h1>
+      <p class="adm-sub">Все, кто зарегистрировался на сайте. Гиды и обычные пользователи разделены по вкладкам.</p>
+      <div class="adm-tabs">
+        <button class="adm-tab active" data-role="">Все<span class="cnt" id="cntAll">0</span></button>
+        <button class="adm-tab" data-role="user">Пользователи<span class="cnt" id="cntUser">0</span></button>
+        <button class="adm-tab" data-role="guide">Гиды<span class="cnt" id="cntGuide">0</span></button>
+        <button class="adm-tab" data-role="admin">Админы<span class="cnt" id="cntAdmin">0</span></button>
+        <div class="adm-search">
+          <input type="text" id="userSearch" placeholder="Поиск по имени или email">
+        </div>
+      </div>
+      <div id="usersBox"></div>
+    </div>
   </div>
 </div>
 
 <script>
-let currentStatus = 'pending';
+let section = 'apps';
+let appStatus = 'pending';
+let userRole = '';
+let searchTimer = null;
 
 async function api(url, options = {}) {
   const res = await fetch(url, {
     headers: { 'Content-Type': 'application/json' },
-    credentials: 'same-origin',
-    ...options
+    credentials: 'same-origin', ...options
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || 'Ошибка сервера');
   return data;
 }
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function fmtDate(d){return new Date(d.replace(' ','T')+'Z').toLocaleString('ru',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});}
+function fmtDay(d){return new Date(d.replace(' ','T')+'Z').toLocaleDateString('ru',{day:'numeric',month:'short',year:'numeric'});}
+function initials(name){return (name||'?').trim()[0].toUpperCase();}
 
-function esc(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c =>
-    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-function fmtDate(d) {
-  return new Date(d.replace(' ', 'T') + 'Z').toLocaleString('ru', {
-    day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit'
+/* ── переключение разделов ── */
+document.querySelectorAll('.adm-section-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.adm-section-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    section = t.dataset.section;
+    document.getElementById('sectionApps').classList.toggle('hidden', section !== 'apps');
+    document.getElementById('sectionUsers').classList.toggle('hidden', section !== 'users');
+    if (section === 'apps') loadApps(); else loadUsers();
   });
-}
+});
 
-function fieldHtml(label, val) {
-  if (!val) return '';
-  return `<div class="app-field"><b>${label}</b><span>${esc(val)}</span></div>`;
-}
+/* ════ ЗАЯВКИ ════ */
+function fieldHtml(label,val){return val?`<div class="app-field"><b>${label}</b><span>${esc(val)}</span></div>`:'';}
 
-function render(apps) {
-  const list = document.getElementById('appsList');
-  if (!apps.length) {
-    const txt = currentStatus === 'pending' ? 'Новых заявок пока нет' : 'Здесь пока пусто';
-    list.innerHTML = `<div class="empty"><div class="ico">🏔️</div>${txt}</div>`;
-    return;
+function renderApps(apps){
+  const list=document.getElementById('appsList');
+  if(!apps.length){
+    const txt=appStatus==='pending'?'Новых заявок пока нет':'Здесь пока пусто';
+    list.innerHTML=`<div class="empty"><div class="ico">🏔️</div>${txt}</div>`;return;
   }
-  list.innerHTML = apps.map(a => `
-    <div class="app-card" data-id="${a.id}">
+  list.innerHTML=apps.map(a=>`
+    <div class="app-card">
       <div class="app-top">
         <div class="app-who">
-          <div class="app-avatar">${a.user_avatar
-            ? `<img src="${esc(a.user_avatar)}" alt="">`
-            : esc((a.name || '?')[0].toUpperCase())}</div>
-          <div>
-            <div class="app-name">${esc(a.name)}</div>
-            <div class="app-mail">аккаунт: ${esc(a.user_email)}</div>
-          </div>
+          <div class="app-avatar">${a.user_avatar?`<img src="${esc(a.user_avatar)}">`:esc(initials(a.name))}</div>
+          <div><div class="app-name">${esc(a.name)}</div>
+          <div class="app-mail">аккаунт: ${esc(a.user_email)}</div></div>
         </div>
         <div class="app-date">${fmtDate(a.created_at)}</div>
       </div>
       <div class="app-grid">
-        ${fieldHtml('Тип', a.guide_type)}
-        ${fieldHtml('Опыт', a.experience)}
-        ${fieldHtml('Транспорт', a.transport)}
-        ${fieldHtml('Специализация', a.specializations)}
-        ${fieldHtml('Сертификаты', a.certificates)}
-        ${fieldHtml('Телефон', a.phone)}
-        ${fieldHtml('Email из анкеты', a.email)}
-        ${fieldHtml('Мессенджеры', a.messengers)}
-        ${fieldHtml('Ссылка', a.link)}
-        ${fieldHtml('Любимые маршруты', a.routes)}
+        ${fieldHtml('Тип',a.guide_type)}${fieldHtml('Опыт',a.experience)}
+        ${fieldHtml('Транспорт',a.transport)}${fieldHtml('Специализация',a.specializations)}
+        ${fieldHtml('Сертификаты',a.certificates)}${fieldHtml('Телефон',a.phone)}
+        ${fieldHtml('Email из анкеты',a.email)}${fieldHtml('Мессенджеры',a.messengers)}
+        ${fieldHtml('Ссылка',a.link)}${fieldHtml('Любимые маршруты',a.routes)}
       </div>
-      ${a.about ? `<div class="app-about"><b>О себе</b>${esc(a.about)}</div>` : ''}
+      ${a.about?`<div class="app-about"><b>О себе</b>${esc(a.about)}</div>`:''}
       <div class="app-actions">
-        ${a.status === 'pending' ? `
-          <button class="btn-accept" onclick="decide(${a.id}, 'accept')">✓ Принять в гиды</button>
-          <button class="btn-reject" onclick="decide(${a.id}, 'reject')">Отклонить</button>
-        ` : `
+        ${a.status==='pending'?`
+          <button class="btn-accept" onclick="decide(${a.id},'accept')">✓ Принять в гиды</button>
+          <button class="btn-reject" onclick="decide(${a.id},'reject')">Отклонить</button>`:`
           <span class="app-status app-status--${a.status}">
-            ${a.status === 'accepted' ? 'Принят' : 'Отклонена'} · ${fmtDate(a.decided_at)}
-          </span>
-        `}
+            ${a.status==='accepted'?'Принят':'Отклонена'} · ${fmtDate(a.decided_at)}</span>`}
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-async function load() {
-  try {
-    const { applications } = await api('/api/admin/applications?status=' + currentStatus);
-    render(applications);
-    if (currentStatus === 'pending') {
-      const cnt = document.getElementById('pendingCnt');
-      cnt.textContent = applications.length;
-      cnt.style.display = applications.length ? '' : 'none';
+async function loadApps(){
+  try{
+    const {applications}=await api('/api/admin/applications?status='+appStatus);
+    renderApps(applications);
+    if(appStatus==='pending'){
+      document.getElementById('pendingCnt').textContent=applications.length?` ${applications.length}`:'';
     }
-  } catch (e) { alert(e.message); }
+    refreshPendingBadge();
+  }catch(e){alert(e.message);}
 }
 
-async function decide(id, action) {
-  if (action === 'reject' && !confirm('Точно отклонить эту анкету?')) return;
-  try {
-    await api(`/api/admin/applications/${id}/${action}`, { method: 'POST' });
-    load();
-  } catch (e) { alert(e.message); }
+async function refreshPendingBadge(){
+  try{
+    const {applications}=await api('/api/admin/applications?status=pending');
+    const b=document.getElementById('appsBadge');
+    b.textContent=applications.length;
+    b.style.display=applications.length?'':'none';
+  }catch{}
 }
 
-document.querySelectorAll('.adm-tab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.adm-tab').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    currentStatus = t.dataset.status;
-    load();
+async function decide(id,action){
+  if(action==='reject'&&!confirm('Точно отклонить эту анкету?'))return;
+  try{await api(`/api/admin/applications/${id}/${action}`,{method:'POST'});loadApps();}
+  catch(e){alert(e.message);}
+}
+
+document.querySelectorAll('#sectionApps .adm-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('#sectionApps .adm-tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');appStatus=t.dataset.status;loadApps();
   });
 });
 
-function showPanel(user) {
-  document.getElementById('loginScreen').classList.add('hidden');
-  document.getElementById('panel').classList.remove('hidden');
-  document.getElementById('admUser').textContent = user.email;
-  load();
+/* ════ ПОЛЬЗОВАТЕЛИ ════ */
+function roleLabel(r){return r==='admin'?'Администратор':r==='guide'?'Гид':'Пользователь';}
+
+function renderUsers(users){
+  const box=document.getElementById('usersBox');
+  if(!users.length){
+    box.innerHTML=`<div class="empty"><div class="ico">👥</div>Никого не найдено</div>`;return;
+  }
+  box.innerHTML=`
+    <div class="users-table">
+      <div class="ut-head">
+        <div></div><div>Имя</div><div>Email</div><div>Роль</div><div>Регистрация</div>
+      </div>
+      ${users.map(u=>`
+        <div class="ut-row">
+          <div class="ut-av ut-av--${u.role}">${u.avatar?`<img src="${esc(u.avatar)}">`:esc(initials(u.name))}</div>
+          <div>
+            <div class="ut-name">${esc(u.name)}</div>
+            ${u.applications_count?`<div class="ut-meta">заявок гида: ${u.applications_count}</div>`:''}
+          </div>
+          <div class="ut-mail">${esc(u.email)}</div>
+          <div><span class="ut-role ut-role--${u.role}">${roleLabel(u.role)}</span></div>
+          <div class="ut-date">#${u.id} · ${fmtDay(u.created_at)}</div>
+        </div>`).join('')}
+    </div>`;
 }
 
-document.getElementById('admLoginBtn').addEventListener('click', async () => {
-  const err = document.getElementById('loginErr');
-  err.style.display = 'none';
-  try {
-    const { user } = await api('/api/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: document.getElementById('admEmail').value,
-        password: document.getElementById('admPassword').value
-      })
-    });
-    if (user.role !== 'admin') throw new Error('Этот аккаунт — не администратор');
+async function loadUsers(){
+  try{
+    const q=document.getElementById('userSearch').value.trim();
+    const params=new URLSearchParams();
+    if(userRole)params.set('role',userRole);
+    if(q)params.set('q',q);
+    const {users,counts}=await api('/api/admin/users?'+params.toString());
+    renderUsers(users);
+    document.getElementById('cntAll').textContent=` ${counts.all}`;
+    document.getElementById('cntUser').textContent=` ${counts.user}`;
+    document.getElementById('cntGuide').textContent=` ${counts.guide}`;
+    document.getElementById('cntAdmin').textContent=` ${counts.admin}`;
+  }catch(e){alert(e.message);}
+}
+
+document.querySelectorAll('#sectionUsers .adm-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('#sectionUsers .adm-tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');userRole=t.dataset.role;loadUsers();
+  });
+});
+
+document.getElementById('userSearch').addEventListener('input',()=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(loadUsers,300);
+});
+
+/* ── вход / выход ── */
+function showPanel(user){
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('panel').classList.remove('hidden');
+  document.getElementById('admUser').textContent=user.email;
+  loadApps();
+}
+document.getElementById('admLoginBtn').addEventListener('click',async()=>{
+  const err=document.getElementById('loginErr');err.style.display='none';
+  try{
+    const {user}=await api('/api/login',{method:'POST',body:JSON.stringify({
+      email:document.getElementById('admEmail').value,
+      password:document.getElementById('admPassword').value})});
+    if(user.role!=='admin')throw new Error('Этот аккаунт — не администратор');
     showPanel(user);
-  } catch (e) {
-    err.textContent = e.message;
-    err.style.display = 'block';
-  }
+  }catch(e){err.textContent=e.message;err.style.display='block';}
+});
+document.getElementById('admPassword').addEventListener('keydown',e=>{
+  if(e.key==='Enter')document.getElementById('admLoginBtn').click();
+});
+document.getElementById('admLogout').addEventListener('click',async()=>{
+  await api('/api/logout',{method:'POST'});location.reload();
 });
 
-document.getElementById('admPassword').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('admLoginBtn').click();
-});
-
-document.getElementById('admLogout').addEventListener('click', async () => {
-  await api('/api/logout', { method: 'POST' });
-  location.reload();
-});
-
-// автологин, если кука админа жива
-(async () => {
-  try {
-    const { user } = await api('/api/me');
-    if (user && user.role === 'admin') showPanel(user);
-  } catch {}
+(async()=>{
+  try{const {user}=await api('/api/me');if(user&&user.role==='admin')showPanel(user);}catch{}
 })();
 </script>
 </body>

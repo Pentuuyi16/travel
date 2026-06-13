@@ -239,6 +239,35 @@ app.get('/api/admin/applications', requireAdmin, (req, res) => {
   res.json({ applications: list });
 });
 
+// Список всех зарегистрированных пользователей (для наблюдения)
+app.get('/api/admin/users', requireAdmin, (req, res) => {
+  const role = req.query.role;             // user | guide | admin | undefined(=все)
+  const q = (req.query.q || '').trim();    // поиск по имени/email
+
+  let sql = `
+    SELECT u.id, u.name, u.email, u.role, u.avatar, u.created_at,
+           (SELECT COUNT(*) FROM guide_applications a WHERE a.user_id = u.id) AS applications_count
+    FROM users u
+    WHERE 1 = 1
+  `;
+  const params = [];
+  if (role) { sql += ' AND u.role = ?'; params.push(role); }
+  if (q) {
+    sql += ' AND (u.name LIKE ? OR u.email LIKE ?)';
+    params.push('%' + q + '%', '%' + q + '%');
+  }
+  sql += ' ORDER BY u.id DESC';
+  const users = db.prepare(sql).all(...params);
+
+  // счётчики по ролям (всегда полные, не зависят от фильтра)
+  const counts = { all: 0, user: 0, guide: 0, admin: 0 };
+  for (const row of db.prepare('SELECT role, COUNT(*) AS c FROM users GROUP BY role').all()) {
+    counts[row.role] = row.c;
+    counts.all += row.c;
+  }
+  res.json({ users, counts });
+});
+
 const ACCEPT_TITLE = 'Поздравляем — вы теперь гид ДагТур! 🎉';
 const ACCEPT_MSG =
   'Ваша анкета одобрена, добро пожаловать в команду проводников Дагестана! ' +
