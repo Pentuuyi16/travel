@@ -308,6 +308,109 @@ app.post('/api/admin/applications/:id/accept', requireAdmin, (req, res) =>
 app.post('/api/admin/applications/:id/reject', requireAdmin, (req, res) =>
   decideApplication(req, res, 'rejected'));
 
+// ════════════════════ БРОНИРОВАНИЕ ════════════════════
+
+const TOUR_TITLES = {
+  sulak: 'Сулакский каньон', derbent: 'Дербент', hunzah: 'Хунзах',
+  gamsutl: 'Гамсутль', gunib: 'Гуниб', kahib: 'Кахиб-Гоор'
+};
+
+function totalGuides() {
+  return db.prepare(`SELECT COUNT(*) AS c FROM users WHERE role = 'guide'`).get().c;
+}
+
+// Календарь: даты, где заняты ВСЕ гиды (красные для клиента)
+app.get('/api/booking/busy', (req, res) => {
+  const total = totalGuides();
+  if (total === 0) return res.json({ guides: 0, busyDates: [] });
+  const rows = db.prepare(`
+    SELECT date, COUNT(DISTINCT guide_id) AS busy
+    FROM bookings WHERE status = 'paid'
+    GROUP BY date HAVING busy >= ?
+  `).all(total);
+  res.json({ guides: total, busyDates: rows.map(r => r.date) });
+});
+
+// Создать бронь: случайный свободный гид + занять дату
+app.post('/api/booking/create', requireAuth, (req, res) => {
+  const b = req.body || {};
+  const date = (b.date || '').trim();
+  const tourSlug = (b.tourSlug || 'tour').trim();
+  const people = Math.max(1, parseInt(b.people) || 1);
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date))
+    return res.status(400).json({ error: 'Некорректная дата' });
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  if (new Date(date + 'T00:00:00') < today)
+    return res.status(400).json({ error: 'Эта дата уже прошла' });
+
+  const total = totalGuides();
+  if (total === 0)
+    return res.status(409).json({ error: 'Пока нет доступных гидов. Попробуйте позже.' });
+
+  const freeGuides = db.prepare(`
+    SELECT u.id, u.name, u.email, u.avatar FROM users u
+    WHERE u.role = 'guide'
+      AND u.id NOT IN (SELECT guide_id FROM bookings WHERE date = ? AND status = 'paid')
+  `).all(date);
+
+  if (freeGuides.length === 0)
+    return res.status(409).json({ error: 'На эту дату все гиды заняты. Выберите другой день.' });
+
+  const guide = freeGuides[Math.floor(Math.random() * freeGuides.length)];
+
+  let info;
+  try {
+    info = db.prepare(`
+      INSERT INTO bookings
+        (user_id, guide_id, tour_slug, tour_title, date, people,
+         customer_name, customer_phone, customer_email)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      req.user.id, guide.id, tourSlug, TOUR_TITLES[tourSlug] || b.tourTitle || 'Тур',
+      date, people,
+      (b.name || req.user.name || '').trim(),
+      (b.phone || '').trim(),
+      (b.email || req.user.email || '').trim()
+    );
+  } catch (e) {
+    return res.status(409).json({ error: 'Гид только что был занят. Повторите бронирование.' });
+  }
+
+  res.json({
+    bookingId: info.lastInsertRowid,
+    date,
+    guide: { id: guide.id, name: guide.name, avatar: guide.avatar }
+  });
+});
+
+// Мои бронирования
+app.get('/api/booking/my', requireAuth, (req, res) => {
+  const list = db.prepare(`
+    SELECT b.id, b.tour_slug, b.tour_title, b.date, b.people, b.status, b.created_at,
+           g.name AS guide_name, g.avatar AS guide_avatar
+    FROM bookings b JOIN users g ON g.id = b.guide_id
+    WHERE b.user_id = ?
+    ORDER BY b.date DESC, b.id DESC
+  `).all(req.user.id);
+  res.json({ bookings: list });
+});
+
+// Отмена брони (мягкая) — дата освобождается
+app.post('/api/booking/:id/cancel', requireAuth, (req, res) => {
+  const id = Number(req.params.id);
+  const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(id);
+  if (!booking) return res.status(404).json({ error: 'Бронь не найдена' });
+  if (booking.user_id !== req.user.id && req.user.role !== 'admin')
+    return res.status(403).json({ error: 'Нельзя отменить чужую бронь' });
+  if (booking.status !== 'paid')
+    return res.status(409).json({ error: 'Бронь уже отменена' });
+  db.prepare(`UPDATE bookings SET status = 'cancelled' WHERE id = ?`).run(id);
+  res.json({ ok: true });
+});
+
+
 // ════════════════════ СТАТИКА ════════════════════
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

@@ -1,13 +1,13 @@
 // Тестовые занятые даты (формат: "YYYY-MM-DD")
-const busyDates = [
-  "2026-06-07",
-  "2026-06-08",
-  "2026-06-14",
-  "2026-06-21",
-  "2026-06-22",
-  "2026-07-05",
-  "2026-07-12"
-];
+let busyDates = [];
+
+async function loadBusyDates() {
+  try {
+    const res = await fetch('/api/booking/busy', { credentials: 'same-origin' });
+    const data = await res.json();
+    busyDates = data.busyDates || [];
+  } catch { busyDates = []; }
+}
 
 const PRICE = "2990 р";
 const WEEKDAYS = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
@@ -93,8 +93,9 @@ function renderCalendar() {
 const overlay = document.getElementById("bookingOverlay");
 const closeBtn = document.getElementById("bookingClose");
 
-document.querySelector(".tp-btn-primary").addEventListener("click", () => {
+document.querySelector(".tp-btn-primary").addEventListener("click", async () => {
   overlay.classList.add("active");
+  await loadBusyDates();
   renderCalendar();
 });
 
@@ -189,7 +190,7 @@ function highlightField(input) {
   }, { once: true });
 }
 
-document.querySelector('.booking-submit').addEventListener('click', () => {
+document.querySelector('.booking-submit').addEventListener('click', async () => {
   const name = document.querySelector('.booking-form input[type="text"]');
   const phone = document.querySelector('.booking-form input[type="tel"]');
   const email = document.querySelector('.booking-form input[type="email"]');
@@ -227,16 +228,65 @@ document.querySelector('.booking-submit').addEventListener('click', () => {
     return;
   }
 
-  // Сохраняем данные в sessionStorage и редиректим
-  sessionStorage.setItem('booking_date', selectedDate);
-  sessionStorage.setItem('booking_name', name.value.trim());
-  sessionStorage.setItem('booking_phone', phone.value.trim());
-  sessionStorage.setItem('booking_email', email.value.trim());
-  sessionStorage.setItem('booking_count', count.value);
+  const tourSlug = (window.location.pathname.split('/').pop() || '')
+    .replace('.html', '') || 'tour';
 
-  const path = window.location.pathname.includes('/tours/')
-    ? '../booking-confirm.html'
-    : 'booking-confirm.html';
+  const submitBtn = document.querySelector('.booking-submit');
+  const oldText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Бронируем…';
 
-  window.location.href = path;
+  try {
+    const res = await fetch('/api/booking/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        date: selectedDate, tourSlug: tourSlug, people: count.value,
+        name: name.value.trim(), phone: phone.value.trim(), email: email.value.trim()
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (res.status === 401) {
+      submitBtn.disabled = false; submitBtn.textContent = oldText;
+      overlay.classList.remove('active');
+      if (window.showInfoBanner) {
+        window.showInfoBanner(
+          'Нужен вход в аккаунт',
+          'Чтобы забронировать тур, войдите или зарегистрируйтесь — так мы закрепим за вами гида и сохраним заказ.',
+          { ico: '🔐', btnText: 'Войти', onButton: () => window.openAuth && window.openAuth('login') }
+        );
+      } else {
+        alert('Войдите в аккаунт, чтобы забронировать тур');
+        if (window.openAuth) window.openAuth('login');
+      }
+      return;
+    }
+
+    if (!res.ok) {
+      submitBtn.disabled = false; submitBtn.textContent = oldText;
+      showBookingError(data.error || 'Не удалось забронировать. Попробуйте другую дату.');
+      return;
+    }
+
+    sessionStorage.setItem('booking_id', data.bookingId);
+    sessionStorage.setItem('booking_date', data.date);
+    sessionStorage.setItem('booking_name', name.value.trim());
+    sessionStorage.setItem('booking_phone', phone.value.trim());
+    sessionStorage.setItem('booking_email', email.value.trim());
+    sessionStorage.setItem('booking_count', count.value);
+    sessionStorage.setItem('booking_tour', tourSlug);
+    sessionStorage.setItem('booking_guide_name', data.guide.name || '');
+    sessionStorage.setItem('booking_guide_avatar', data.guide.avatar || '');
+
+    const path = window.location.pathname.includes('/tours/')
+      ? '../booking-confirm.html'
+      : 'booking-confirm.html';
+    window.location.href = path;
+
+  } catch (e) {
+    submitBtn.disabled = false; submitBtn.textContent = oldText;
+    showBookingError('Сервер недоступен. Попробуйте ещё раз.');
+  }
 });

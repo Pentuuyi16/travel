@@ -47,6 +47,24 @@ db.exec(`
     seen       INTEGER NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
+
+  CREATE TABLE IF NOT EXISTS bookings (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id      INTEGER NOT NULL REFERENCES users(id),
+    guide_id     INTEGER NOT NULL REFERENCES users(id),
+    tour_slug    TEXT NOT NULL,
+    tour_title   TEXT,
+    date         TEXT NOT NULL,
+    people       INTEGER NOT NULL DEFAULT 1,
+    customer_name  TEXT,
+    customer_phone TEXT,
+    customer_email TEXT,
+    status       TEXT NOT NULL DEFAULT 'paid',
+    created_at   TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+
+  CREATE UNIQUE INDEX IF NOT EXISTS idx_guide_date
+    ON bookings(guide_id, date) WHERE status = 'paid';
 `);
 
 // ── Сид: админ по умолчанию (поменяй пароль после первого входа!) ──

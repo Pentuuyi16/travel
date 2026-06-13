@@ -179,6 +179,36 @@ const bannerCSS = `
   document.head.appendChild(s);
 })();
 
+window.showInfoBanner = function (title, text, opts = {}) {
+  const wrap = document.createElement('div');
+  wrap.className = 'dg-banner-wrap';
+  const kind = opts.kind === 'accepted' ? 'accepted' : 'rejected';
+  const ico = opts.ico || 'ℹ️';
+  const btnText = opts.btnText || 'Понятно';
+  wrap.innerHTML = `
+    <div class="dg-banner dg-banner--${kind}">
+      <button class="dg-banner-close">✕</button>
+      <div class="dg-banner-ico">${ico}</div>
+      <div>
+        <div class="dg-banner-title"></div>
+        <div class="dg-banner-text"></div>
+        <button class="dg-banner-btn">${btnText}</button>
+      </div>
+    </div>`;
+  wrap.querySelector('.dg-banner-title').textContent = title;
+  wrap.querySelector('.dg-banner-text').textContent = text;
+  document.body.appendChild(wrap);
+  function close() {
+    wrap.firstElementChild.classList.add('dg-banner--out');
+    setTimeout(() => { wrap.remove(); if (opts.onClose) opts.onClose(); }, 350);
+  }
+  wrap.querySelector('.dg-banner-close').addEventListener('click', close);
+  wrap.querySelector('.dg-banner-btn').addEventListener('click', () => {
+    close(); if (opts.onButton) opts.onButton();
+  });
+};
+
+
 function showBanner(n, onClose) {
   const wrap = document.createElement('div');
   wrap.className = 'dg-banner-wrap';
