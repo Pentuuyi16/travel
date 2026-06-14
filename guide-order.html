@@ -8,55 +8,24 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/booking-confirm.css">
 <style>
-  body{background:#f5f5f2;margin:0}
-  .header.visible{background:#e6effe}
-  .header.visible .nav a{color:#1a1a1a}
-
-  .go-page{max-width:900px;margin:0 auto;padding:120px 24px 80px;
-    font-family:'Montserrat',sans-serif;box-sizing:border-box}
-  .go-back{display:inline-block;font-size:13px;color:#4e75a6;text-decoration:none;
-    font-weight:600;margin-bottom:20px}
-  .go-back:hover{text-decoration:underline}
-
-  .go-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
-    flex-wrap:wrap;margin-bottom:24px}
-  .go-tour{font-size:30px;font-weight:700;color:#1a1a1a;letter-spacing:-.5px;margin:0 0 4px}
-  .go-meta{font-size:13px;color:#727056}
-  .go-status{font-size:12px;font-weight:700;padding:6px 16px;border-radius:100px;white-space:nowrap}
-  .go-status--paid{background:#fff3e0;color:#e65100}
-  .go-status--cancelled{background:#eee;color:#888}
-
-  .go-client-card{background:#e6effe;border-radius:18px;padding:20px 24px;margin-bottom:24px;
-    display:flex;gap:30px;flex-wrap:wrap}
-  .go-field{display:flex;flex-direction:column;gap:3px}
-  .go-field-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#727056;font-weight:600}
-  .go-field-val{font-size:15px;font-weight:600;color:#1a1a1a}
-  .go-field-val a{color:#4e75a6;text-decoration:none}
-
-  .go-chat{background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.06);
-    overflow:hidden;display:flex;flex-direction:column;height:540px}
-  .go-chat-head{padding:18px 24px;border-bottom:1px solid rgba(0,0,0,.07);
-    font-size:15px;font-weight:700;color:#1a1a1a}
-  .go-chat-head span{font-size:12px;font-weight:500;color:#727056;display:block;margin-top:2px}
-  .go-messages{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:12px}
-  .go-msg{display:flex;flex-direction:column;max-width:75%}
-  .go-msg--mine{align-self:flex-end;align-items:flex-end}
-  .go-msg--their{align-self:flex-start;align-items:flex-start}
-  .go-bubble{padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5}
-  .go-msg--mine .go-bubble{background:#4e75a6;color:#fff;border-radius:14px 14px 4px 14px}
-  .go-msg--their .go-bubble{background:#f0f0ee;color:#1a1a1a;border-radius:14px 14px 14px 4px}
-  .go-time{font-size:10px;color:#aaa;margin-top:3px}
-  .go-empty-chat{text-align:center;color:#aaa;font-size:13px;margin:auto}
-
-  .go-input-row{display:flex;gap:10px;padding:16px 24px;border-top:1px solid rgba(0,0,0,.07)}
-  .go-input{flex:1;border:1.5px solid rgba(0,0,0,.15);border-radius:100px;padding:11px 18px;
-    font-family:inherit;font-size:14px;outline:none;transition:border-color .2s}
-  .go-input:focus{border-color:#4e75a6}
-  .go-send{background:#1a1a1a;color:#fff;border:none;padding:11px 26px;border-radius:100px;
-    font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
-  .go-send:hover{background:#333}
-
+  /* блок данных путешественника */
+  .go-traveler{background:#e6effe;border-radius:16px;padding:22px 24px;margin-bottom:24px}
+  .go-traveler h2{font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:16px;
+    font-family:'Montserrat',sans-serif}
+  .go-traveler-grid{display:flex;flex-direction:column;gap:14px}
+  .go-tr-row{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding-bottom:12px;border-bottom:1px solid rgba(78,117,166,.2)}
+  .go-tr-row:last-child{border-bottom:none;padding-bottom:0}
+  .go-tr-label{font-size:12px;color:#727056;font-family:'Montserrat',sans-serif}
+  .go-tr-val{font-size:15px;font-weight:600;color:#1a1a1a;font-family:'Montserrat',sans-serif;text-align:right}
+  .go-tr-val a{color:#4e75a6;text-decoration:none}
+  .go-cancel-btn{width:100%;padding:15px;background:#fff;color:#e53935;border:1.5px solid #e53935;
+    border-radius:100px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;
+    cursor:pointer;transition:background .2s}
+  .go-cancel-btn:hover{background:#fff0f0}
   .go-guard{max-width:480px;margin:0 auto;padding:180px 24px;text-align:center;
     font-family:'Montserrat',sans-serif;display:none}
   .go-guard .ico{font-size:46px;margin-bottom:14px}
@@ -96,35 +65,100 @@
   <a href="guide-bookings.html">← к заказам</a>
 </div>
 
-<div class="go-page" id="goPage" style="display:none">
-  <a class="go-back" href="guide-bookings.html">← Все заказы клиентов</a>
+<div class="bc-page" id="goPage" style="display:none">
 
-  <div class="go-head">
-    <div>
-      <h1 class="go-tour" id="goTour">—</h1>
-      <div class="go-meta" id="goMeta">—</div>
+  <div class="bc-breadcrumb">
+    <a href="guide-bookings.html">Заказы клиентов</a>
+    <span>›</span>
+    <span class="bc-breadcrumb-current" id="crumb-title">—</span>
+    <div class="bc-order-status">
+      <span class="bc-status-badge" id="go-status-badge">Активен</span>
+      <span class="bc-order-num" id="go-order-num">№ 000000</span>
     </div>
-    <span class="go-status" id="goStatus"></span>
   </div>
 
-  <div class="go-client-card" id="goClientCard"></div>
+  <div class="bc-layout">
+    <div class="bc-main">
 
-  <div class="go-chat">
-    <div class="go-chat-head">Чат с клиентом<span id="goChatSub">сообщения сохраняются, клиент видит их в своём заказе</span></div>
-    <div class="go-messages" id="goMessages"></div>
-    <div class="go-input-row">
-      <input class="go-input" id="goInput" placeholder="Напишите клиенту…" maxlength="2000">
-      <button class="go-send" id="goSend">Отправить</button>
+      <div class="bc-tour-header">
+        <div>
+          <h1 class="bc-tour-title" id="go-tour">—</h1>
+          <p class="bc-tour-type">Однодневная экскурсия · Дагестан</p>
+        </div>
+        <div class="bc-guide-block">
+          <div class="bc-guide-avatar" id="go-client-avatar">К</div>
+          <div>
+            <p class="bc-guide-name" id="go-client-name">Клиент</p>
+            <p class="bc-guide-label">путешественник</p>
+          </div>
+          <button class="bc-write-btn" onclick="document.getElementById('chatInput').focus()">Написать</button>
+        </div>
+      </div>
+
+      <div class="bc-tour-details">
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Дата</p>
+          <p class="bc-detail-val" id="detail-date">—</p>
+        </div>
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Длительность</p>
+          <p class="bc-detail-val">по договорённости</p>
+        </div>
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Участников</p>
+          <p class="bc-detail-val" id="detail-people">—</p>
+        </div>
+        <div class="bc-detail-item">
+          <p class="bc-detail-label">Статус</p>
+          <p class="bc-detail-val" id="detail-status">—</p>
+        </div>
+      </div>
+
+      <!-- ДАННЫЕ ПУТЕШЕСТВЕННИКА -->
+      <div class="go-traveler">
+        <h2>Данные путешественника</h2>
+        <div class="go-traveler-grid" id="go-traveler-grid"></div>
+      </div>
+
+      <!-- ЧАТ -->
+      <div class="bc-chat-block">
+        <h2 class="bc-section-title">Чат с клиентом</h2>
+        <p class="bc-chat-sub">Сообщения сохраняются, клиент видит их в своём заказе</p>
+        <div class="bc-chat-messages" id="chatMessages"></div>
+        <div class="bc-chat-input-row">
+          <textarea class="bc-chat-input" id="chatInput"
+            placeholder="Напишите клиенту — уточните место встречи, время сбора..." rows="3"></textarea>
+          <button class="bc-chat-send" onclick="sendMessage()">Отправить</button>
+        </div>
+      </div>
+
     </div>
+
+    <!-- ПРАВАЯ КОЛОНКА -->
+    <aside class="bc-aside">
+      <div class="bc-aside-card">
+        <div class="bc-aside-body">
+          <p class="bc-aside-tour-name" id="aside-tour">—</p>
+          <p class="bc-aside-tour-type">Заказ клиента</p>
+          <div class="bc-aside-row"><span>Дата</span><span id="aside-date">—</span></div>
+          <div class="bc-aside-row"><span>Участников</span><span id="aside-people">—</span></div>
+          <div class="bc-aside-divider"></div>
+          <button class="go-cancel-btn" onclick="cancelTrip()">Отменить путешествие</button>
+          <div class="bc-aside-checks" style="margin-top:16px">
+            <span class="bc-aside-check">✓ Контакты клиента доступны выше</span>
+            <span class="bc-aside-check">✓ Общайтесь в чате по деталям</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
   </div>
 </div>
 
 <script type="module" src="js/auth.js"></script>
 <script>
 const bookingId = new URLSearchParams(location.search).get('id');
-let myRole = 'guide';
-let lastCount = 0;
-let pollTimer = null;
+let chatLastCount = 0, chatPollTimer = null;
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function fmtDate(s){
@@ -133,7 +167,7 @@ function fmtDate(s){
   const w=['вс','пн','вт','ср','чт','пт','сб'];
   return d.getDate()+' '+m[d.getMonth()]+' '+d.getFullYear()+', '+w[d.getDay()];
 }
-function fmtTime(s){
+function chatTime(s){
   const d=new Date((s||'').replace(' ','T')+'Z');
   if(isNaN(d))return '';
   return d.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'});
@@ -145,87 +179,120 @@ async function call(url,options={}){
   return data;
 }
 
-function renderMessages(messages){
-  const box=document.getElementById('goMessages');
+function renderChat(messages){
+  const box=document.getElementById('chatMessages');
+  const atBottom=box.scrollHeight-box.scrollTop-box.clientHeight<60;
   if(!messages.length){
-    box.innerHTML=`<div class="go-empty-chat">Сообщений пока нет.<br>Напишите клиенту первым 👋</div>`;
-    return;
+    box.innerHTML=`<div class="bc-msg bc-msg--system"><span>Чат с клиентом — напишите первым 👋</span></div>`;
+  } else {
+    box.innerHTML=messages.map(m=>{
+      // для гида "мои" = guide (справа), клиент слева
+      if(m.sender_role==='guide'){
+        return `<div class="bc-msg bc-msg--user">
+          <div class="bc-msg-bubble">${esc(m.text)}</div>
+          <span class="bc-msg-time">${chatTime(m.created_at)}</span></div>`;
+      }
+      return `<div class="bc-msg bc-msg--guide">
+        <div class="bc-msg-avatar">${esc((m.sender_name||'К')[0].toUpperCase())}</div>
+        <div><div class="bc-msg-bubble">${esc(m.text)}</div>
+        <span class="bc-msg-time">${esc(m.sender_name||'Клиент')} · ${chatTime(m.created_at)}</span></div></div>`;
+    }).join('');
   }
-  const atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 60;
-  box.innerHTML=messages.map(m=>{
-    const mine = m.sender_role===myRole;
-    return `
-      <div class="go-msg go-msg--${mine?'mine':'their'}">
-        <div class="go-bubble">${esc(m.text)}</div>
-        <div class="go-time">${esc(m.sender_name||'')} · ${fmtTime(m.created_at)}</div>
-      </div>`;
-  }).join('');
-  if(atBottom || messages.length!==lastCount) box.scrollTop=box.scrollHeight;
-  lastCount=messages.length;
+  if(atBottom||messages.length!==chatLastCount) box.scrollTop=box.scrollHeight;
+  chatLastCount=messages.length;
 }
 
-async function loadMessages(){
+async function loadChat(){
+  if(!bookingId)return;
   try{
-    const {messages,myRole:role}=await call(`/api/booking/${bookingId}/messages`);
-    myRole=role;
-    renderMessages(messages);
-  }catch(e){ /* тихо, чтобы опрос не спамил */ }
+    const {messages}=await call(`/api/booking/${bookingId}/messages`);
+    renderChat(messages||[]);
+  }catch(e){}
 }
 
 async function sendMessage(){
-  const input=document.getElementById('goInput');
+  const input=document.getElementById('chatInput');
   const text=input.value.trim();
   if(!text)return;
   input.value='';
   try{
     await call(`/api/booking/${bookingId}/messages`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
+      method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({text})
     });
-    loadMessages();
+    loadChat();
   }catch(e){ alert(e.message); input.value=text; }
 }
+
+async function cancelTrip(){
+  if(!confirm('Отменить путешествие? Дата освободится, клиент будет уведомлён.'))return;
+  try{
+    await call(`/api/booking/${bookingId}/cancel`,{method:'POST'});
+    if(window.showInfoBanner){
+      window.showInfoBanner('Путешествие отменено',
+        'Заказ отменён, дата снова свободна.',
+        {ico:'✓',btnText:'К заказам',onButton:()=>location.href='guide-bookings.html'});
+    }else{ alert('Отменено'); location.href='guide-bookings.html'; }
+  }catch(e){ alert(e.message); }
+}
+
+document.getElementById('chatInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMessage(); }
+});
 
 async function init(){
   if(!bookingId){ document.getElementById('goGuard').style.display='block'; return; }
   try{
     const {user}=await call('/api/me');
     if(!user){ document.getElementById('goGuard').style.display='block'; return; }
-
-    // данные заказа берём из эндпоинта одного заказа
     const {booking}=await call('/api/booking/'+bookingId);
+
     document.getElementById('goPage').style.display='block';
-    document.getElementById('goTour').textContent=booking.tour_title||'Тур';
-    document.getElementById('goMeta').textContent=
-      `${fmtDate(booking.date)} · ${booking.people} чел. · заказ №${String(booking.id).padStart(6,'0')}`;
-    const st=document.getElementById('goStatus');
     const cancelled=booking.status==='cancelled';
-    st.textContent=cancelled?'Отменён':'Активен';
-    st.className='go-status go-status--'+booking.status;
 
-    document.getElementById('goClientCard').innerHTML=`
-      <div class="go-field"><span class="go-field-label">Клиент</span>
-        <span class="go-field-val">${esc(booking.customer_name||'—')}</span></div>
-      ${booking.customer_phone?`<div class="go-field"><span class="go-field-label">Телефон</span>
-        <span class="go-field-val"><a href="tel:${esc(booking.customer_phone)}">${esc(booking.customer_phone)}</a></span></div>`:''}
-      ${booking.customer_email?`<div class="go-field"><span class="go-field-label">Email</span>
-        <span class="go-field-val"><a href="mailto:${esc(booking.customer_email)}">${esc(booking.customer_email)}</a></span></div>`:''}
-    `;
+    document.getElementById('go-tour').textContent=booking.tour_title||'Тур';
+    document.getElementById('crumb-title').textContent=`${booking.tour_title||'Тур'} — ${fmtDate(booking.date)}`;
+    document.getElementById('go-order-num').textContent='№ '+String(booking.id).padStart(6,'0');
+    document.getElementById('detail-date').textContent=fmtDate(booking.date);
+    document.getElementById('detail-people').textContent=booking.people+' чел.';
+    document.getElementById('detail-status').textContent=cancelled?'Отменён':'Активен';
+    document.getElementById('aside-tour').textContent=booking.tour_title||'Тур';
+    document.getElementById('aside-date').textContent=fmtDate(booking.date);
+    document.getElementById('aside-people').textContent=booking.people+' чел.';
 
-    loadMessages();
-    pollTimer=setInterval(loadMessages, 4000); // живой опрос раз в 4 сек
+    const badge=document.getElementById('go-status-badge');
+    badge.textContent=cancelled?'Отменён':'Активен';
+    if(cancelled) badge.style.cssText='background:#eee;color:#888';
+
+    const cname=booking.customer_name||'Клиент';
+    document.getElementById('go-client-name').textContent=cname;
+    document.getElementById('go-client-avatar').textContent=cname.trim()[0].toUpperCase();
+
+    document.getElementById('go-traveler-grid').innerHTML=`
+      <div class="go-tr-row"><span class="go-tr-label">Имя</span>
+        <span class="go-tr-val">${esc(booking.customer_name||'—')}</span></div>
+      <div class="go-tr-row"><span class="go-tr-label">Телефон</span>
+        <span class="go-tr-val">${booking.customer_phone?`<a href="tel:${esc(booking.customer_phone)}">${esc(booking.customer_phone)}</a>`:'—'}</span></div>
+      <div class="go-tr-row"><span class="go-tr-label">Email</span>
+        <span class="go-tr-val">${booking.customer_email?`<a href="mailto:${esc(booking.customer_email)}">${esc(booking.customer_email)}</a>`:'—'}</span></div>
+      <div class="go-tr-row"><span class="go-tr-label">Участников</span>
+        <span class="go-tr-val">${booking.people} чел.</span></div>
+      <div class="go-tr-row"><span class="go-tr-label">Дата тура</span>
+        <span class="go-tr-val">${fmtDate(booking.date)}</span></div>`;
+
+    // если отменён — прячем кнопку отмены
+    if(cancelled){
+      const btn=document.querySelector('.go-cancel-btn');
+      if(btn) btn.style.display='none';
+    }
+
+    loadChat();
+    chatPollTimer=setInterval(loadChat,4000);
+    window.addEventListener('beforeunload',()=>{ if(chatPollTimer)clearInterval(chatPollTimer); });
   }catch(e){
     document.getElementById('goGuard').style.display='block';
   }
 }
-
-document.getElementById('goSend').addEventListener('click', sendMessage);
-document.getElementById('goInput').addEventListener('keydown', e=>{
-  if(e.key==='Enter'){ e.preventDefault(); sendMessage(); }
-});
-window.addEventListener('beforeunload', ()=>{ if(pollTimer) clearInterval(pollTimer); });
-
 init();
 </script>
 </body>
