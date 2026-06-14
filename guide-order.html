@@ -255,14 +255,17 @@ async function init(){
     document.getElementById('go-order-num').textContent='№ '+String(booking.id).padStart(6,'0');
     document.getElementById('detail-date').textContent=fmtDate(booking.date);
     document.getElementById('detail-people').textContent=booking.people+' чел.';
-    document.getElementById('detail-status').textContent=cancelled?'Отменён':'Активен';
+    const statusText = booking.status==='cancelled' ? 'Отменён'
+      : booking.status==='pending' ? 'Ожидаем предоплату' : 'Активен';
+    document.getElementById('detail-status').textContent=statusText;
     document.getElementById('aside-tour').textContent=booking.tour_title||'Тур';
     document.getElementById('aside-date').textContent=fmtDate(booking.date);
     document.getElementById('aside-people').textContent=booking.people+' чел.';
 
     const badge=document.getElementById('go-status-badge');
-    badge.textContent=cancelled?'Отменён':'Активен';
+    badge.textContent=statusText;
     if(cancelled) badge.style.cssText='background:#eee;color:#888';
+    else if(booking.status==='pending') badge.style.cssText='background:#fff3e0;color:#e65100';
 
     const cname=booking.customer_name||'Клиент';
     document.getElementById('go-client-name').textContent=cname;
