@@ -96,6 +96,13 @@ try {
   // колонка уже существует — игнорируем
 }
 
+// Миграция: ссылка уведомления на заказ (для перехода по клику)
+try {
+  db.exec(`ALTER TABLE notifications ADD COLUMN link TEXT`);
+} catch (e) {
+  // колонка уже существует — игнорируем
+}
+
 // ── Сид: админ по умолчанию (поменяй пароль после первого входа!) ──
 const ADMIN_EMAIL = 'admin@dagtur.ru';
 const ADMIN_PASSWORD = 'admin123';

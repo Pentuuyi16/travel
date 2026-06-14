@@ -476,15 +476,18 @@ app.post('/api/booking/:id/messages', requireAuth, (req, res) => {
     VALUES (?, ?, ?, ?)
   `).run(id, req.user.id, senderRole, text);
 
-  const recipientId = (senderRole === 'guide') ? booking.user_id : booking.guide_id;
-  const fromName = req.user.name || (senderRole === 'guide' ? 'Гид' : 'Клиент');
+  const recipientRole = (senderRole === 'guide') ? 'client' : 'guide';
+  const link = recipientRole === 'guide'
+    ? `guide-order.html?id=${id}`
+    : `booking-confirm.html?id=${id}`;
   db.prepare(`
-    INSERT INTO notifications (user_id, type, title, message)
-    VALUES (?, 'new_message', ?, ?)
+    INSERT INTO notifications (user_id, type, title, message, link)
+    VALUES (?, 'new_message', ?, ?, ?)
   `).run(
     recipientId,
     'Новое сообщение 💬',
-    `${fromName} написал(а) вам по заказу «${booking.tour_title || 'тур'}».`
+    `${fromName} написал(а) вам по заказу «${booking.tour_title || 'тур'}».`,
+    link
   );
 
   res.json({
