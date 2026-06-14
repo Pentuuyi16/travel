@@ -482,7 +482,7 @@ app.post('/api/booking/:id/messages', requireAuth, (req, res) => {
     INSERT INTO messages (booking_id, sender_id, sender_role, text)
     VALUES (?, ?, ?, ?)
   `).run(id, req.user.id, senderRole, text);
-
+  const recipientId = (senderRole === 'guide') ? booking.user_id : booking.guide_id;
   const recipientRole = (senderRole === 'guide') ? 'client' : 'guide';
   const fromName = req.user.name || (senderRole === 'guide' ? 'Гид' : 'Клиент');
   const link = recipientRole === 'guide'
