@@ -63,8 +63,9 @@ db.exec(`
     created_at   TEXT NOT NULL DEFAULT (datetime('now'))
   );
 
+  DROP INDEX IF EXISTS idx_guide_date;
   CREATE UNIQUE INDEX IF NOT EXISTS idx_guide_date
-    ON bookings(guide_id, date) WHERE status = 'paid';
+    ON bookings(guide_id, date) WHERE status != 'cancelled';
 
   CREATE TABLE IF NOT EXISTS reviews (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,

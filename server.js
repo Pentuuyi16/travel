@@ -332,7 +332,7 @@ app.get('/api/booking/busy', (req, res) => {
   if (total === 0) return res.json({ guides: 0, busyDates: [] });
   const rows = db.prepare(`
     SELECT date, COUNT(DISTINCT guide_id) AS busy
-    FROM bookings WHERE status = 'paid'
+    FROM bookings WHERE status != 'cancelled'
     GROUP BY date HAVING busy >= ?
   `).all(total);
   res.json({ guides: total, busyDates: rows.map(r => r.date) });
@@ -359,7 +359,7 @@ app.post('/api/booking/create', requireAuth, (req, res) => {
   const freeGuides = db.prepare(`
     SELECT u.id, u.name, u.email, u.avatar FROM users u
     WHERE u.role = 'guide'
-      AND u.id NOT IN (SELECT guide_id FROM bookings WHERE date = ? AND status = 'paid')
+      AND u.id NOT IN (SELECT guide_id FROM bookings WHERE date = ? AND status != 'cancelled')
   `).all(date);
 
   if (freeGuides.length === 0)
@@ -371,9 +371,9 @@ app.post('/api/booking/create', requireAuth, (req, res) => {
   try {
     info = db.prepare(`
       INSERT INTO bookings
-        (user_id, guide_id, tour_slug, tour_title, date, people,
-         customer_name, customer_phone, customer_email)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (user_id, guide_id, tour_slug, tour_title, date, people,
+       customer_name, customer_phone, customer_email, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')
     `).run(
       req.user.id, guide.id, tourSlug, TOUR_TITLES[tourSlug] || b.tourTitle || 'Тур',
       date, people,
