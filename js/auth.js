@@ -254,16 +254,106 @@ function showBanner(n, onClose) {
 async function checkNotifications() {
   try {
     const { notifications } = await api('/api/notifications');
-    if (!notifications.length) return;
-    // показываем по одному: закрыл первый — появился следующий
+    // баннеры показываем только для важных разовых событий
+    const bannerTypes = ['guide_accepted', 'guide_rejected'];
+    const forBanner = notifications.filter(n => bannerTypes.includes(n.type));
     let i = 0;
-    const next = () => { if (i < notifications.length) showBanner(notifications[i++], next); };
+    const next = () => { if (i < forBanner.length) showBanner(forBanner[i++], next); };
     next();
-    // роль могла поменяться (приняли в гиды) — обновим шапку
+    // роль могла поменяться (приняли в гиды)
     const { user } = await api('/api/me');
     updateHeader(user);
+    // строим колокольчик со всеми уведомлениями
+    buildBell();
   } catch {}
 }
+
+
+// ── КОЛОКОЛЬЧИК УВЕДОМЛЕНИЙ ──
+const bellCSS = `
+.dg-bell{position:relative;background:none;border:none;cursor:pointer;font-size:20px;
+  padding:6px 8px;line-height:1;margin-right:6px}
+.dg-bell-badge{position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;
+  font-weight:700;min-width:16px;height:16px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;padding:0 4px;font-family:'Montserrat',sans-serif}
+.dg-bell-menu{position:absolute;top:calc(100% + 12px);right:0;width:340px;max-width:90vw;
+  background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.18);overflow:hidden;
+  opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .2s,transform .2s;
+  z-index:300}
+.dg-bell-menu.active{opacity:1;pointer-events:all;transform:translateY(0)}
+.dg-bell-head{padding:14px 18px;font-size:14px;font-weight:700;color:#1a1a1a;
+  border-bottom:1px solid rgba(0,0,0,.07);font-family:'Montserrat',sans-serif}
+.dg-bell-list{max-height:380px;overflow-y:auto}
+.dg-bell-item{display:block;padding:14px 18px;border-bottom:1px solid rgba(0,0,0,.05);
+  text-decoration:none;color:inherit;transition:background .15s;cursor:pointer}
+.dg-bell-item:hover{background:#f5f5f2}
+.dg-bell-item:last-child{border-bottom:none}
+.dg-bell-item-title{font-size:13.5px;font-weight:700;color:#1a1a1a;margin-bottom:3px;
+  font-family:'Montserrat',sans-serif}
+.dg-bell-item-msg{font-size:12.5px;color:#727056;line-height:1.5;font-family:'Montserrat',sans-serif}
+.dg-bell-empty{padding:40px 18px;text-align:center;color:#aaa;font-size:13px;
+  font-family:'Montserrat',sans-serif}
+`;
+(function injectBellCSS(){
+  const s=document.createElement('style');
+  s.textContent=bellCSS;
+  document.head.appendChild(s);
+})();
+
+async function buildBell(){
+  const loginBtn=document.getElementById('authOpenBtn');
+  if(!loginBtn||!window.dagtourUser) return;
+
+  // не дублируем
+  document.getElementById('dgBell')?.remove();
+
+  let notifs=[];
+  try{
+    const r=await api('/api/notifications');
+    notifs=r.notifications||[];
+  }catch{ return; }
+
+  const bell=document.createElement('button');
+  bell.id='dgBell';
+  bell.className='dg-bell';
+  bell.innerHTML=`🔔${notifs.length?`<span class="dg-bell-badge">${notifs.length}</span>`:''}`;
+
+  const menu=document.createElement('div');
+  menu.className='dg-bell-menu';
+  menu.innerHTML=`
+    <div class="dg-bell-head">Уведомления</div>
+    <div class="dg-bell-list">
+      ${notifs.length
+        ? notifs.map(n=>`
+          <a class="dg-bell-item" ${n.link?`href="${ROOT}${n.link}"`:''}>
+            <div class="dg-bell-item-title">${(n.title||'').replace(/</g,'&lt;')}</div>
+            <div class="dg-bell-item-msg">${(n.message||'').replace(/</g,'&lt;')}</div>
+          </a>`).join('')
+        : `<div class="dg-bell-empty">Новых уведомлений нет</div>`}
+    </div>`;
+
+  // вставляем колокольчик ПЕРЕД кнопкой имени
+  loginBtn.parentElement.style.position='relative';
+  loginBtn.parentElement.insertBefore(bell, loginBtn);
+  bell.parentElement.appendChild(menu);
+
+  bell.addEventListener('click', async (e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    const opening=!menu.classList.contains('active');
+    menu.classList.toggle('active');
+    if(opening && notifs.length){
+      // пометить всё прочитанным, убрать бейдж
+      try{ await api('/api/notifications/read-all',{method:'POST'}); }catch{}
+      bell.querySelector('.dg-bell-badge')?.remove();
+    }
+  });
+
+  document.addEventListener('click',(e)=>{
+    if(!bell.contains(e.target)&&!menu.contains(e.target)) menu.classList.remove('active');
+  });
+}
+window.buildBell=buildBell;
 
 // ════════ Старт ════════
 
