@@ -219,6 +219,13 @@ app.get('/api/notifications', requireAuth, (req, res) => {
   res.json({ notifications: list });
 });
 
+// Отметить все уведомления прочитанными
+app.post('/api/notifications/read-all', requireAuth, (req, res) => {
+  db.prepare('UPDATE notifications SET seen = 1 WHERE user_id = ? AND seen = 0')
+    .run(req.user.id);
+  res.json({ ok: true });
+});
+
 app.post('/api/notifications/:id/seen', requireAuth, (req, res) => {
   db.prepare('UPDATE notifications SET seen = 1 WHERE id = ? AND user_id = ?')
     .run(Number(req.params.id), req.user.id);
