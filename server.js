@@ -484,6 +484,7 @@ app.post('/api/booking/:id/messages', requireAuth, (req, res) => {
   `).run(id, req.user.id, senderRole, text);
 
   const recipientRole = (senderRole === 'guide') ? 'client' : 'guide';
+  const recipientId = (senderRole === 'guide') ? booking.user_id : booking.guide_id;
   const link = recipientRole === 'guide'
     ? `guide-order.html?id=${id}`
     : `booking-confirm.html?id=${id}`;
