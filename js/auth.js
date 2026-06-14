@@ -271,11 +271,15 @@ async function checkNotifications() {
 
 // ── КОЛОКОЛЬЧИК УВЕДОМЛЕНИЙ ──
 const bellCSS = `
-.dg-bell{position:relative;background:none;border:none;cursor:pointer;font-size:20px;
-  padding:6px 8px;line-height:1;margin-right:6px}
-.dg-bell-badge{position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;
-  font-weight:700;min-width:16px;height:16px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;padding:0 4px;font-family:'Montserrat',sans-serif}
+.dg-bell{position:relative;background:#e6effe;border:none;cursor:pointer;
+  width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin-right:10px;padding:0;transition:background .2s}
+.dg-bell:hover{background:#d4e3f7}
+.dg-bell svg{width:19px;height:19px;display:block}
+.dg-bell-badge{position:absolute;top:-2px;right:-2px;background:#e53935;color:#fff;font-size:10px;
+  font-weight:700;min-width:18px;height:18px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;padding:0 4px;font-family:'Montserrat',sans-serif;
+  border:2px solid #fff;box-sizing:border-box}
 .dg-bell-menu{position:absolute;top:calc(100% + 12px);right:0;width:340px;max-width:90vw;
   background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.18);overflow:hidden;
   opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .2s,transform .2s;
@@ -316,7 +320,13 @@ async function buildBell(){
   const bell=document.createElement('button');
   bell.id='dgBell';
   bell.className='dg-bell';
-  bell.innerHTML=`🔔${notifs.length?`<span class="dg-bell-badge">${notifs.length}</span>`:''}`;
+  bell.innerHTML=`
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.5a6 6 0 0 0-6 6c0 3.5-1 5-1.8 5.8-.5.5-.2 1.4.5 1.4h14.6c.7 0 1-.9.5-1.4C19 13.5 18 12 18 8.5a6 6 0 0 0-6-6Z"
+        stroke="#4e75a6" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M9.5 18.5a2.5 2.5 0 0 0 5 0" stroke="#4e75a6" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    ${notifs.length?`<span class="dg-bell-badge">${notifs.length}</span>`:''}`;;
 
   const menu=document.createElement('div');
   menu.className='dg-bell-menu';
