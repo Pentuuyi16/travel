@@ -514,11 +514,21 @@ app.get('/api/booking/my', requireAuth, (req, res) => {
     SELECT b.id, b.tour_slug, b.tour_title, b.date, b.people, b.status, b.created_at,
            g.name AS guide_name, g.avatar AS guide_avatar
     FROM bookings b JOIN users g ON g.id = b.guide_id
-    WHERE b.user_id = ?
+    WHERE b.user_id = ? AND b.user_hidden = 0
     ORDER BY b.date DESC, b.id DESC
   `).all(req.user.id);
   res.json({ bookings: list });
 });
+
+// Клиент скрывает свои отменённые заказы из списка
+app.post('/api/booking/clear-cancelled', requireAuth, (req, res) => {
+  const info = db.prepare(`
+    UPDATE bookings SET user_hidden = 1
+    WHERE user_id = ? AND status = 'cancelled' AND user_hidden = 0
+  `).run(req.user.id);
+  res.json({ cleared: info.changes });
+});
+
 
 // Один заказ по id (для страницы оплаты по ссылке ?id=)
 app.get('/api/booking/:id', requireAuth, (req, res) => {

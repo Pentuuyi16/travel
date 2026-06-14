@@ -104,6 +104,13 @@ try {
   // колонка уже существует — игнорируем
 }
 
+// Миграция: клиент скрывает свои отменённые заказы
+try {
+  db.exec(`ALTER TABLE bookings ADD COLUMN user_hidden INTEGER NOT NULL DEFAULT 0`);
+} catch (e) {
+  // колонка уже существует — игнорируем
+}
+
 // ── Сид: админ по умолчанию (поменяй пароль после первого входа!) ──
 const ADMIN_EMAIL = 'admin@dagtur.ru';
 const ADMIN_PASSWORD = 'admin123';

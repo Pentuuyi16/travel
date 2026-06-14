@@ -52,6 +52,12 @@
   .ord-guard p{font-size:14px;color:#727056;margin-bottom:24px}
   .ord-guard button{background:#1a1a1a;color:#fff;border:none;padding:13px 36px;border-radius:100px;
     font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+
+  .ord-head-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  .ord-clear-btn{background:#fff;color:#e53935;border:1.5px solid #e53935;padding:10px 22px;
+    border-radius:100px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;
+    cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:6px;transition:background .2s}
+  .ord-clear-btn:hover{background:#fff0f0}
 </style>
 </head>
 <body>
@@ -87,8 +93,13 @@
 </div>
 
 <div class="ord-page" id="ordPage" style="display:none">
-  <h1 class="ord-title">Мои заказы</h1>
-  <p class="ord-sub">Здесь все ваши бронирования туров.</p>
+  <div class="ord-head-row">
+    <div>
+      <h1 class="ord-title">Мои заказы</h1>
+      <p class="ord-sub">Здесь все ваши бронирования туров.</p>
+    </div>
+    <button class="ord-clear-btn" id="ordClearBtn" style="display:none">Очистить отменённые</button>
+  </div>
   <div class="ord-list" id="ordList"></div>
 </div>
 
@@ -138,6 +149,9 @@ function render(bookings){
       У вас пока нет заказов.<br><a href="tours/tours.html">Выбрать тур →</a></div>`;
     return;
   }
+  const hasCancelled = bookings.some(b => b.status === 'cancelled');
+  const clearBtn = document.getElementById('ordClearBtn');
+  if (clearBtn) clearBtn.style.display = hasCancelled ? '' : 'none';
   list.innerHTML=bookings.map(b=>{
     const av=b.guide_avatar
       ? `<img src="${esc(b.guide_avatar)}" alt="">`
@@ -192,6 +206,14 @@ window.cancelOrder=cancelOrder;
     document.getElementById('ordGuard').style.display='block';
   }
 })();
+
+document.getElementById('ordClearBtn').addEventListener('click', async () => {
+  if (!confirm('Скрыть все отменённые заказы из списка?')) return;
+  try {
+    await call('/api/booking/clear-cancelled', { method: 'POST' });
+    load();
+  } catch (e) { alert(e.message); }
+});
 </script>
 </body>
 </html>
