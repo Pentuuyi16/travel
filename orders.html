@@ -29,7 +29,8 @@
     align-items:center;justify-content:center;font-size:13px;font-weight:700;overflow:hidden;flex-shrink:0}
   .ord-guide-av img{width:100%;height:100%;object-fit:cover}
   .ord-status{font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;white-space:nowrap}
-  .ord-status--paid{background:#fff3e0;color:#e65100}
+  .ord-status--pending{background:#fff3e0;color:#e65100}
+  .ord-status--paid{background:#eff7df;color:#3c7a1e}
   .ord-status--cancelled{background:#eee;color:#888}
   .ord-actions{display:flex;flex-direction:column;gap:8px;min-width:150px}
   .ord-btn-pay{background:#1a1a1a;color:#fff;border:none;padding:11px 20px;border-radius:100px;
@@ -150,7 +151,7 @@ function render(bookings){
           <div class="ord-row"><div class="ord-guide-av">${av}</div> Гид: ${esc(b.guide_name)}</div>
         </div>
         <span class="ord-status ord-status--${b.status}">
-          ${cancelled?'Отменён':'Ожидает оплаты'}
+          ${cancelled?'Отменён':b.status==='pending'?'Ожидаем предоплату':'Активен'}
         </span>
         <div class="ord-actions">
           ${cancelled?'':`
