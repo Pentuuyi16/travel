@@ -3,51 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Отзывы — ДагТур</title>
+<title>Написать отзыв — ДагТур</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/auth.css">
 <link rel="stylesheet" href="css/footer.css">
 <style>
-  body{background:#f5f5f2;margin:0}
+  body{background:#f5f5f2}
   .header.visible{background:#e6effe}
   .header.visible .nav a{color:#1a1a1a}
 
-  .rv-page{max-width:1100px;margin:0 auto;padding:130px 24px 90px;font-family:'Montserrat',sans-serif}
-  .rv-top{text-align:center;margin-bottom:44px}
-  .rv-title{font-size:38px;font-weight:700;letter-spacing:-1px;color:#1a1a1a;margin:0 0 10px}
-  .rv-sub{font-size:15px;color:#727056}
-  .rv-write{display:inline-block;margin-top:18px;background:#4e75a6;color:#fff;text-decoration:none;
-    padding:12px 30px;border-radius:100px;font-size:14px;font-weight:600}
-  .rv-write:hover{background:#3a5d8a}
+  .rv-page{max-width:620px;margin:0 auto;padding:130px 24px 90px;font-family:'Montserrat',sans-serif}
+  .rv-title{font-size:32px;font-weight:700;letter-spacing:-.5px;color:#1a1a1a;margin-bottom:6px}
+  .rv-sub{font-size:14px;color:#727056;margin-bottom:28px;line-height:1.6}
 
-  .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .rv-card{background:#fff;border-radius:20px;padding:26px 24px;box-shadow:0 4px 24px rgba(0,0,0,.06);
-    display:flex;flex-direction:column}
-  .rv-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-  .rv-card-author{display:flex;align-items:center;gap:12px}
-  .rv-card-av{width:44px;height:44px;border-radius:50%;background:#4e75a6;color:#fff;display:flex;
-    align-items:center;justify-content:center;font-weight:700;font-size:17px}
-  .rv-card-name{font-size:16px;font-weight:700;color:#1a1a1a}
-  .rv-card-date{font-size:12px;color:#aaa;margin-top:2px}
-  .rv-card-stars{color:#FFD600;font-size:15px;letter-spacing:2px}
-  .rv-card-stars span{color:#ddd}
-  .rv-card-text{font-size:14px;line-height:1.65;color:#333;margin-top:6px}
+  .rv-card{background:#fff;border-radius:24px;padding:32px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .rv-label{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:10px}
 
-  .rv-pager{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:44px}
-  .rv-pager button{min-width:42px;height:42px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);
-    background:#fff;font-family:inherit;font-size:14px;font-weight:600;color:#1a1a1a;cursor:pointer;
-    transition:.15s;padding:0 12px}
-  .rv-pager button:hover:not(:disabled){border-color:#4e75a6;color:#4e75a6}
-  .rv-pager button.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
-  .rv-pager button:disabled{opacity:.4;cursor:default}
+  .rv-stars{display:flex;gap:6px;margin-bottom:22px}
+  .rv-star{font-size:34px;color:#ddd;cursor:pointer;transition:color .15s,transform .15s;line-height:1}
+  .rv-star:hover{transform:scale(1.15)}
+  .rv-star.on{color:#FFD600}
 
-  .rv-empty{text-align:center;color:#727056;font-size:16px;padding:80px 20px;
-    background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .rv-textarea{width:100%;border:1.5px solid rgba(0,0,0,.15);border-radius:14px;padding:14px 16px;
+    font-family:inherit;font-size:14px;color:#1a1a1a;line-height:1.6;outline:none;resize:vertical;
+    min-height:150px;transition:border-color .2s;margin-bottom:6px;box-sizing:border-box}
+  .rv-textarea:focus{border-color:#4e75a6}
+  .rv-counter{font-size:12px;color:#aaa;text-align:right;margin-bottom:18px}
 
-  @media(max-width:900px){.rv-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.rv-grid{grid-template-columns:1fr}}
+  .rv-submit{background:#1a1a1a;color:#fff;border:none;padding:14px 40px;border-radius:100px;
+    font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}
+  .rv-submit:hover{background:#333}
+  .rv-submit:disabled{opacity:.6;cursor:default}
+
+  .rv-as{font-size:13px;color:#727056;margin-bottom:20px}
+  .rv-as b{color:#1a1a1a}
+
+  .rv-guard{max-width:480px;margin:0 auto;padding:180px 24px;text-align:center;
+    font-family:'Montserrat',sans-serif;display:none}
+  .rv-guard .ico{font-size:46px;margin-bottom:14px}
+  .rv-guard h2{font-size:22px;font-weight:700;margin-bottom:10px;color:#1a1a1a}
+  .rv-guard p{font-size:14px;color:#727056;margin-bottom:24px}
+  .rv-guard button{background:#1a1a1a;color:#fff;border:none;padding:13px 36px;border-radius:100px;
+    font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+
+  .rv-done{display:none;text-align:center;padding:40px 20px}
+  .rv-done .ico{font-size:48px;margin-bottom:16px}
+  .rv-done h2{font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
+  .rv-done p{font-size:14px;color:#727056;line-height:1.6;margin-bottom:24px}
+  .rv-done a{color:#4e75a6;font-weight:600;text-decoration:none}
 </style>
 </head>
 <body>
@@ -75,81 +80,130 @@
   </div>
 </header>
 
-<div class="rv-page">
-  <div class="rv-top">
-    <h1 class="rv-title">Отзывы путешественников</h1>
-    <p class="rv-sub">Что говорят те, кто уже побывал с нами в горах Дагестана</p>
-    <br>
-    <a href="review.html" class="rv-write">Написать отзыв</a>
+<div class="rv-guard" id="rvGuard">
+  <div class="ico">🔒</div>
+  <h2>Нужен вход в аккаунт</h2>
+  <p>Войдите, чтобы оставить отзыв.</p>
+  <button onclick="window.openAuth && window.openAuth('login')">Войти</button>
+</div>
+
+<div class="rv-page" id="rvPage" style="display:none">
+  <h1 class="rv-title">Написать отзыв</h1>
+  <p class="rv-sub">Расскажите о поездке — про гида, тур или сервис в целом. После проверки отзыв появится на сайте.</p>
+
+  <div class="rv-card" id="rvForm">
+    <p class="rv-as">Отзыв от имени: <b id="rvAuthor">—</b></p>
+
+    <div class="rv-label">Ваша оценка</div>
+    <div class="rv-stars" id="rvStars">
+      <span class="rv-star" data-v="1">★</span>
+      <span class="rv-star" data-v="2">★</span>
+      <span class="rv-star" data-v="3">★</span>
+      <span class="rv-star" data-v="4">★</span>
+      <span class="rv-star" data-v="5">★</span>
+    </div>
+
+    <div class="rv-label">Текст отзыва</div>
+    <textarea class="rv-textarea" id="rvText" maxlength="2000"
+      placeholder="Поделитесь впечатлениями: что понравилось, какой был гид, рекомендуете ли тур..."></textarea>
+    <div class="rv-counter"><span id="rvCount">0</span> / 2000</div>
+
+    <button class="rv-submit" id="rvSubmit">Отправить отзыв</button>
   </div>
-  <div class="rv-grid" id="rvGrid"></div>
-  <div class="rv-pager" id="rvPager"></div>
+
+  <div class="rv-done" id="rvDone">
+    <div class="ico">🎉</div>
+    <h2>Спасибо за отзыв!</h2>
+    <p>Мы проверим его и скоро опубликуем на сайте.<br>Ваше мнение помогает нам и другим путешественникам.</p>
+    <a href="main.html">← на главную</a>
+  </div>
+</div>
+
+<!-- AUTH МОДАЛКА -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Войти</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+    <div id="loginForm">
+      <div class="auth-field"><label>Email</label><input type="email" id="loginEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="loginBtn">Войти</button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="auth-field"><label>Имя</label><input type="text" id="registerName" placeholder="Иван"></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="registerEmail" placeholder="example@mail.ru"></div>
+      <div class="auth-field"><label>Пароль</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+      <button class="auth-submit" id="registerBtn">Зарегистрироваться</button>
+    </div>
+  </div>
 </div>
 
 <script type="module" src="js/auth.js"></script>
 <script>
-let curPage = 1;
+let rating = 5;
 
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function stars(r){r=Math.max(1,Math.min(5,r||5));return '★'.repeat(r)+'<span>'+'★'.repeat(5-r)+'</span>';}
-function fmtDate(s){
-  const d=new Date((s||'').replace(' ','T')+'Z');
-  if(isNaN(d))return '';
-  return d.toLocaleDateString('ru',{day:'numeric',month:'long',year:'numeric'});
+async function call(url, options = {}) {
+  const res = await fetch(url, { credentials: 'same-origin', ...options });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Ошибка сервера');
+  return data;
 }
 
-async function load(page){
-  try{
-    const res=await fetch('/api/reviews?page='+page,{credentials:'same-origin'});
-    const data=await res.json();
-    const reviews=data.reviews||[];
-    const grid=document.getElementById('rvGrid');
+// звёзды
+const stars = document.querySelectorAll('#rvStars .rv-star');
+function paintStars(v) {
+  stars.forEach(s => s.classList.toggle('on', Number(s.dataset.v) <= v));
+}
+stars.forEach(s => {
+  s.addEventListener('click', () => { rating = Number(s.dataset.v); paintStars(rating); });
+  s.addEventListener('mouseenter', () => paintStars(Number(s.dataset.v)));
+});
+document.getElementById('rvStars').addEventListener('mouseleave', () => paintStars(rating));
+paintStars(rating);
 
-    if(!reviews.length){
-      grid.innerHTML='';
-      document.querySelector('.rv-page').insertAdjacentHTML('beforeend','');
-      grid.innerHTML=`<div class="rv-empty" style="grid-column:1/-1">Пока нет отзывов. Станьте первым!</div>`;
-      document.getElementById('rvPager').innerHTML='';
-      return;
+// счётчик символов
+const textEl = document.getElementById('rvText');
+textEl.addEventListener('input', () => {
+  document.getElementById('rvCount').textContent = textEl.value.length;
+});
+
+// отправка
+document.getElementById('rvSubmit').addEventListener('click', async () => {
+  const text = textEl.value.trim();
+  if (text.length < 10) { alert('Отзыв слишком короткий — напишите хотя бы пару предложений'); return; }
+  const btn = document.getElementById('rvSubmit');
+  btn.disabled = true; btn.textContent = 'Отправляем…';
+  try {
+    await call('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating, text })
+    });
+    document.getElementById('rvForm').style.display = 'none';
+    document.getElementById('rvDone').style.display = 'block';
+  } catch (e) {
+    alert(e.message);
+    btn.disabled = false; btn.textContent = 'Отправить отзыв';
+  }
+});
+
+// проверка входа
+(async () => {
+  try {
+    const { user } = await call('/api/me');
+    if (user) {
+      document.getElementById('rvPage').style.display = 'block';
+      document.getElementById('rvAuthor').textContent = user.name || user.email;
+    } else {
+      document.getElementById('rvGuard').style.display = 'block';
     }
-
-    grid.innerHTML=reviews.map(r=>`
-      <div class="rv-card">
-        <div class="rv-card-head">
-          <div class="rv-card-author">
-            <div class="rv-card-av">${esc((r.author||'?')[0].toUpperCase())}</div>
-            <div>
-              <div class="rv-card-name">${esc(r.author)}</div>
-              <div class="rv-card-date">${fmtDate(r.created_at)}</div>
-            </div>
-          </div>
-        </div>
-        <div class="rv-card-stars">${stars(r.rating)}</div>
-        <div class="rv-card-text">${esc(r.text)}</div>
-      </div>`).join('');
-
-    renderPager(data.page, data.totalPages);
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){
-    document.getElementById('rvGrid').innerHTML=`<div class="rv-empty" style="grid-column:1/-1">Не удалось загрузить отзывы</div>`;
+  } catch {
+    document.getElementById('rvGuard').style.display = 'block';
   }
-}
-
-function renderPager(page, totalPages){
-  const pager=document.getElementById('rvPager');
-  if(totalPages<=1){ pager.innerHTML=''; return; }
-  let html=`<button ${page<=1?'disabled':''} onclick="go(${page-1})">←</button>`;
-  for(let i=1;i<=totalPages;i++){
-    html+=`<button class="${i===page?'active':''}" onclick="go(${i})">${i}</button>`;
-  }
-  html+=`<button ${page>=totalPages?'disabled':''} onclick="go(${page+1})">→</button>`;
-  pager.innerHTML=html;
-}
-
-function go(page){ curPage=page; load(page); }
-window.go=go;
-
-load(1);
+})();
 </script>
 </body>
 </html>
