@@ -30,7 +30,7 @@ document.querySelectorAll('.auth-google').forEach(b => b.style.display = 'none')
 function openAuth(tab = 'login') {
   if (!authOverlay) return;
   authOverlay.classList.add('active');
-  
+  setupPasswordToggles();
   switchTab(tab);
 }
 window.openAuth = openAuth; // нужно gidy.html
