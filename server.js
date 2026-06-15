@@ -586,12 +586,24 @@ app.post('/api/reviews', requireAuth, (req, res) => {
 
 // Одобренные отзывы для главной (публично)
 app.get('/api/reviews', (req, res) => {
+  const perPage = 9;
+  const page = Math.max(1, parseInt(req.query.page) || 1);
+  const offset = (page - 1) * perPage;
+
+  const total = db.prepare(`SELECT COUNT(*) AS c FROM reviews WHERE status = 'approved'`).get().c;
   const list = db.prepare(`
     SELECT id, author, rating, text, created_at
     FROM reviews WHERE status = 'approved'
-    ORDER BY id DESC LIMIT 30
-  `).all();
-  res.json({ reviews: list });
+    ORDER BY id DESC LIMIT ? OFFSET ?
+  `).all(perPage, offset);
+
+  res.json({
+    reviews: list,
+    page,
+    perPage,
+    total,
+    totalPages: Math.max(1, Math.ceil(total / perPage))
+  });
 });
 
 // Админ: список отзывов по статусу

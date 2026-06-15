@@ -850,3 +850,24 @@ body {
   opacity: .85;
   width: 100%;
 }
+
+.reviews-header--row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.reviews-view-all{
+  background:#4e75a6;
+  color:#fff;
+  text-decoration:none;
+  padding:11px 26px;
+  border-radius:100px;
+  font-size:14px;
+  font-weight:600;
+  font-family:'Montserrat',sans-serif;
+  white-space:nowrap;
+  transition:background .2s;
+}
+.reviews-view-all:hover{background:#3a5d8a}
