@@ -30,9 +30,51 @@ document.querySelectorAll('.auth-google').forEach(b => b.style.display = 'none')
 function openAuth(tab = 'login') {
   if (!authOverlay) return;
   authOverlay.classList.add('active');
+  
   switchTab(tab);
 }
 window.openAuth = openAuth; // нужно gidy.html
+
+// Глазок — показать/скрыть пароль
+function setupPasswordToggles() {
+  const fields = ['loginPassword', 'registerPassword'];
+  fields.forEach(id => {
+    const input = document.getElementById(id);
+    if (!input || input.dataset.eyeReady) return;
+    input.dataset.eyeReady = '1';
+
+    // обёртка вокруг поля, чтобы спозиционировать иконку
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'position:relative;display:block';
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+    input.style.paddingRight = '44px';
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('tabindex', '-1');
+    btn.style.cssText = 'position:absolute;right:12px;top:50%;transform:translateY(-50%);'
+      + 'background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;'
+      + 'opacity:.55;transition:opacity .2s';
+    btn.onmouseenter = () => btn.style.opacity = '1';
+    btn.onmouseleave = () => btn.style.opacity = '.55';
+
+    const eyeOpen = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
+    const eyeOff = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 4.2A10.9 10.9 0 0 1 12 4c6.5 0 10 7 10 7a16.6 16.6 0 0 1-2.6 3.5M6.6 6.6A16.4 16.4 0 0 0 2 11s3.5 7 10 7a10.4 10.4 0 0 0 4.5-1M3 3l18 18"/></svg>`;
+
+    btn.innerHTML = eyeOff;
+    btn.addEventListener('click', () => {
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerHTML = eyeOpen;
+      } else {
+        input.type = 'password';
+        btn.innerHTML = eyeOff;
+      }
+    });
+    wrap.appendChild(btn);
+  });
+}
 
 function switchTab(name) {
   authTabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
