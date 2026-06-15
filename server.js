@@ -622,6 +622,7 @@ app.post('/api/admin/reviews/:id/:action', requireAdmin, (req, res) => {
 // ════════════════════ СТАТИКА ════════════════════
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.get('/', (req, res) => res.redirect('/main.html'));
 app.use(express.static(__dirname, { extensions: ['html'] }));
 
 // Обработчик ошибок (например, от multer)
