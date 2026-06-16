@@ -870,3 +870,22 @@ body {
   transition:background .2s, transform .2s;
 }
 .reviews-view-all:hover{background:#fff;transform:translateY(-2px)}
+
+
+.tp-reviews-avg-row{position:relative}
+.tp-reviews-all{
+  position:absolute;
+  right:0;
+  top:0;
+  background:#4e75a6;
+  color:#fff;
+  text-decoration:none;
+  padding:10px 22px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:600;
+  font-family:'Montserrat',sans-serif;
+  white-space:nowrap;
+  transition:background .2s;
+}
+.tp-reviews-all:hover{background:#3a5d8a}
