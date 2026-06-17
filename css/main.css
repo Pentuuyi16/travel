@@ -889,3 +889,11 @@ body {
   transition:background .2s;
 }
 .tp-reviews-all:hover{background:#3a5d8a}
+
+.gallery-header--row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.gallery-view-all{
+  background:#4e75a6;color:#fff;text-decoration:none;padding:11px 26px;border-radius:100px;
+  font-size:14px;font-weight:600;font-family:'Montserrat',sans-serif;white-space:nowrap;
+  transition:background .2s;flex-shrink:0
+}
+.gallery-view-all:hover{background:#3a5d8a}

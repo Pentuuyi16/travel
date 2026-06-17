@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Галерея путешествий — ДагТур</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/footer.css">
+<style>
+  body{background:#f5f5f2;margin:0}
+  .header.visible{background:#e6effe}
+  .header.visible .nav a{color:#1a1a1a}
+  .gal-page{max-width:1200px;margin:0 auto;padding:130px 24px 90px;font-family:'Montserrat',sans-serif}
+  .gal-top{text-align:center;margin-bottom:44px}
+  .gal-label{font-size:15px;color:#4e75a6;font-weight:500;margin-bottom:8px}
+  .gal-title{font-size:38px;font-weight:700;letter-spacing:-1px;color:#1a1a1a;margin:0}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .gal-grid .gallery-card{height:420px;flex:none}
+  @media(max-width:900px){.gal-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.gal-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header visible">
+  <div class="header-left">
+    <img class="logo" src="image/logo.png" alt="Лого">
+    <nav class="nav">
+      <a href="main.html">главная</a>
+      <div class="nav-item--tours">
+        <a href="#">туры</a>
+        <div class="nav-dropdown">
+          <a href="tours/tours.html#odnodnevnye">однодневные</a>
+          <a href="tours/tours.html#mnogodnevnye">многодневные</a>
+          <a href="tours/tours.html#gornye">горные</a>
+        </div>
+      </div>
+      <a href="#">контакты</a>
+      <a href="gidy.html">гидам</a>
+    </nav>
+  </div>
+  <div class="header-btns">
+    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
+    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  </div>
+</header>
+
+<div class="gal-page">
+  <div class="gal-top">
+    <p class="gal-label">взгляните как проходят наши туры</p>
+    <h1 class="gal-title">Галерея путешествий</h1>
+  </div>
+  <div class="gal-grid">
+    <div class="gallery-card"><img src="image/Галерея1.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Алена К.</p><p class="gallery-card-tour">Путешествие на С.каньон</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/Галерея2.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Алина М.</p><p class="gallery-card-tour">Путешествие в Дербент</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/Галерея3.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Ольга К.</p><p class="gallery-card-tour">Путешествие в Гуниб</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/галерея4.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Марина С.</p><p class="gallery-card-tour">Путешествие в Дагестан</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/галерея5.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Екатерина В.</p><p class="gallery-card-tour">Путешествие в горы</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/галерея6.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Дарья Л.</p><p class="gallery-card-tour">Путешествие в Хунзах</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/галерея7.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Наталья П.</p><p class="gallery-card-tour">Путешествие в Гамсутль</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/галерея8.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Анна Р.</p><p class="gallery-card-tour">Путешествие в Кахиб</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/галерея9.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Полина Е.</p><p class="gallery-card-tour">Путешествие в Дербент</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+    <div class="gallery-card"><img src="image/Галерея10.jpg" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Анна С.</p><p class="gallery-card-tour">Путешествие на С.каньон</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+  </div>
+</div>
+
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>
