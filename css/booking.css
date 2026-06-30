@@ -1,10 +1,8 @@
-  /* BOOKING MODAL */
-
-  .booking-overlay {
+.booking-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(21,36,27,.55);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -20,8 +18,9 @@
   }
 
   .booking-modal {
-    background: #ffffff;
-    border-radius: 20px;
+    background: var(--bg-card);
+    border-radius: var(--r-lg);
+    box-shadow: 0 24px 64px rgba(21,36,27,.22);
     padding: 36px 40px;
     width: 740px;
     max-width: 95vw;
@@ -43,22 +42,21 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
-    color: #727056;
+    color: var(--ink-hint);
     line-height: 1;
     padding: 4px 8px;
+    transition: color 0.18s;
   }
 
-  .booking-close:hover { color: #1a1a1a; }
+  .booking-close:hover { color: var(--ink); }
 
   .booking-title {
     font-size: 24px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--ink);
     margin-bottom: 24px;
     font-family: "Montserrat", sans-serif;
   }
-
-  /* CALENDAR */
 
   .booking-calendar {
     display: grid;
@@ -71,7 +69,7 @@
     text-align: center;
     font-size: 15px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--ink);
     margin-bottom: 12px;
     font-family: "Montserrat", sans-serif;
   }
@@ -85,7 +83,7 @@
   .cal-weekday {
     text-align: center;
     font-size: 12px;
-    color: #727056;
+    color: var(--ink-hint);
     font-weight: 500;
     padding-bottom: 6px;
     font-family: "Montserrat", sans-serif;
@@ -97,7 +95,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     font-size: 12px;
     font-family: "Montserrat", sans-serif;
     cursor: default;
@@ -106,7 +104,7 @@
   .cal-day--empty { background: transparent; }
 
   .cal-day--free {
-    background: #00C853;
+    background: var(--sage);
     color: #ffffff;
     cursor: pointer;
     transition: opacity 0.2s ease;
@@ -115,18 +113,18 @@
   .cal-day--free:hover { opacity: 0.85; }
 
   .cal-day--free.selected {
-    outline: 3px solid #1a1a1a;
+    outline: 3px solid var(--ink);
     outline-offset: -2px;
   }
 
   .cal-day--busy {
-    background: #ffcdd2;
-    color: #e53935;
+    background: var(--terra-l);
+    color: var(--terra);
   }
 
   .cal-day--past {
     background: transparent;
-    color: #ccc;
+    color: var(--ink-hint);
   }
 
   .cal-day-num {
@@ -141,8 +139,6 @@
     margin-top: 2px;
   }
 
-  /* ЛЕГЕНДА */
-
   .booking-legend {
     display: flex;
     gap: 24px;
@@ -154,28 +150,26 @@
     align-items: center;
     gap: 8px;
     font-size: 13px;
-    color: #1a1a1a;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
   }
 
   .legend-item::before {
     content: "";
     width: 16px; height: 16px;
-    border-radius: 4px;
+    border-radius: var(--r-sm);
     display: block;
   }
 
-  .legend-busy::before { background: #e53935; }
-  .legend-free::before { background: #00C853; }
-
-  /* ФОРМА */
+  .legend-busy::before { background: var(--terra); }
+  .legend-free::before { background: var(--sage); }
 
   .booking-form-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
-}
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
 
   .booking-form-row--small {
     grid-template-columns: 120px;
@@ -191,26 +185,26 @@
   .booking-field label {
     font-size: 14px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
   }
 
   .booking-field input,
   .booking-field textarea {
-    background: #ffffff;
-    border: 2.5px solid #1a1a1a;
-    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--line-m);
+    border-radius: var(--r-sm);
     padding: 10px 14px;
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
-    color: #1a1a1a;
+    color: var(--ink);
     outline: none;
     transition: border-color 0.2s ease;
   }
 
   .booking-field input:focus,
   .booking-field textarea:focus {
-    border-color: #4e75a6;
+    border-color: var(--terra);
   }
 
   .booking-field textarea {
@@ -219,7 +213,7 @@
   }
 
   .booking-submit {
-    background: #1a1a1a;
+    background: var(--terra);
     color: #ffffff;
     border: none;
     padding: 14px 40px;
@@ -232,17 +226,15 @@
   }
 
   .booking-submit:hover {
-    background: #333333;
+    background: var(--terra-d);
   }
-
-
 
 .question-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.5);
+  background: rgba(21,36,27,.55);
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -258,8 +250,9 @@
   }
 
 .question-modal {
-  background: #ffffff;
-  border-radius: 20px;
+  background: var(--bg-card);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 64px rgba(21,36,27,.22);
   padding: 36px 40px;
   width: 700px;
   max-width: 95vw;

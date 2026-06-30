@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Дагтур</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="preload" as="image" href="image/gunib bg.png">
 <link rel="preload" as="image" href="image/sulak bg.png">
@@ -19,141 +21,140 @@
 <link rel="preload" as="image" href="image/hunzah.png">
 
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
 
-<!-- ШАПКА -->
 <header class="header">
-  <div class="header-left">
-    <img class="logo" src="image/logo.png" alt="Лого">
-    <nav class="nav">
-      <a href="#">главная</a>
-      <div class="nav-item--tours">
-        <a href="#">туры</a>
-        <div class="nav-dropdown">
-          <a href="tours/tours.html#odnodnevnye">однодневные</a>
-          <a href="tours/tours.html#mnogodnevnye">многодневные</a>
-          <a href="tours/tours.html#gornye">горные</a>
-        </div>
-      </div>
-      <a href="#">контакты</a>
-      <a href="gidy.html">гидам</a>
-    </nav>
+  <a href="#" class="logo-link"><img class="logo" src="image/dagtrip_logo.svg" alt="ДагТрип"></a>
+  <div class="nav-links">
+    <a href="#" class="active">Главная</a>
+    <a href="tours/tours.html">Туры</a>
+    <a href="#contacts">Контакты</a>
+    <a href="gidy.html">Гидам</a>
   </div>
-  <div class="header-btns">
-    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
-    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  <div class="nav-right">
+    <a href="#" class="btn-ghost" id="regOpenBtn">Регистрация</a>
+    <a href="#" class="btn-solid" id="authOpenBtn">Войти</a>
   </div>
 </header>
 
-<!-- ГЕРОЙ -->
-<section class="hero">
-  <div class="slides">
-    <div class="slide" style="background-image:url('image/sulak bg.png')"></div>
-    <div class="slide" style="background-image:url('image/gunib bg.png')"></div>
-    <div class="slide" style="background-image:url('image/derbent bg.png')"></div>
-    <div class="slide" style="background-image:url('image/gamsutl bg.png')"></div>
-    <div class="slide" style="background-image:url('image/hunzah bg.png')"></div>
-  </div>
-  <div class="hero-text">
-    <p class="subtitle">твоя следующая локация?</p>
-    <img class="hero-title" src="image/sulaktext.png" alt="">
-    <div class="cta">
-      <button class="btn">Выбрать тур</button>
-      <p class="desc">твое идеальное путешествие с нами!</p>
+<div class="hero">
+  <div class="hero-photo-wrap">
+
+    <div class="hero-stage" id="heroStage">
+      <div class="hero-slide active" data-name="Сулакский каньон" data-sub="от 2 990 ₽">
+        <img src="image/sulak bg.png" alt="Сулакский каньон">
+      </div>
+      <div class="hero-slide" data-name="Гуниб" data-sub="от 3 100 ₽">
+        <img src="image/gunib bg.png" alt="Гуниб">
+      </div>
+      <div class="hero-slide" data-name="Дербент" data-sub="от 1 990 ₽">
+        <img src="image/derbent bg.png" alt="Дербент">
+      </div>
+      <div class="hero-slide" data-name="Гамсутль" data-sub="от 3 200 ₽">
+        <img src="image/gamsutl bg.png" alt="Гамсутль">
+      </div>
+
+      <div class="hero-slide" data-name="Хунзах" data-sub="от 2 800 ₽">
+        <video autoplay muted loop playsinline preload="auto" poster="image/hunzah_poster.jpg">
+          <source src="video/hunzah.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-center">
+        <div class="hero-photo-tag">
+          <span class="hero-tag-left">
+            <span class="hero-tag-dot">🏞</span>
+            <span class="hero-tag-text" id="heroTagName">Сулакский каньон</span>
+            <span class="hero-tag-sep">·</span>
+          </span>
+          <span class="hero-tag-sub" id="heroTagSub">от 2 990 ₽</span>
+        </div>
+        <h1 class="hero-title">Горы зовут.<br>Мы знаем<br><em>дорогу туда</em></h1>
+        <div class="hero-sub">Авторские туры по Дагестану от местных гидов — маленькие группы, продуманные маршруты и забота на каждом шаге пути.</div>
+        <div class="hero-actions">
+          <a href="tours/tours.html" class="btn-primary">Смотреть туры</a>
+          <a href="#about" class="btn-text-link">Узнать о нас →</a>
+        </div>
+        <div class="hero-trust">◎ 5 лет находим маршруты, о которых не пишут путеводители</div>
+      </div>
     </div>
   </div>
-  <img class="girl" src="image/girl.png">
-  <div class="click left"></div>
-  <div class="click right"></div>
-</section>
-
-<!-- ПЛАШКИ -->
-<div class="tour-pills">
-  <a href="tours/sulak.html" class="tour-pill">
-    <div class="tour-pill-photo"><img src="image/sulak to.jpg" alt="Сулакский каньон"></div>
-    <div class="tour-pill-text"><span>Для тех кто не любит ждать</span></div>
-  </a>
-  <a href="tours/gunib.html" class="tour-pill">
-    <div class="tour-pill-photo"><img src="image/gunib to.jpg" alt="Гуниб"></div>
-    <div class="tour-pill-text"><span>Для любителей высоты</span></div>
-  </a>
-  <a href="tours/gamsutl.html" class="tour-pill">
-    <div class="tour-pill-photo"><img src="image/gamsutl to.png" alt="Гамсутль"></div>
-    <div class="tour-pill-text"><span>Для искателей тайн</span></div>
-  </a>
-  <a href="tours/kahib.html" class="tour-pill">
-    <div class="tour-pill-photo"><img src="image/kahib bg.png.png" alt="Кахиб-Гоор"></div>
-    <div class="tour-pill-text"><span>Для смелых путников</span></div>
-  </a>
-  <a href="tours/derbent.html" class="tour-pill">
-    <div class="tour-pill-photo"><img src="image/derbent to.png" alt="Дербент"></div>
-    <div class="tour-pill-text"><span>Для любителей истории</span></div>
-  </a>
 </div>
 
-<!-- О НАС -->
+<div class="legacy-hero-shim" aria-hidden="true">
+  <img class="girl" src="" alt="">
+  <div class="click left"></div>
+  <div class="click right"></div>
+  <div class="slides">
+    <div class="slide"></div><div class="slide"></div><div class="slide"></div>
+    <div class="slide"></div><div class="slide"></div>
+  </div>
+  <div class="hero-text visible"></div>
+</div>
+
 <section class="about" id="about">
-  <div class="about-heading">
-    <p class="about-title">
-      <span class="about-accent">ДагТур</span> - это команда
-      <span class="about-accent">обычных жителей</span>
-      республики которые превращают обычные поездки в
-      <span class="about-accent">настоящие приключения!</span>
-    </p>
-    <p class="about-subtitle">Организовываем авторские туры собственной разработки маршрутов и программ</p>
+  <div class="about-modern-head">
+    <div>
+      <span class="coord-eyebrow">◎ О компании</span>
+      <h2 class="about-modern-title">Это <em>не турфирма</em>.<br>Это команда людей,<br>которые живут здесь</h2>
+    </div>
+    <div class="about-modern-text">
+      <p>ДагТрип начинали трое друзей, которые устали смотреть, как туристы видят Дагестан только из окна автобуса. <strong>Мы — местные гиды</strong>, и каждый маршрут проходим сами, прежде чем предложить его вам.</p>
+      <p>Авторские однодневные и многодневные туры: продуманные маршруты, небольшие группы — обычно не больше 12 человек — и забота на каждом этапе.</p>
+    </div>
   </div>
 
-  <div class="about-grid">
-    <div class="about-main-card">
-      <img src="image/about bg.png" alt="" class="about-main-bg">
-      <div class="about-main-content">
-        <h3 class="about-main-title">Почему выбирают нас?</h3>
-        <div class="about-main-tags">
-          <span class="about-main-tag">Богатый опыт и профессионализм</span>
-          <span class="about-main-tag">Качественное обслуживание и индивидуальный подход</span>
-          <span class="about-main-tag">Уникальные маршруты и программы</span>
-          <span class="about-main-tag">Гарантия безопасности и надёжности</span>
-        </div>
-        <p class="about-main-text">Мы являемся одними из ведущих туроператоров, специализирующихся на туризме в нашей прекрасной республике Дагестан. Наша команда имеет многолетний опыт работы в данной сфере, что позволяет нам предлагать высококачественные туры.</p>
+  <div class="princ-grid">
+    <div class="princ-card pc-dark">
+      <div>
+        <div class="pc-num">01 / Маршруты</div>
+        <div class="pc-title">Авторские программы, которых нет в типовых турпакетах</div>
       </div>
+      <div class="pc-desc">Каждый маршрут разработан и пройден нашей командой — не скопирован с турагрегаторов.</div>
     </div>
-
-    <div class="about-info-grid">
-      <div class="about-info-card" style="background:#e3effd;">
-        <h4 class="about-info-title">Эксклюзивные маршруты</h4>
-        <p class="about-info-text">Мы разрабатываем оригинальные и увлекательные маршруты, которые позволяют нашим гостям погрузиться в аутентичную культуру и обычаи местных народов.</p>
-      </div>
-      <div class="about-info-card" style="background:#eff7df;">
-        <h4 class="about-info-title">Индивидуальный подход</h4>
-        <p class="about-info-text">Мы гарантируем высокий уровень обслуживания и индивидуальный подход к каждому клиенту. Наша команда всегда готова помочь с выбором тура.</p>
-      </div>
-      <div class="about-info-card" style="background:#fff1e8;">
-        <h4 class="about-info-title">Надежность и безопасность</h4>
-        <p class="about-info-text">Мы придерживаемся высоких стандартов безопасности во всех наших турах. Тщательно выбираем партнёров и поставщиков услуг.</p>
-      </div>
-      <div class="about-info-card" style="background:#e3effd;">
-        <h4 class="about-info-title">Положительные рекомендации</h4>
-        <p class="about-info-text">Мы гордимся положительными отзывами и рекомендациями наших клиентов.</p>
-      </div>
+    <div class="princ-card pc-light">
+      <div class="pc-num">02 / Группы</div>
+      <div class="pc-title">Маленькие группы</div>
+      <div class="pc-desc">До 12 человек на маршруте — у гида есть время на каждого, а у вас — на тишину гор.</div>
+    </div>
+    <div class="princ-card pc-terra">
+      <div class="pc-num">03</div>
+      <div class="pc-big-num">100%</div>
+      <div class="pc-desc">туров со страховкой и гидом с сертификатом МЧС</div>
+    </div>
+    <div class="princ-card pc-light">
+      <div class="pc-num">04 / Прозрачность</div>
+      <div class="pc-title">Цена без сюрпризов</div>
+      <div class="pc-desc">Всегда видно, что включено и за что доплата — до бронирования, не после.</div>
+    </div>
+    <div class="princ-card pc-sage">
+      <div class="pc-num">05 / Возврат</div>
+      <div class="pc-title">87% едут с нами снова</div>
+      <div class="pc-desc">Большинство гостей возвращаются за вторым маршрутом или рекомендуют друзьям.</div>
+    </div>
+    <div class="princ-card pc-dark">
+      <div class="pc-num">06 / Поддержка</div>
+      <div class="pc-title">Гид на связи весь маршрут</div>
+      <div class="pc-desc">От первого вопроса в WhatsApp до момента, когда вы вернётесь домой.</div>
     </div>
   </div>
 </section>
 
-<!-- ПОПУЛЯРНЫЕ ТУРЫ -->
 <section class="tours">
   <h2 class="tours-title">Популярные туры:</h2>
   <div class="tours-grid">
 
     <a href="tours/sulak.html" class="tour-card tour-card--expanded">
-      <div class="tour-card-arrow">
-        <img src="image/стрелкаобычное.png" alt="" class="arrow-img">
-        <img src="image/стрелкавправо.png" alt="" class="arrow-img--hover">
-      </div>
+      <div class="tour-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <img src="image/sulak to.jpg" alt="Сулакский каньон">
+      <span class="tour-card-coord">43.27°N, 46.81°E</span>
       <div class="tour-card-tags">
         <span class="tour-tag">Живописные виды на каньон</span>
         <span class="tour-tag">Поездка в главрыбу</span>
@@ -164,16 +165,14 @@
           <p class="tour-card-name">Сулакский каньон</p>
           <p class="tour-card-price">15 000 р · 3 дня</p>
         </div>
-        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div>
+        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
     <a href="tours/gunib.html" class="tour-card tour-card--collapsed">
-      <div class="tour-card-arrow">
-        <img src="image/стрелкаобычное.png" alt="" class="arrow-img">
-        <img src="image/стрелкавправо.png" alt="" class="arrow-img--hover">
-      </div>
+      <div class="tour-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <img src="image/gunib to.jpg" alt="Гуниб">
+      <span class="tour-card-coord">42.38°N, 46.95°E</span>
       <div class="tour-card-tags">
         <span class="tour-tag">Живописные виды</span>
         <span class="tour-tag">Крепость Гуниб</span>
@@ -184,16 +183,14 @@
           <p class="tour-card-name">Гуниб</p>
           <p class="tour-card-price">15 000 р · 3 дня</p>
         </div>
-        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div>
+        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
     <a href="tours/derbent.html" class="tour-card tour-card--collapsed">
-      <div class="tour-card-arrow">
-        <img src="image/стрелкаобычное.png" alt="" class="arrow-img">
-        <img src="image/стрелкавправо.png" alt="" class="arrow-img--hover">
-      </div>
+      <div class="tour-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <img src="image/derbent to.png" alt="Дербент">
+      <span class="tour-card-coord">42.07°N, 48.29°E</span>
       <div class="tour-card-tags">
         <span class="tour-tag">Древняя крепость</span>
         <span class="tour-tag">Исторический центр</span>
@@ -204,16 +201,14 @@
           <p class="tour-card-name">Дербент</p>
           <p class="tour-card-price">15 000 р · 3 дня</p>
         </div>
-        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div>
+        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
     <a href="tours/gamsutl.html" class="tour-card tour-card--collapsed">
-      <div class="tour-card-arrow">
-        <img src="image/стрелкаобычное.png" alt="" class="arrow-img">
-        <img src="image/стрелкавправо.png" alt="" class="arrow-img--hover">
-      </div>
+      <div class="tour-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <img src="image/gamsutl to.png" alt="Гамсутль">
+      <span class="tour-card-coord">42.31°N, 46.84°E</span>
       <div class="tour-card-tags">
         <span class="tour-tag">Город-призрак</span>
         <span class="tour-tag">Горная тропа</span>
@@ -224,19 +219,16 @@
           <p class="tour-card-name">Гамсутль</p>
           <p class="tour-card-price">15 000 р · 3 дня</p>
         </div>
-        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div>
+        <div class="tour-card-btn"><span>Подробнее</span><div class="tour-btn-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
       </div>
     </a>
 
   </div>
 </section>
 
-<!-- СТАТИСТИКА -->
 <section class="stats">
   <div class="stats-card">
-    <svg class="stats-snake" viewBox="0 0 1660 402" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path id="snakePath" d="M364.53,192.78 c102.03,45.22,182.05,46.93,200.11,47.06 27.12.21,52-2.09,74.18-5.6 6.72,11.6,21.16,32.92,51.46,60.38 12.99,11.77,63.12,56.96,145.83,87.15 14,5.11,39.93,13.8,74.68,20.23 h163.79 c30.69-7.24,56.46-17.37,109.65-22.04 91.36-8.03,163.22,8.84,219.2,22.04 h122.5 c-35.3-13.78-71.95-29.53-137.99-44.2 -54.96-12.21-125.37-27.85-215.69-22.16 -120.52,7.6-138.47,44.47-228.36,30.42 -78.62-12.29-134.58-51.67-161.23-69.88 -31.76-21.7-61.57-42.54-82.78-75.82 14.22-4.22,25.81-8.34,34.39-11.43 48.4-17.44,70.98-33.92,78.87-39.96 25.78-19.72,62.54-47.85,71.48-95.38 4.1-21.84,2.48-48.67-7.08-73.59 h-76.47 c20.05,13.18,34.29,36.66,33.44,57.29 -1.4,34.03-39.53,54.52-81.41,77.02 -1.25.67-2.98,1.6-5.17,2.72 -14.63,7.51-37.45,17.81-72.03,26.35 -6.38-25.86-9.78-62.81,7.26-99.7 8.39-18.16,27.13-47.98,52.09-63.68 h-84.53 c-16.38,24.81-33.26,60.07-37.68,104.58 -1.07,10.74-3.4,37.4,3.42,70.08 -33.98,5.21-73.24,8.73-119.71,2.1 -29.46-4.21-70.57-13.75-133.52-45.74 C268.07,82.67,230.34,37.58,186.22,0 H57.25 C64.07,2.02,70.97,4.26,77.93,6.74 203.42,51.53,217.79,127.75,364.53,192.78Z"/>
-    </svg>
+    <img class="stats-snake-img" src="image/snake.png" alt="">
     <div class="stats-grid">
       <div class="stat">
         <p class="stat-num" data-target="10000">0</p>
@@ -258,88 +250,150 @@
   </div>
 </section>
 
-<!-- ОТЗЫВЫ -->
 <section class="reviews">
   <div class="reviews-header">
-    <h2 class="reviews-title">Наши отзывы:</h2>
+    <span class="coord-eyebrow">◎ Голоса гостей</span>
+    <h2 class="reviews-title">Наши отзывы</h2>
   </div>
-  <div class="reviews-bg">
-    <a href="reviews.html" class="reviews-view-all">Просмотреть все →</a>
-    <div class="reviews-stage">
-      <div class="reviews-track" id="reviewsTrack">
-        <!-- отзывы подгружаются с сервера -->
+
+  <div class="rev-wrap">
+    <div class="rev-tabs">
+      <div class="rev-tab active" onclick="selectReview(this, 0)">
+        <div class="rev-ava av2">ОЛ</div>
+        <div class="rev-tab-info"><div class="rev-tab-name">Ольга</div><div class="rev-tab-loc">ДЕРБЕНТ</div></div>
+        <div class="rev-tab-star">★★★★★</div>
       </div>
-      <button class="reviews-arrow reviews-arrow--left">&#8592;</button>
-      <button class="reviews-arrow reviews-arrow--right">&#8594;</button>
+      <div class="rev-tab" onclick="selectReview(this, 1)">
+        <div class="rev-ava av1">МШ</div>
+        <div class="rev-tab-info"><div class="rev-tab-name">Маша</div><div class="rev-tab-loc">ХУНЗАХ</div></div>
+        <div class="rev-tab-star">★★★★★</div>
+      </div>
+      <div class="rev-tab" onclick="selectReview(this, 2)">
+        <div class="rev-ava av3">АЙ</div>
+        <div class="rev-tab-info"><div class="rev-tab-name">Айша</div><div class="rev-tab-loc">ГУНИБ</div></div>
+        <div class="rev-tab-star">★★★★★</div>
+      </div>
+      <div class="rev-tab" onclick="selectReview(this, 3)">
+        <div class="rev-ava av4">ДП</div>
+        <div class="rev-tab-info"><div class="rev-tab-name">Денис</div><div class="rev-tab-loc">СУЛАК</div></div>
+        <div class="rev-tab-star">★★★★★</div>
+      </div>
+      <div class="rev-tab" onclick="selectReview(this, 4)">
+        <div class="rev-ava av5">НК</div>
+        <div class="rev-tab-info"><div class="rev-tab-name">Наталья</div><div class="rev-tab-loc">ГАМСУТЛЬ</div></div>
+        <div class="rev-tab-star">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="rev-stage" id="rev-stage">
+      <div class="rev-stage-overlay"></div>
+      <a href="reviews.html" class="rev-stage-link">Все отзывы →</a>
+      <div class="rev-content">
+        <div class="rev-mark">"</div>
+        <div class="rev-text" id="rev-text">Поехали с семьёй отдыхать в дербентскую крепость, прекрасные особенно ночной фонтан! Гид знал каждую деталь истории.</div>
+        <div class="rev-person">
+          <div class="rev-person-ava av2" id="rev-ava">ОЛ</div>
+          <div>
+            <div class="rev-person-name" id="rev-name">Ольга</div>
+            <div class="rev-person-meta" id="rev-meta">Дербент исторический · 16.06.2026</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ГАЛЕРЕЯ -->
 <section class="gallery">
   <div class="gallery-header gallery-header--row">
     <div>
-      <p class="gallery-label">взгляните как проходят наши туры</p>
+      <span class="coord-eyebrow">◎ UGC</span>
       <h2 class="gallery-title">Галерея путешествий</h2>
     </div>
-    <a href="gallery.html" class="gallery-view-all">Просмотреть все →</a>
+    <a href="gallery.html" class="gallery-view-all">Смотреть все →</a>
   </div>
-  <div class="gallery-wrapper">
-    <button class="gallery-arrow gallery-arrow--left">&#8592;</button>
-    <div class="gallery-track">
-      <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-card"><img src="image/Галерея1.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Алена К.</p><p class="gallery-card-tour">Путешествие на С.каньон</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/Галерея2.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Алина М.</p><p class="gallery-card-tour">Путешествие в Дербент</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/Галерея3.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Ольга К.</p><p class="gallery-card-tour">Путешествие в Гуниб</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/галерея4.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Марина С.</p><p class="gallery-card-tour">Путешествие в Дагестан</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/галерея5.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Екатерина В.</p><p class="gallery-card-tour">Путешествие в горы</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/галерея6.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Дарья Л.</p><p class="gallery-card-tour">Путешествие в Хунзах</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/галерея7.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Наталья П.</p><p class="gallery-card-tour">Путешествие в Гамсутль</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/галерея8.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Анна Р.</p><p class="gallery-card-tour">Путешествие в Кахиб</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/галерея9.png" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Полина Е.</p><p class="gallery-card-tour">Путешествие в Дербент</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
-        <div class="gallery-card"><img src="image/Галерея10.jpg" alt=""><div class="gallery-card-bottom"><div class="gallery-card-info"><p class="gallery-card-name">Анна С.</p><p class="gallery-card-tour">Путешествие на С.каньон</p></div><div class="gallery-card-btn"><span>Подробнее</span><div class="tour-btn-icon"></div></div></div></div>
+  <div class="gal-grid">
+    <a href="gallery.html" class="gal-card">
+      <img src="image/галерея5.png" alt="Екатерина В.">
+      <span class="gc-coord">42.05°N · 47.04°E</span>
+      <div class="gc-content">
+        <div class="gc-name">Екатерина В.</div>
+        <div class="gc-desc">Путешествие в горы Дагестана</div>
       </div>
-    </div>
-    <button class="gallery-arrow gallery-arrow--right">&#8594;</button>
+    </a>
+    <a href="gallery.html" class="gal-card short">
+      <img src="image/галерея6.png" alt="Дарья Л.">
+      <span class="gc-coord">42.55°N · 46.49°E</span>
+      <div class="gc-content">
+        <div class="gc-name">Дарья Л.</div>
+        <div class="gc-desc">Хунзах и водопады</div>
+      </div>
+    </a>
+    <a href="gallery.html" class="gal-card short">
+      <img src="image/галерея7.png" alt="Наталья П.">
+      <span class="gc-coord">43.27°N · 46.81°E</span>
+      <div class="gc-content">
+        <div class="gc-name">Наталья</div>
+        <div class="gc-desc">Сулакский каньон</div>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- КАРТА -->
 <section class="map-section">
+  <span class="coord-eyebrow">◎ Карта</span>
   <h2 class="map-title">Выбери точку назначения</h2>
   <div class="map-container">
     <div id="map" style="width:100%; height:500px; border-radius:20px;"></div>
   </div>
 </section>
 
-<!-- ФУТЕР -->
-<footer class="footer">
-  <img src="image/footer.png" alt="" class="footer-bg">
+<section class="guide-teaser-sec">
+  <div class="gt-banner">
+    <div class="gt-glow"></div>
+    <div class="gt-text">
+      <span class="coord-eyebrow" style="color:#ff8a5c">◎ Команда</span>
+      <h2 class="gt-title">Знаешь Дагестан как свои пять пальцев? <em>Стань гидом</em></h2>
+      <div class="gt-sub">Превращай знание родного края в доход. Маркетинг, оплаты и поддержку берём на себя.</div>
+    </div>
+    <a href="gidy.html" class="gt-cta">Стать гидом →</a>
+  </div>
+</section>
+
+<footer id="contacts">
   <div class="footer-inner">
-    <div class="footer-content">
-      <div class="footer-col">
-        <a href="#">Главная</a>
-        <a href="#">Туры</a>
-        <a href="#">О компании</a>
-        <a href="#">Гидам</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+    <div class="footer-title">До встречи<br>в <em>горах</em></div>
+    <div class="footer-sub">Ответим быстро и поможем выбрать маршрут</div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-col-title">Навигация</div>
+        <a class="footer-link" href="#">Главная</a>
+        <a class="footer-link" href="tours/tours.html">Туры</a>
+        <a class="footer-link" href="#">О компании</a>
+        <a class="footer-link" href="gidy.html">Гидам</a>
       </div>
-      <div class="footer-col">
-        <a href="#">@dagtour</a>
-        <a href="#">Написать ВКонтакте</a>
-        <a href="#">Написать нам в Telegram</a>
-        <a href="#">Написать нам в WhatsApp</a>
-        <a href="#">Написать нам в Instagram</a>
-        <a href="#">Разработка сайта</a>
-        <a href="review.html">Написать отзыв</a>
+      <div>
+        <div class="footer-col-title">Связь</div>
+        <a class="footer-link" href="#">@dagtrip</a>
+        <a class="footer-link" href="#">Написать ВКонтакте</a>
+        <a class="footer-link" href="#">Написать в Telegram</a>
+        <a class="footer-link" href="#">Написать в WhatsApp</a>
       </div>
+      <div>
+        <div class="footer-col-title">Прочее</div>
+        <a class="footer-link" href="tel:+97777777777">+97 7777 7777 77</a>
+        <a class="footer-link" href="review.html">Написать отзыв</a>
+        <a class="footer-link" href="#">Политика конфиденциальности</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ДагТрип</span>
+      <span class="coord" style="color:rgba(247,243,234,.4)">42.05°N · 47.04°E</span>
     </div>
   </div>
 </footer>
 
-<!-- AUTH МОДАЛКА -->
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-modal">
     <button class="auth-close" id="authClose">✕</button>
@@ -386,30 +440,6 @@
 <script src="js/nav.js"></script>
 <script type="module" src="js/auth.js"></script>
 
-<!-- Анимация змейки -->
-<script>
-  const snakePath = document.getElementById('snakePath');
-  if (snakePath) {
-    const len = snakePath.getTotalLength();
-    snakePath.style.strokeDasharray = len;
-    snakePath.style.strokeDashoffset = len;
-    const statsCard = document.querySelector('.stats-card');
-    if (statsCard) {
-      const snakeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            snakePath.style.transition = 'stroke-dashoffset 2.5s ease';
-            snakePath.style.strokeDashoffset = 0;
-            snakeObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      snakeObserver.observe(statsCard);
-    }
-  }
-</script>
-
-<!-- Бесконечная карусель галереи -->
 <script>
   window.addEventListener('load', () => {
     const galleryGrid = document.getElementById('galleryGrid');
@@ -456,7 +486,6 @@
   });
 </script>
 
-<!-- Яндекс карта -->
 <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
 <script>
   ymaps.ready(function() {
@@ -475,11 +504,75 @@
     ];
 
     points.forEach(function(p) {
-      var balloon = `<div style="width:220px;font-family:'Montserrat',sans-serif;border-radius:12px;overflow:hidden;"><img src="${p.img}" style="width:100%;height:130px;object-fit:cover;display:block;"><div style="padding:12px;"><p style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">${p.name}</p><p style="font-size:13px;color:#727056;margin-bottom:10px;">${p.price} · за одного</p><a href="${p.link}" style="display:block;background:#4e75a6;color:#fff;text-align:center;padding:8px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;">Подробнее</a></div></div>`;
+      var balloon = `<div style="width:220px;font-family:'Montserrat',sans-serif;border-radius:12px;overflow:hidden;"><img src="${p.img}" style="width:100%;height:130px;object-fit:cover;display:block;"><div style="padding:12px;"><p style="font-size:15px;font-weight:700;color:#15241b;margin-bottom:4px;">${p.name}</p><p style="font-size:13px;color:#4a5a4e;margin-bottom:10px;">${p.price} · за одного</p><a href="${p.link}" style="display:block;background:#d9551f;color:#fff;text-align:center;padding:8px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;">Подробнее</a></div></div>`;
       var placemark = new ymaps.Placemark(p.coords, { balloonContent: balloon, hintContent: p.name }, { preset: 'islands#redDotIcon', balloonCloseButton: true });
       map.geoObjects.add(placemark);
     });
   });
+</script>
+
+<script>
+  var reviewData = [
+    {ava:'ОЛ', cls:'av2', name:'Ольга', meta:'Дербент исторический · 16.06.2026', text:'Поехали с семьёй отдыхать в дербентскую крепость, прекрасные особенно ночной фонтан! Гид знал каждую деталь истории.', bg:"url('image/reviews1.png') center/cover no-repeat"},
+    {ava:'МШ', cls:'av1', name:'Маша', meta:'Хунзах и водопады · 28.05.2026', text:'Невероятные водопады, очень профессиональный гид, всё по плану и с душой. Лучшая поездка этого лета.', bg:"url('image/reviews2.png') center/cover no-repeat"},
+    {ava:'АЙ', cls:'av3', name:'Айша', meta:'Гуниб · 02.06.2026', text:'Горная крепость впечатлила масштабом. Гид рассказывал историю так, что мурашки по коже бежали у всей группы.', bg:"url('image/reviews3.png') center/cover no-repeat"},
+    {ava:'ДП', cls:'av4', name:'Денис', meta:'Сулакский каньон · 20.05.2026', text:'Третий раз беру тур — каждый раз разное настроение природы. Гиды знают своё дело, рекомендую всем друзьям!', bg:"url('image/reviews4.png') center/cover no-repeat"},
+    {ava:'НК', cls:'av5', name:'Наталья', meta:'Гамсутль · 11.05.2026', text:'«Дагестанское Мачу-Пикчу» — точное описание. Виды сумасшедшие, подъём несложный, час — и вы в другом мире.', bg:"url('image/reviews5.png') center/cover no-repeat"}
+  ];
+  function selectReview(el, i) {
+    document.querySelectorAll('.rev-tab').forEach(function(t){ t.classList.remove('active'); });
+    el.classList.add('active');
+    var d = reviewData[i];
+    document.getElementById('rev-text').textContent = d.text;
+    document.getElementById('rev-name').textContent = d.name;
+    document.getElementById('rev-meta').textContent = d.meta;
+    var ava = document.getElementById('rev-ava');
+    ava.textContent = d.ava;
+    ava.className = 'rev-person-ava ' + d.cls;
+    document.getElementById('rev-stage').style.background = d.bg;
+  }
+</script>
+
+<script>
+  (function () {
+    var stage = document.getElementById('heroStage');
+    var nameEl = document.getElementById('heroTagName');
+    var subEl = document.getElementById('heroTagSub');
+    if (!stage || !nameEl || !subEl) return;
+
+    var slides = Array.prototype.slice.call(stage.querySelectorAll('.hero-slide'));
+    if (!slides.length) return;
+
+    var idx = slides.findIndex(function (s) { return s.classList.contains('active'); });
+    if (idx < 0) idx = 0;
+
+    function activate(i) {
+      slides.forEach(function (slideEl, j) {
+        var isActive = j === i;
+        slideEl.classList.toggle('active', isActive);
+
+        var video = slideEl.querySelector('video');
+        if (video) {
+          if (isActive) {
+            video.muted = true;
+            var p = video.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            video.pause();
+          }
+        }
+      });
+
+      nameEl.textContent = slides[i].dataset.name || '';
+      subEl.textContent = slides[i].dataset.sub || '';
+    }
+
+    activate(idx);
+    setInterval(function () {
+      idx = (idx + 1) % slides.length;
+      activate(idx);
+    }, 4000);
+  })();
 </script>
 
 </body>

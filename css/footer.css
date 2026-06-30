@@ -1,52 +1,81 @@
-/* FOOTER */
 
-.footer {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  min-height: 500px;
-}
 
-.footer-bg {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  min-height: 500px;
-}
+footer { margin-top: 110px; }
 
 .footer-inner {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(21,36,27,.32) 0%, rgba(21,36,27,.55) 100%),
+    url('../image/footer.png') center/cover no-repeat;
+  background-color: var(--ink); /* видно, пока footer.png не положен в image/ */
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 70px 50px 0;
+  max-width: 1108px;
+  margin: 0 auto;
 }
 
-.footer-content {
-  display: flex;
-  gap: 120px;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.footer-col a {
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  line-height: 1;
-  transition: opacity 0.2s ease;
+.footer-title {
   font-family: "Montserrat", sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--bg);
+  letter-spacing: -.01em;
+  margin-bottom: 12px;
+  line-height: 1.05;
 }
 
-.footer-col a:hover {
-  opacity: 0.6;
+.footer-title em {
+  font-family: "Fraunces", serif;
+  color: var(--terra);
+  font-style: italic;
+  font-weight: 400;
 }
 
-.footer-col .footer-phone {
-  color: rgba(255,255,255,0.55);
+.footer-sub {
+  font-size: 16px;
+  color: rgba(247, 243, 234, .45);
+  margin-bottom: 36px;
+}
+
+.footer-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(247, 243, 234, .1);
+}
+
+.footer-col-title {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: rgba(247, 243, 234, .4);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 16px;
+}
+
+.footer-link {
+  display: block;
+  font-size: 14px;
+  color: rgba(247, 243, 234, .75);
+  text-decoration: none;
+  margin-bottom: 11px;
+  cursor: pointer;
+  transition: color .15s;
+}
+.footer-link:hover { color: #fff; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  font-size: 12px;
+  color: rgba(247, 243, 234, .3);
+}
+
+/* ---------- адаптивность ---------- */
+@media (max-width: 760px) {
+  .footer-inner { padding: 56px 28px 0; border-radius: 20px 20px 0 0; }
+  .footer-title { font-size: 38px; }
+  .footer-cols { grid-template-columns: 1fr; gap: 28px; }
 }

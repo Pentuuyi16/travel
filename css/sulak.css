@@ -1,19 +1,16 @@
-body { background: #f5f5f2; }
+body { background: var(--bg); }
 
-/* ======= PAGE WRAPPER ======= */
 .tp-page {
-  padding: 90px 60px 80px;
-  max-width: 1320px;
+  padding: 24px 36px 80px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
-/* ======= HERO ======= */
-/* Совпадает по ширине с хедером: calc(100% - 120px), max-width 1200px */
 .tp-hero {
   position: relative;
   width: 100%;
-  height: 460px;
-  border-radius: 40px;
+  height: 480px;
+  border-radius: 28px;
   overflow: hidden;
   margin-bottom: 40px;
 }
@@ -24,333 +21,335 @@ body { background: #f5f5f2; }
 }
 .tp-hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(10,20,40,0.25) 0%,
-    rgba(10,20,40,0.05) 35%,
-    rgba(10,20,40,0.75) 100%);
+  background: linear-gradient(to top, rgba(10,15,12,.82) 0%, rgba(10,15,12,.2) 50%, rgba(10,15,12,0) 75%);
   z-index: 1;
 }
-/* Тег сверху слева */
 .tp-hero-tag {
   display: inline-block;
-  background: #4e75a6;
-  color: #fff; font-size: 12px; font-weight: 400;
-  padding: 5px 14px; border-radius: 100px;
+  background: rgba(247,243,234,.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(247,243,234,.25);
+  color: #fff; font-size: 12px; font-weight: 500;
+  padding: 7px 16px; border-radius: 100px;
   font-family: "Montserrat", sans-serif;
-  letter-spacing: 0.3px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
-/* Кнопка галерея снизу справа */
 .tp-hero-gallery-btn {
-  position: absolute; bottom: 48px; right: 28px; z-index: 2;
-  background: #4e75a6;
-  color: #fff; font-size: 12px; font-weight: 400;
-  padding: 7px 18px; border-radius: 100px;
+  position: absolute; bottom: 32px; right: 32px; z-index: 2;
+  background: rgba(247,243,234,.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(247,243,234,.25);
+  color: #fff; font-size: 13px; font-weight: 500;
+  padding: 10px 20px; border-radius: 100px;
   font-family: "Montserrat", sans-serif;
-  border: none;
   cursor: pointer; transition: background 0.2s;
 }
-.tp-hero-gallery-btn:hover { background: #3a5d8a; }
-/* Заголовок + рейтинг снизу слева */
+.tp-hero-gallery-btn:hover { background: rgba(247,243,234,.28); }
 .tp-hero-bottom {
-  position: absolute; bottom: 48px; left: 48px; z-index: 2;
+  position: absolute; bottom: 32px; left: 32px; z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .tp-hero-title {
-  font-size: 38px; font-weight: 700; color: #fff;
+  font-size: 42px; font-weight: 800; color: #fff;
   font-family: "Montserrat", sans-serif;
-  line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 8px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  line-height: 1.05; letter-spacing: -.02em; margin-bottom: 10px;
+  text-shadow: 0 2px 20px rgba(0,0,0,.3);
 }
 .tp-hero-rating {
   display: flex; align-items: center; gap: 8px;
   white-space: nowrap; flex-wrap: nowrap;
 }
-.tp-hero-stars { color: #FFD600; font-size: 16px; letter-spacing: 1px; }
 .tp-hero-rating-text {
-  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9);
+  font-size: 13px; font-weight: 500; color: rgba(247,243,234,.85);
   font-family: "Montserrat", sans-serif;
 }
 
-/* ======= INNER CONTENT (иконки, layout) ======= */
-.tp-content { padding: 0 40px; }
+.tp-content { padding: 0; }
 
-/* ======= ИКОНКИ ПОД HERO ======= */
 .tp-icons-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 32px;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
   max-width: 700px;
 }
-.tp-icons-row > *:nth-child(odd)  { clear: left; }
+.tp-icons-line { display: flex; gap: 10px; }
 
 .tp-icon-item {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 9px;
   border-radius: 100px;
-  height: 30px;
-  padding: 0 32px;
+  height: 38px;
+  padding: 0 22px;
   box-sizing: border-box;
   width: fit-content;
+  border: 1px solid var(--line);
 }
 .tp-icon-item img {
-  width: 20px; height: 20px; object-fit: contain;
+  width: 18px; height: 18px; object-fit: contain;
   flex-shrink: 0;
+  opacity: .8;
 }
 .tp-icon-item span {
-  font-size: 13px; font-weight: 700; color: #1a1a1a;
+  font-size: 13px; font-weight: 600; color: var(--ink);
   font-family: "Montserrat", sans-serif;
   white-space: nowrap;
 }
-.tp-icon-item--green  { background: #EFF7DF; }
-.tp-icon-item--orange { background: #FFF1E8; }
-.tp-icon-item--blue   { background: #E6EFFE; }
-/* до 20 человек длиннее */
-.tp-icon-item--people { padding: 0 48px; }
+.tp-icon-item--green  { background: var(--sage-l); }
+.tp-icon-item--orange { background: var(--terra-l); }
+.tp-icon-item--blue   { background: var(--bg-card); }
 
-/* ======= ОСНОВНОЙ LAYOUT ======= */
 .tp-layout {
   display: grid;
   grid-template-columns: 1fr 300px;
-  gap: 36px;
+  gap: 48px;
   align-items: start;
 }
 
-/* ======= ЛЕВАЯ КОЛОНКА ======= */
 .tp-main { min-width: 0; }
 
 .tp-desc {
-  font-size: 14px; line-height: 1.8; color: #333;
-  margin-bottom: 36px; font-family: "Montserrat", sans-serif;
+  font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  margin-bottom: 40px; font-family: "Montserrat", sans-serif;
 }
 
-/* --- ЧТО ВАС ОЖИДАЕТ --- */
 .tp-section-title {
-  font-size: 22px; font-weight: 700; color: #1a1a1a;
-  margin-bottom: 16px; font-family: "Montserrat", sans-serif;
-  letter-spacing: -0.3px;
+  font-size: 32px; font-weight: 700; color: var(--ink);
+  margin-bottom: 20px; font-family: "Montserrat", sans-serif;
+  letter-spacing: -.01em;
   margin-top: 0;
 }
+
 .tp-expect-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 620px;
-  gap: 24px;
-  margin-bottom: 36px;
+  gap: 14px;
+  margin-bottom: 40px;
   align-items: start;
 }
 .tp-expect-card {
-  border-radius: 0px;
-  padding: 10px 16px;
-  font-size: 14px; font-weight: 700; color: #1a1a1a;
+  border-radius: var(--r-md);
+  padding: 18px 20px;
+  font-size: 14px; font-weight: 600; color: var(--ink);
   font-family: "Montserrat", sans-serif;
   line-height: 1.5;
   min-height: 80px;
   display: flex;
   align-items: center;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
 }
+.tp-expect-card:nth-child(3n+2) { background: var(--sage-l); border-color: rgba(92,122,82,.15); }
+.tp-expect-card:nth-child(3n+3) { background: var(--terra-l); border-color: rgba(217,85,31,.15); }
 
-/* --- ТАЙМИНГ --- */
 .tp-timeline {
   display: flex; flex-direction: column; gap: 0;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   position: relative;
 }
 .tp-timeline::before {
   content: "";
-  position: absolute; left: 7px; top: 0; bottom: 0;
-  width: 2px; background: #1a1a1a;
+  position: absolute; left: 7px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--line-m);
 }
 .tp-timeline-item {
   display: flex; align-items: center; gap: 20px;
-  padding: 10px 0; position: relative;
+  padding: 11px 0; position: relative;
 }
 .tp-timeline-dot {
   width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
-  background: #4e75a6; border: none; z-index: 1;
+  background: var(--terra); border: 3px solid var(--bg); z-index: 1;
 }
 .tp-timeline-time {
-  font-size: 13px; font-weight: 700; color: #4e75a6;
-  font-family: "Montserrat", sans-serif; min-width: 42px;
+  font-family: "Space Mono", monospace;
+  font-size: 13px; font-weight: 700; color: var(--terra);
+  min-width: 48px;
 }
 .tp-timeline-desc {
-  font-size: 14px; color: #1a1a1a; line-height: 1.5;
+  font-size: 14px; color: var(--ink); line-height: 1.5;
   font-family: "Montserrat", sans-serif;
 }
 
-/* --- ОРГАНИЗАЦИОННЫЕ ДЕТАЛИ --- */
+.tp-map-block { margin-bottom: 16px; }
+
 .tp-text {
-  font-size: 14px; line-height: 1.75; color: #333;
+  font-size: 14px; line-height: 1.8; color: var(--ink-soft);
   margin-bottom: 14px; font-family: "Montserrat", sans-serif;
 }
-.tp-btn-outline-sm {
-  display: inline-block;
-  background: #fff; color: #1a1a1a;
-  border: 2px solid #1a1a1a; padding: 11px 28px;
-  border-radius: 100px; font-size: 14px; font-weight: 600;
-  cursor: pointer; font-family: "Montserrat", sans-serif;
-  transition: background 0.2s; margin-top: 8px;
-  text-decoration: none;
-}
-.tp-btn-outline-sm:hover { background: rgba(0,0,0,0.05); }
+.tp-text strong { color: var(--ink); }
 
-/* ======= ПРАВАЯ ПЛАШКА ======= */
+.tp-reviews-avg-row {
+  position: relative;
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 24px;
+}
+.tp-reviews-big-num {
+  font-size: 52px; font-weight: 800; color: var(--ink);
+  font-family: "Montserrat", sans-serif; line-height: 1;
+}
+.tp-reviews-count {
+  font-size: 12px; color: var(--ink-hint);
+  font-family: "Montserrat", sans-serif; margin-top: 4px;
+}
+.tp-reviews-all {
+  position: absolute; right: 0; top: 0;
+  background: var(--terra);
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 20px;
+  border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  white-space: nowrap;
+  transition: background .18s;
+}
+.tp-reviews-all:hover { background: var(--terra-d); }
+
+.tp-reviews-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-bottom: 16px;
+}
+.tp-review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 18px;
+}
+.tp-review-top {
+  display: flex; align-items: center; gap: 11px; margin-bottom: 12px;
+}
+.tp-review-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-family: "Space Mono", monospace;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.tp-review-name {
+  font-size: 14px; font-weight: 700; color: var(--ink);
+  font-family: "Montserrat", sans-serif;
+}
+.tp-review-stars-row {
+  font-size: 12px; color: var(--ink-hint); font-family: "Montserrat", sans-serif;
+  display: flex; align-items: center; gap: 4px; margin-top: 2px;
+}
+.tp-review-text {
+  font-size: 13px; line-height: 1.65; color: var(--ink-soft);
+  font-family: "Montserrat", sans-serif;
+}
+
+.tp-similar-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  margin-bottom: 40px;
+}
+.tp-similar-card {
+  border-radius: var(--r-md); overflow: hidden;
+  text-decoration: none; display: block;
+  position: relative; height: 160px;
+  border: 1px solid var(--line);
+  transition: transform 0.25s ease;
+}
+.tp-similar-card:hover { transform: translateY(-3px); }
+.tp-similar-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.tp-similar-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,12,9,.82) 0%, rgba(8,12,9,0) 60%);
+}
+.tp-similar-info {
+  position: absolute; bottom: 12px; left: 14px; z-index: 2;
+}
+.tp-similar-name {
+  font-size: 14px; font-weight: 700; color: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+.tp-similar-type {
+  font-size: 11px; color: rgba(247,243,234,.7);
+  font-family: "Montserrat", sans-serif;
+}
+
 .tp-aside { position: sticky; top: 90px; }
 .tp-aside-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 26px;
 }
 .tp-price-row {
   display: flex; align-items: baseline; gap: 6px;
   margin-bottom: 4px;
 }
 .tp-price {
-  font-size: 46px; font-weight: 700; color: #1a1a1a;
+  font-size: 42px; font-weight: 800; color: var(--ink);
   font-family: "Montserrat", sans-serif; line-height: 1;
 }
 .tp-price-currency {
-  font-size: 20px; font-weight: 600; color: #1a1a1a;
+  font-size: 20px; font-weight: 700; color: var(--ink);
   font-family: "Montserrat", sans-serif;
 }
 .tp-price-label {
-  font-size: 13px; color: #999; margin-bottom: 20px;
+  font-size: 13px; color: var(--ink-hint); margin-bottom: 22px;
   font-family: "Montserrat", sans-serif;
 }
+
 .tp-btn-primary {
   display: block; width: 100%;
-  background: #1a1a1a; color: #fff; border: none;
-  padding: 14px; border-radius: 100px;
+  background: var(--terra); color: #fff; border: none;
+  padding: 15px; border-radius: 100px;
   font-size: 15px; font-weight: 600;
   cursor: pointer; margin-bottom: 10px;
   font-family: "Montserrat", sans-serif;
   transition: background 0.2s;
 }
-.tp-btn-primary:hover { background: #333; }
+.tp-btn-primary:hover { background: var(--terra-d); }
+
 .tp-btn-outline {
   display: block; width: 100%;
-  background: #fff; color: #1a1a1a;
-  border: 2px solid #1a1a1a; padding: 12px;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line-m); padding: 13px;
   border-radius: 100px; font-size: 15px; font-weight: 600;
   cursor: pointer; margin-bottom: 10px;
   font-family: "Montserrat", sans-serif;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color .2s;
 }
-.tp-btn-outline:hover { background: rgba(0,0,0,0.04); }
+.tp-btn-outline:hover { background: var(--bg); border-color: var(--terra); }
+
 .tp-btn-whatsapp {
   display: flex; align-items: center; justify-content: center;
   width: 100%;
-  background: #EFF7DF; color: #1a1a1a; border: 2px solid #1a1a1a;
-  padding: 12px; border-radius: 100px;
+  background: var(--sage-l); color: var(--ink); border: 1px solid rgba(92,122,82,.2);
+  padding: 13px; border-radius: 100px;
   font-size: 15px; font-weight: 600;
-  cursor: pointer; margin-bottom: 20px;
+  cursor: pointer; margin-bottom: 22px;
   font-family: "Montserrat", sans-serif;
   transition: background 0.2s;
   text-decoration: none;
+  box-sizing: border-box;
 }
-.tp-btn-whatsapp:hover { background: #dff0c8; }
+.tp-btn-whatsapp:hover { background: #d9e8d1; }
 
-/* Галочки в плашке */
 .tp-aside-checks {
-  display: flex; flex-direction: column; gap: 8px;
-  border-top: 1px solid rgba(0,0,0,0.07); padding-top: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  border-top: 1px solid var(--line); padding-top: 18px;
 }
 .tp-aside-check {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 13px; color: #555; font-family: "Montserrat", sans-serif;
+  font-size: 13px; color: var(--ink-soft); font-family: "Montserrat", sans-serif;
   line-height: 1.4;
 }
 .tp-aside-check-icon {
   width: 18px; height: 18px; border-radius: 50%;
-  background: #eef5e8; color: #4caf50;
+  background: var(--terra-l); color: var(--terra);
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
 }
 
-
-/* ---- КАРТА ---- */
-.tp-map-block { margin-bottom: 8px; }
-
-/* ---- ОТЗЫВЫ ---- */
-.tp-reviews-avg-row {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 20px;
-}
-.tp-reviews-big-num {
-  font-size: 52px; font-weight: 700; color: #1a1a1a;
-  font-family: "Montserrat", sans-serif; line-height: 1;
-}
-.tp-reviews-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  margin-bottom: 8px;
-}
-.tp-review-card {
-  background: #f5f5f3; border-radius: 14px; padding: 16px;
-}
-.tp-review-top {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
-}
-.tp-review-avatar {
-  width: 38px; height: 38px; border-radius: 50%;
-  color: #1a1a1a; display: flex; align-items: center; justify-content: center;
-  font-size: 15px; font-weight: 700; font-family: "Montserrat", sans-serif; flex-shrink: 0;
-}
-.tp-review-name {
-  font-size: 13px; font-weight: 700; color: #1a1a1a;
-  font-family: "Montserrat", sans-serif;
-}
-.tp-review-stars-row {
-  font-size: 12px; color: #888; font-family: "Montserrat", sans-serif;
-  display: flex; align-items: center; gap: 4px; margin-top: 2px;
-}
-.tp-review-text {
-  font-size: 13px; line-height: 1.6; color: #444;
-  font-family: "Montserrat", sans-serif;
-}
-
-/* ---- ПОХОЖИЕ ТУРЫ ---- */
-.tp-similar-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-}
-.tp-similar-card {
-  border-radius: 14px; overflow: hidden;
-  text-decoration: none; display: block;
-  position: relative; height: 160px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
-  transition: transform 0.3s ease;
-}
-.tp-similar-card:hover { transform: scale(1.03); }
-.tp-similar-card img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-.tp-similar-card::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 55%);
-}
-.tp-similar-info {
-  position: absolute; bottom: 10px; left: 12px; z-index: 2;
-}
-.tp-similar-name {
-  font-size: 13px; font-weight: 700; color: #fff;
-  font-family: "Montserrat", sans-serif;
-}
-.tp-similar-type {
-  font-size: 11px; color: rgba(255,255,255,0.75);
-  font-family: "Montserrat", sans-serif;
-}
-
-/* ======= HEADER ======= */
-.header.visible {
-  background: #e6effe;
-}
-.header.visible .nav a,
-.header.visible .nav-item--tours > a {
-  color: #1a1a1a;
-}
-.tp-review-avatar-img {
-  width: 42px; height: 42px; border-radius: 50%;
-  object-fit: cover; flex-shrink: 0;
+@media (max-width: 900px) {
+  .tp-layout { grid-template-columns: 1fr; }
+  .tp-expect-grid { grid-template-columns: 1fr; }
+  .tp-reviews-grid { grid-template-columns: 1fr; }
+  .tp-similar-grid { grid-template-columns: 1fr 1fr; }
+  .tp-hero { height: 360px; }
+  .tp-hero-title { font-size: 30px; }
 }

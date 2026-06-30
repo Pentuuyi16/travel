@@ -1,61 +1,59 @@
-/* TOURS LIST PAGE */
-
 body {
-  background: #ffffff;
+  background: var(--bg);
 }
 
-/* Шапка на этой странице — статичная */
-.header.visible {
-  position: fixed !important;
-  top: 16px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: calc(100% - 120px) !important;
-  max-width: 1200px !important;
-  border-radius: 100px !important;
-  background: #e6effe !important;
-}
-
-.header.visible .nav a,
-.header.visible .nav-item--tours > a {
-  color: #1a1a1a;
-}
-
-/* ====== БАННЕР ====== */
 .tours-banner {
-  width: 100%;
-  margin-top: 0;
   position: relative;
+  margin: 20px;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 420px;
 }
 
 .tours-banner img {
   width: 100%;
-  display: block;
+  height: 100%;
+  min-height: 420px;
   object-fit: cover;
-  min-height: 480px;
+  display: block;
+}
+
+.tours-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,15,12,.8) 0%, rgba(10,15,12,.25) 55%, rgba(10,15,12,.05) 100%);
 }
 
 .tours-banner-content {
   position: absolute;
-  bottom: 100px;
-  left: 260px;
+  bottom: 44px;
+  left: 56px;
+  right: 56px;
   z-index: 2;
 }
 
 .tours-banner-title {
-  font-size: 52px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 800;
   color: #ffffff;
   font-family: "Montserrat", sans-serif;
-  line-height: 1.15;
-  letter-spacing: -1px;
-  margin-bottom: 24px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  margin-bottom: 26px;
+  text-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+
+.tours-banner-title em {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--terra);
 }
 
 .tours-banner-stats {
   display: flex;
-  gap: 40px;
+  gap: 36px;
   align-items: flex-end;
 }
 
@@ -63,140 +61,220 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  align-items: center;
-  min-width: 90px;
+  align-items: flex-start;
+  min-width: auto;
 }
 
 .tours-banner-stat-num {
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 700;
   color: #ffffff;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  text-align: center;
-  width: 100%;
+  text-align: left;
+  width: auto;
 }
 
 .tours-banner-stat-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
-  color: rgba(255,255,255,0.75);
+  color: rgba(247,243,234,.65);
   font-family: "Montserrat", sans-serif;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
 }
 
-/* ====== ФИЛЬТРЫ ====== */
 .tours-filters {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 32px 0 8px;
-  background: #ffffff;
+  gap: 18px;
+  padding: 36px 0 12px;
+  background: var(--bg);
 }
 
 .tours-filters-tabs {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tours-filter-tab {
-  padding: 10px 24px;
+  padding: 12px 28px;
   border-radius: 100px;
-  border: 1.5px solid #1a1a1a;
+  border: 1px solid var(--line-m);
   background: transparent;
-  color: #1a1a1a;
-  font-size: 15px;
+  color: var(--ink);
+  font-size: 16px;
   font-weight: 500;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 
 .tours-filter-tab.active {
-  background: #1a1a1a;
+  background: var(--terra);
+  border-color: var(--terra);
   color: #ffffff;
 }
 
 .tours-filter-tab:hover:not(.active) {
-  background: rgba(0,0,0,0.05);
+  background: var(--bg-card);
 }
 
 .tours-filters-dropdowns {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tours-filter-dropdown {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 11px 20px;
   border-radius: 100px;
-  border: 1.5px solid #1a1a1a;
-  background: transparent;
-  font-size: 14px;
+  border: 1px solid var(--line-m);
+  background: var(--bg-card);
+  font-size: 15px;
   font-weight: 500;
   font-family: "Montserrat", sans-serif;
-  color: #1a1a1a;
+  color: var(--ink-soft);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.18s, border-color .18s;
 }
 
 .tours-filter-dropdown:hover {
-  background: rgba(0,0,0,0.05);
+  border-color: var(--terra);
+  color: var(--ink);
 }
 
-/* ====== СЕКЦИЯ ТУРОВ ====== */
+.tours-filter-dropdown.tfd-active {
+  border-color: var(--terra);
+  color: var(--ink);
+  background: var(--terra-l);
+}
+
+.tfd-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 50;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+  padding: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-m);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(21,36,27,.12);
+}
+
+.tours-filter-dropdown.tfd-open .tfd-panel {
+  display: flex;
+}
+
+.tfd-panel button {
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tfd-panel button:hover {
+  background: var(--bg);
+}
+
+.tfd-panel button.tfd-selected {
+  background: var(--terra);
+  color: #fff;
+}
+
+.tours-filter-dropdown svg path {
+  stroke: var(--ink-hint);
+}
 
 .tours-list {
-  padding: 100px 140px 120px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 70px 36px 20px;
 }
 
 .tours-list-header {
-  margin-bottom: 50px;
+  margin-bottom: 36px;
 }
 
 .tours-list-title {
-  font-size: 46px;
+  font-size: 32px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--ink);
+  letter-spacing: -.01em;
   margin-bottom: 6px;
   font-family: "Montserrat", sans-serif;
 }
 
-/* СЕТКА КАРТОЧЕК */
+.tours-sub {
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 0;
+}
+
+.tours-section-divider {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 60px 36px 36px;
+}
+
+.tours-section-divider h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+  font-family: "Montserrat", sans-serif;
+}
 
 .tours-list-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 30px;
 }
-
-/* КАРТОЧКА */
 
 .tl-card {
   position: relative;
-  border-radius: 40px;
+  border-radius: 18px;
   overflow: hidden;
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 360px;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
-  transition: transform 0.3s ease;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.tl-card:hover { transform: scale(1.02); }
+.tl-card:hover { transform: translateY(-4px); border-color: var(--line-m); }
 
-/* Фото */
+.tl-card-media {
+  position: relative;
+  height: 190px;
+  flex-shrink: 0;
+}
+
 .tl-card-img {
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
-  z-index: 0;
 }
 
 .tl-card-img img {
@@ -205,25 +283,22 @@ body {
   display: block;
 }
 
-/* Градиент сверху */
-.tl-card::after {
+.tl-card-media::after {
   content: "";
   position: absolute;
-  left: 0; top: 0;
-  width: 100%; height: 60%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
-  z-index: 1;
+  left: 0; bottom: 0;
+  width: 100%; height: 55%;
+  background: linear-gradient(to top, rgba(8,12,9,.55), rgba(8,12,9,0));
 }
 
-/* Бейдж ХИТ */
 .tl-card-badge {
   position: absolute;
-  top: 16px; right: 16px;
+  top: 14px; left: 14px;
   z-index: 3;
-  background: #FF6B00;
+  background: var(--terra);
   color: #fff;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   font-family: "Montserrat", sans-serif;
   padding: 5px 12px;
   border-radius: 100px;
@@ -232,119 +307,147 @@ body {
   gap: 4px;
 }
 
-/* Контент сверху */
+.tl-card-duration-badge {
+  position: absolute;
+  bottom: 12px; right: 12px;
+  z-index: 3;
+  background: rgba(247,243,234,.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(247,243,234,.25);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
 .tl-card-body {
-  position: relative;
-  z-index: 2;
-  padding: 46px 38px 0;
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
 }
 
 .tl-card-name {
-  font-size: 42px;
+  font-size: 18px;
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 8px;
+  color: var(--ink);
   font-family: "Montserrat", sans-serif;
-  line-height: 1.15;
-  letter-spacing: -0.5px;
+  line-height: 1.25;
+  letter-spacing: -.01em;
 }
 
-.tl-card-meta {
+.tl-card-desc {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  font-family: "Montserrat", sans-serif;
+}
+
+.tl-card-tags {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  color: #ffffff;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.tl-card-price-val {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
+.tl-card-tag {
+  background: var(--sage-l);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 500;
   font-family: "Montserrat", sans-serif;
+  padding: 4px 10px;
+  border-radius: 100px;
 }
 
-.tl-card-duration {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
-  font-family: "Montserrat", sans-serif;
-}
-
-.tl-card-stars {
+.tl-card-stars-row {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 4px;
 }
 
 .tl-card-rating {
-  font-size: 14px;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
   font-family: "Montserrat", sans-serif;
 }
 
 .tl-card-reviews {
-  font-size: 14px;
-  color: rgba(255,255,255,0.75);
+  font-size: 12px;
+  color: var(--ink-hint);
   font-family: "Montserrat", sans-serif;
-  margin-bottom: 0;
 }
 
-/* Кнопка снизу */
-.tl-card-price {
-  position: relative;
-  z-index: 2;
-  margin: 0 16px 16px;
-  background: rgba(255,255,255,0.95);
-  padding: 12px 12px 12px 20px;
+.tl-card-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tl-card-date {
+  background: var(--bg);
+  border: 1px solid var(--line-m);
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-family: "Space Mono", monospace;
+  padding: 4px 9px;
   border-radius: 100px;
+}
+
+.tl-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
+  margin-top: 3px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.tl-card-price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.tl-card-price-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
   font-family: "Montserrat", sans-serif;
 }
 
-.tl-card-price::after {
-  content: "›";
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  background: #f0f0f0;
+.tl-card-price-label {
+  font-size: 11px;
+  color: var(--ink-hint);
+  font-family: "Montserrat", sans-serif;
+}
+
+.tl-card-cta {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 22px;
+  gap: 6px;
+  background: var(--terra);
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  transition: background 0.2s ease;
   flex-shrink: 0;
 }
 
-/* Секции с якорями */
-.tours-section-divider {
-  padding: 0 140px 40px;
-}
+.tl-card:hover .tl-card-cta { background: var(--terra-d); }
 
-.tours-section-divider h1 {
-  font-size: 46px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 6px;
-  font-family: "Montserrat", sans-serif;
-}
+.tl-card-cta svg { display: block; }
 
-.tours-section-divider p,
-.tours-sub {
-  font-size: 16px;
-  color: #727056;
-  font-family: "Montserrat", sans-serif;
-  margin-bottom: 40px;
+@media (max-width: 900px) {
+  .tours-list-grid { grid-template-columns: 1fr 1fr; }
+  .tours-banner-content { left: 28px; right: 28px; bottom: 28px; }
+  .tours-banner-title { font-size: 32px; }
 }
-
-.tl-card-price-sub {
-  font-size: 13px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.75);
-  font-family: "Montserrat", sans-serif;
+@media (max-width: 600px) {
+  .tours-list-grid { grid-template-columns: 1fr; }
+  .tours-banner-stats { gap: 22px; }
 }

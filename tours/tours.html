@@ -4,43 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Туры — Дагтур</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/nav.css">
 <link rel="stylesheet" href="../css/footer.css">
 <link rel="stylesheet" href="../css/tours-list.css">
 <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
 
-<header class="header visible">
-  <div class="header-left">
-    <img class="logo" src="../image/logo.png" alt="Лого">
-    <nav class="nav">
-      <a href="../main.html">главная</a>
-      <div class="nav-item--tours">
-        <a href="#">туры</a>
-        <div class="nav-dropdown">
-          <a href="#odnodnevnye">однодневные</a>
-          <a href="#mnogodnevnye">многодневные</a>
-          <a href="#gornye">горные</a>
-        </div>
-      </div>
-      <a href="#">контакты</a>
-      <a href="../gidy.html">гидам</a>
-    </nav>
+<header class="header">
+  <a href="../main.html" class="logo-link"><img class="logo" src="../image/dagtrip_logo.svg" alt="ДагТрип"></a>
+  <div class="nav-links">
+    <a href="../main.html">Главная</a>
+    <a href="tours.html" class="active">Туры</a>
+    <a href="#contacts">Контакты</a>
+    <a href="../gidy.html">Гидам</a>
   </div>
-  <div class="header-btns">
-    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
-    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  <div class="nav-right">
+    <a href="#" class="btn-ghost" id="regOpenBtn">Регистрация</a>
+    <a href="#" class="btn-solid" id="authOpenBtn">Войти</a>
   </div>
 </header>
 
-<!-- БАННЕР -->
 <div class="tours-banner">
   <img src="../image/банертуры.png" alt="Туры по Дагестану">
   <div class="tours-banner-content">
-    <h1 class="tours-banner-title">18 маршрутов —<br>от каньона до вершин</h1>
+    <h1 class="tours-banner-title">18 маршрутов —<br><em>от каньона до вершин</em></h1>
     <div class="tours-banner-stats">
       <div class="tours-banner-stat">
         <span class="tours-banner-stat-num">2 330+</span>
@@ -58,7 +47,6 @@
   </div>
 </div>
 
-<!-- ФИЛЬТРЫ -->
 <div class="tours-filters">
   <div class="tours-filters-tabs">
     <button class="tours-filter-tab active" data-filter="all">Все туры</button>
@@ -67,222 +55,536 @@
     <button class="tours-filter-tab" data-filter="gornye">Горные</button>
   </div>
   <div class="tours-filters-dropdowns">
-    <div class="tours-filter-dropdown">
-      <span>Длительность</span>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="tours-filter-dropdown" data-filter-key="duration">
+      <span class="tfd-label">Длительность</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="tfd-panel">
+        <button data-value="">Любая</button>
+        <button data-value="day">Однодневные</button>
+        <button data-value="multi">Многодневные</button>
+      </div>
     </div>
-    <div class="tours-filter-dropdown">
-      <span>Цена</span>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="tours-filter-dropdown" data-filter-key="price">
+      <span class="tfd-label">Цена</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="tfd-panel">
+        <button data-value="">Любая</button>
+        <button data-value="0-3000">До 3 000 ₽</button>
+        <button data-value="3000-6000">3 000 – 6 000 ₽</button>
+        <button data-value="6000-999999">От 6 000 ₽</button>
+      </div>
     </div>
-    <div class="tours-filter-dropdown">
-      <span>Сложность</span>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="tours-filter-dropdown" data-filter-key="difficulty">
+      <span class="tfd-label">Сложность</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="tfd-panel">
+        <button data-value="">Любая</button>
+        <button data-value="easy">Лёгкий</button>
+        <button data-value="medium">Средний</button>
+        <button data-value="hard">Сложный</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ====== ОДНОДНЕВНЫЕ ====== -->
 <section id="odnodnevnye" class="tours-list">
   <div class="tours-list-header">
     <h1 class="tours-list-title">Однодневные туры</h1>
     <p class="tours-sub">когда не хочешь много ходить</p>
   </div>
   <div class="tours-list-grid">
-    <a href="sulak.html" class="tl-card">
-      <span class="tl-card-badge">🔥 ХИТ</span>
-      <div class="tl-card-img"><img src="../image/сулаккарточка.png" alt="Сулакский каньон"></div>
+
+    <a href="sulak.html" class="tl-card" data-duration="day" data-price="2990" data-difficulty="easy">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/сулаккарточка.png" alt="Сулакский каньон"></div>
+        <span class="tl-card-badge">🔥 ХИТ</span>
+        <span class="tl-card-duration-badge">7,5 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Сулакский каньон</p>
-        <div class="tl-card-meta">
-          <span class="tl-card-price-val">2 990 р</span>
-          <span class="tl-card-duration">· 7,5 часов</span>
+        <p class="tl-card-desc">Бирюзовые воды, отвесные скалы и поездка на катере по водохранилищу.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Живописные виды на каньон</span>
+          <span class="tl-card-tag">Прогулка на катерах</span>
         </div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.9</span></div>
-        <p class="tl-card-reviews">87 отзывов</p>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.9</span>
+          <span class="tl-card-reviews">· 87 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">5 июл</span>
+          <span class="tl-card-date">8 июл</span>
+          <span class="tl-card-date">12 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="gamsutl.html" class="tl-card">
-      
-      <div class="tl-card-img"><img src="../image/гамсутлькарточка.png" alt="Гамсутль — аул призрак"></div>
+
+    <a href="gamsutl.html" class="tl-card" data-duration="day" data-price="2990" data-difficulty="medium">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/гамсутлькарточка.png" alt="Гамсутль — аул призрак"></div>
+        <span class="tl-card-duration-badge">8 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Гамсутль — аул призрак</p>
-        <div class="tl-card-meta">
-          <span class="tl-card-price-val">2 990 р</span>
-          <span class="tl-card-duration">· 8 часов</span>
+        <p class="tl-card-desc">Заброшенный аул в горах с видами, которые называют дагестанским Мачу-Пикчу.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Город-призрак</span>
+          <span class="tl-card-tag">Панорамные виды</span>
         </div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.8</span></div>
-        <p class="tl-card-reviews">64 отзывов</p>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.8</span>
+          <span class="tl-card-reviews">· 64 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">6 июл</span>
+          <span class="tl-card-date">9 июл</span>
+          <span class="tl-card-date">13 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="#" class="tl-card">
-      
-      <div class="tl-card-img"><img src="../image/kahib bg.png.png" alt="Кахиб-гоор"></div>
+
+    <a href="#" class="tl-card" data-duration="day" data-price="2990" data-difficulty="hard">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/kahib bg.png.png" alt="Кахиб-гоор"></div>
+        <span class="tl-card-duration-badge">9 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Кахиб-гоор</p>
-        <div class="tl-card-meta">
-          <span class="tl-card-price-val">2 990 р</span>
-          <span class="tl-card-duration">· 9 часов</span>
+        <p class="tl-card-desc">Древние петроглифы и узкое горное ущелье вдалеке от туристических троп.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Древние петроглифы</span>
+          <span class="tl-card-tag">Горное ущелье</span>
         </div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.7</span></div>
-        <p class="tl-card-reviews">41 отзывов</p>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.7</span>
+          <span class="tl-card-reviews">· 41 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">7 июл</span>
+          <span class="tl-card-date">11 июл</span>
+          <span class="tl-card-date">14 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="hunzah.html" class="tl-card">
-      
-      <div class="tl-card-img"><img src="../image/hunzah bg.png" alt="Хунзах"></div>
+
+    <a href="hunzah.html" class="tl-card" data-duration="day" data-price="2990" data-difficulty="easy">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/hunzah bg.png" alt="Хунзах"></div>
+        <span class="tl-card-duration-badge">8 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Хунзах</p>
-        <div class="tl-card-meta">
-          <span class="tl-card-price-val">2 990 р</span>
-          <span class="tl-card-duration">· 8 часов</span>
+        <p class="tl-card-desc">Хунзахское плато, водопад Тобот и панорама с края обрыва.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Водопад Тобот</span>
+          <span class="tl-card-tag">Плато над каньоном</span>
         </div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.8</span></div>
-        <p class="tl-card-reviews">53 отзывов</p>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.8</span>
+          <span class="tl-card-reviews">· 53 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">5 июл</span>
+          <span class="tl-card-date">9 июл</span>
+          <span class="tl-card-date">12 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="#" class="tl-card">
-      
-      <div class="tl-card-img"><img src="../image/гунибкарточка.png" alt="Гуниб"></div>
+
+    <a href="#" class="tl-card" data-duration="day" data-price="2990" data-difficulty="medium">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/гунибкарточка.png" alt="Гуниб"></div>
+        <span class="tl-card-duration-badge">7 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Гуниб</p>
-        <div class="tl-card-meta">
-          <span class="tl-card-price-val">2 990 р</span>
-          <span class="tl-card-duration">· 7 часов</span>
+        <p class="tl-card-desc">Крепость в горах, где когда-то закончилась Кавказская война.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Крепость Гуниб</span>
+          <span class="tl-card-tag">Горный воздух</span>
         </div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.9</span></div>
-        <p class="tl-card-reviews">72 отзывов</p>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.9</span>
+          <span class="tl-card-reviews">· 72 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">6 июл</span>
+          <span class="tl-card-date">10 июл</span>
+          <span class="tl-card-date">13 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="derbent.html" class="tl-card">
-      
-      <div class="tl-card-img"><img src="../image/дербенткарточка.png" alt="Дербент"></div>
+
+    <a href="derbent.html" class="tl-card" data-duration="day" data-price="2990" data-difficulty="easy">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/дербенткарточка.png" alt="Дербент"></div>
+        <span class="tl-card-duration-badge">8 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Дербент</p>
-        <div class="tl-card-meta">
-          <span class="tl-card-price-val">2 990 р</span>
-          <span class="tl-card-duration">· 8 часов</span>
+        <p class="tl-card-desc">Древнейшая крепость России, узкие улочки и набережная Каспия.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Древняя крепость</span>
+          <span class="tl-card-tag">Исторический центр</span>
         </div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.9</span></div>
-        <p class="tl-card-reviews">95 отзывов</p>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.9</span>
+          <span class="tl-card-reviews">· 95 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">5 июл</span>
+          <span class="tl-card-date">8 июл</span>
+          <span class="tl-card-date">11 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
+
   </div>
 </section>
 
-<!-- ====== МНОГОДНЕВНЫЕ ====== -->
 <div id="mnogodnevnye" class="tours-section-divider">
   <h1 class="tours-list-title">Многодневные туры</h1>
   <p class="tours-sub">путешествие, которое запомнится надолго</p>
 </div>
 <section class="tours-list" style="padding-top:0;">
   <div class="tours-list-grid">
-    <a href="#" class="tl-card">
-      <div class="tl-card-img"><img src="../image/гунибкарточка.png" alt="Гуниб"></div>
+
+    <a href="#" class="tl-card" data-duration="multi" data-price="4990" data-difficulty="medium">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/гунибкарточка.png" alt="Гуниб"></div>
+        <span class="tl-card-duration-badge">3 дня</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Гуниб</p>
-        <div class="tl-card-meta"><span class="tl-card-price-val">4 990 р</span><span class="tl-card-duration">· 3 дня</span></div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.9</span></div>
-        <p class="tl-card-reviews">38 отзывов</p>
+        <p class="tl-card-desc">Три дня в горах: крепость, природные виды и неспешный темп путешествия.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Крепость Гуниб</span>
+          <span class="tl-card-tag">Горный воздух</span>
+        </div>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.9</span>
+          <span class="tl-card-reviews">· 38 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">5–7 июл</span>
+          <span class="tl-card-date">12–14 июл</span>
+          <span class="tl-card-date">19–21 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">4 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="#" class="tl-card">
-      <div class="tl-card-img"><img src="../image/сулаккарточка.png" alt="Сулак + Гамсутль"></div>
+
+    <a href="#" class="tl-card" data-duration="multi" data-price="6990" data-difficulty="medium">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/сулаккарточка.png" alt="Сулак + Гамсутль"></div>
+        <span class="tl-card-duration-badge">2 дня</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Сулак + Гамсутль</p>
-        <div class="tl-card-meta"><span class="tl-card-price-val">6 990 р</span><span class="tl-card-duration">· 2 дня</span></div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.8</span></div>
-        <p class="tl-card-reviews">24 отзывов</p>
+        <p class="tl-card-desc">Каньон и аул-призрак за одну поездку — два самых ярких маршрута Дагестана.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Каньон и аул-призрак</span>
+          <span class="tl-card-tag">Два маршрута за раз</span>
+        </div>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.8</span>
+          <span class="tl-card-reviews">· 24 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">6–7 июл</span>
+          <span class="tl-card-date">13–14 июл</span>
+          <span class="tl-card-date">20–21 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">6 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="#" class="tl-card">
-      <div class="tl-card-img"><img src="../image/дербенткарточка.png" alt="Дербент — история и море"></div>
+
+    <a href="#" class="tl-card" data-duration="multi" data-price="5990" data-difficulty="easy">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/дербенткарточка.png" alt="Дербент — история и море"></div>
+        <span class="tl-card-duration-badge">2 дня</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Дербент — история и море</p>
-        <div class="tl-card-meta"><span class="tl-card-price-val">5 990 р</span><span class="tl-card-duration">· 2 дня</span></div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.9</span></div>
-        <p class="tl-card-reviews">31 отзывов</p>
+        <p class="tl-card-desc">Древняя крепость днём, набережная Каспия на закате — два дня вместо одного.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Древняя крепость</span>
+          <span class="tl-card-tag">Каспийское море</span>
+        </div>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.9</span>
+          <span class="tl-card-reviews">· 31 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">5–6 июл</span>
+          <span class="tl-card-date">12–13 июл</span>
+          <span class="tl-card-date">19–20 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">5 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
+
   </div>
 </section>
 
-<!-- ====== ГОРНЫЕ ====== -->
 <div id="gornye" class="tours-section-divider">
   <h1 class="tours-list-title">Горные туры</h1>
   <p class="tours-sub">маршруты для тех, кто не боится высоты</p>
 </div>
 <section class="tours-list" style="padding-top:0;">
   <div class="tours-list-grid">
-    <a href="#" class="tl-card">
-      <div class="tl-card-img"><img src="../image/гунибкарточка.png" alt="Гуниб — крепость"></div>
+
+    <a href="#" class="tl-card" data-duration="day" data-price="2990" data-difficulty="hard">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/гунибкарточка.png" alt="Гуниб — крепость"></div>
+        <span class="tl-card-duration-badge">7 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Гуниб — крепость на горе</p>
-        <div class="tl-card-meta"><span class="tl-card-price-val">2 990 р</span><span class="tl-card-duration">· 7 часов</span></div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.9</span></div>
-        <p class="tl-card-reviews">45 отзывов</p>
+        <p class="tl-card-desc">Крутой подъём к крепости и панорама на всё Гунибское ущелье.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Крепость Гуниб</span>
+          <span class="tl-card-tag">Панорама ущелья</span>
+        </div>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.9</span>
+          <span class="tl-card-reviews">· 45 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">6 июл</span>
+          <span class="tl-card-date">10 июл</span>
+          <span class="tl-card-date">13 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="#" class="tl-card">
-      <div class="tl-card-img"><img src="../image/hunzah bg.png" alt="Хунзахское плато"></div>
+
+    <a href="#" class="tl-card" data-duration="day" data-price="2990" data-difficulty="medium">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/hunzah bg.png" alt="Хунзахское плато"></div>
+        <span class="tl-card-duration-badge">8 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Хунзахское плато</p>
-        <div class="tl-card-meta"><span class="tl-card-price-val">2 990 р</span><span class="tl-card-duration">· 8 часов</span></div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.8</span></div>
-        <p class="tl-card-reviews">33 отзывов</p>
+        <p class="tl-card-desc">Плато над обрывом и водопад Тобот — горный маршрут средней сложности.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Водопад Тобот</span>
+          <span class="tl-card-tag">Плато над обрывом</span>
+        </div>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.8</span>
+          <span class="tl-card-reviews">· 33 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">5 июл</span>
+          <span class="tl-card-date">9 июл</span>
+          <span class="tl-card-date">12 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
-    <a href="#" class="tl-card">
-      <div class="tl-card-img"><img src="../image/гамсутлькарточка.png" alt="Гамсутль с горы"></div>
+
+    <a href="#" class="tl-card" data-duration="day" data-price="2990" data-difficulty="hard">
+      <div class="tl-card-media">
+        <div class="tl-card-img"><img src="../image/гамсутлькарточка.png" alt="Гамсутль с горы"></div>
+        <span class="tl-card-duration-badge">8 часов</span>
+      </div>
       <div class="tl-card-body">
         <p class="tl-card-name">Гамсутль с горы</p>
-        <div class="tl-card-meta"><span class="tl-card-price-val">2 990 р</span><span class="tl-card-duration">· 8 часов</span></div>
-        <div class="tl-card-stars"><img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:14px; vertical-align:middle;"><span class="tl-card-rating">4.7</span></div>
-        <p class="tl-card-reviews">28 отзывов</p>
+        <p class="tl-card-desc">Подъём к городу-призраку с самым крутым горным рельефом маршрута.</p>
+        <div class="tl-card-tags">
+          <span class="tl-card-tag">Город-призрак</span>
+          <span class="tl-card-tag">Крутой подъём</span>
+        </div>
+        <div class="tl-card-stars-row">
+          <img src="../image/ЗВЕЗДОЧКИ.png" alt="★★★★★" style="height:13px; vertical-align:middle;">
+          <span class="tl-card-rating">4.7</span>
+          <span class="tl-card-reviews">· 28 отзывов</span>
+        </div>
+        <div class="tl-card-dates">
+          <span class="tl-card-date">7 июл</span>
+          <span class="tl-card-date">11 июл</span>
+          <span class="tl-card-date">14 июл</span>
+          <span class="tl-card-date">···</span>
+        </div>
+        <div class="tl-card-footer">
+          <div class="tl-card-price-block">
+            <span class="tl-card-price-val">2 990 р</span>
+            <span class="tl-card-price-label">за человека</span>
+          </div>
+          <div class="tl-card-cta">
+            <span>Подробнее</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
       </div>
-      <p class="tl-card-price">Подробнее</p>
     </a>
+
   </div>
 </section>
 
-<footer class="footer">
-  <img src="../image/footer.png" alt="" class="footer-bg">
+<footer id="contacts">
   <div class="footer-inner">
-    <div class="footer-content">
-      <div class="footer-col">
-        <a href="#">Главная</a>
-        <a href="#">Туры</a>
-        <a href="#">О компании</a>
-        <a href="#">Гидам</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+    <div class="footer-title">До встречи<br>в <em>горах</em></div>
+    <div class="footer-sub">Ответим быстро и поможем выбрать маршрут</div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-col-title">Навигация</div>
+        <a class="footer-link" href="../main.html">Главная</a>
+        <a class="footer-link" href="tours.html">Туры</a>
+        <a class="footer-link" href="#">О компании</a>
+        <a class="footer-link" href="../gidy.html">Гидам</a>
       </div>
-      <div class="footer-col">
-        <a href="#">@dagtour</a>
-        <a href="#">Написать ВКонтакте</a>
-        <a href="#">Написать нам в Telegram</a>
-        <a href="#">Написать нам в WhatsApp</a>
-        <a href="#">Написать нам в Instagram</a>
-        <a href="#">Разработка сайта</a>
-        <a href="review.html">Написать отзыв</a>
+      <div>
+        <div class="footer-col-title">Связь</div>
+        <a class="footer-link" href="#">@dagtrip</a>
+        <a class="footer-link" href="#">Написать ВКонтакте</a>
+        <a class="footer-link" href="#">Написать в Telegram</a>
+        <a class="footer-link" href="#">Написать в WhatsApp</a>
       </div>
+      <div>
+        <div class="footer-col-title">Прочее</div>
+        <a class="footer-link" href="tel:+97777777777">+97 7777 7777 77</a>
+        <a class="footer-link" href="../review.html">Написать отзыв</a>
+        <a class="footer-link" href="#">Политика конфиденциальности</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ДагТрип</span>
+      <span class="coord" style="color:rgba(247,243,234,.4)">42.05°N · 47.04°E</span>
     </div>
   </div>
 </footer>
 
-<!-- AUTH МОДАЛКА -->
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-modal">
     <button class="auth-close" id="authClose">✕</button>
@@ -328,7 +630,7 @@
 <script src="../js/nav.js"></script>
 <script type="module" src="../js/auth.js"></script>
 <script>
-  // Фильтр табы
+
   const filterTabs = document.querySelectorAll('.tours-filter-tab');
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -344,7 +646,6 @@
     });
   });
 
-  // Якорная навигация
   const navLinks = document.querySelectorAll('.tours-anchor-nav a');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -357,6 +658,81 @@
     });
   }, { threshold: 0.2 });
   document.querySelectorAll('#odnodnevnye, #mnogodnevnye, #gornye').forEach(s => observer.observe(s));
+</script>
+
+<script>
+  const tfdState = { duration: '', price: '', difficulty: '' };
+  const dropdowns = document.querySelectorAll('.tours-filter-dropdown');
+
+  dropdowns.forEach(dd => {
+    dd.addEventListener('click', (e) => {
+      if (e.target.closest('.tfd-panel')) return;
+      e.stopPropagation();
+      const isOpen = dd.classList.contains('tfd-open');
+      dropdowns.forEach(other => other.classList.remove('tfd-open'));
+      if (!isOpen) dd.classList.add('tfd-open');
+    });
+
+    dd.querySelectorAll('.tfd-panel button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const key = dd.dataset.filterKey;
+        const value = btn.dataset.value;
+
+        dd.querySelectorAll('.tfd-panel button').forEach(b => b.classList.remove('tfd-selected'));
+        btn.classList.add('tfd-selected');
+
+        tfdState[key] = value;
+        dd.classList.toggle('tfd-active', value !== '');
+        dd.classList.remove('tfd-open');
+
+        applyTourFilters();
+      });
+    });
+  });
+
+  document.addEventListener('click', () => {
+    dropdowns.forEach(dd => dd.classList.remove('tfd-open'));
+  });
+
+  function applyTourFilters() {
+    const cards = document.querySelectorAll('.tl-card');
+
+    cards.forEach(card => {
+      let visible = true;
+
+      if (tfdState.duration && card.dataset.duration !== tfdState.duration) {
+        visible = false;
+      }
+
+      if (visible && tfdState.difficulty && card.dataset.difficulty !== tfdState.difficulty) {
+        visible = false;
+      }
+
+      if (visible && tfdState.price) {
+        const [min, max] = tfdState.price.split('-').map(Number);
+        const price = Number(card.dataset.price);
+        if (price < min || price > max) visible = false;
+      }
+
+      card.style.display = visible ? '' : 'none';
+    });
+
+    document.querySelectorAll('.tours-list-grid').forEach(grid => {
+      const hasVisible = Array.from(grid.querySelectorAll('.tl-card'))
+        .some(card => card.style.display !== 'none');
+
+      const section = grid.closest('section');
+      const header = section ? section.querySelector('.tours-list-header') : null;
+      const divider = section && !header ? section.previousElementSibling : null;
+
+      if (header) header.style.display = hasVisible ? '' : 'none';
+      if (divider && divider.classList.contains('tours-section-divider')) {
+        divider.style.display = hasVisible ? '' : 'none';
+      }
+      if (section) section.style.display = hasVisible ? '' : 'none';
+    });
+  }
 </script>
 
 </body>

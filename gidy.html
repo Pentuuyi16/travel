@@ -3,49 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Гидам — ДагТур</title>
+<title>Гидам — ДагТрип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/auth.css">
 <link rel="stylesheet" href="css/footer.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/gidy.css">
 </head>
 <body>
 
-<header class="header visible">
-  <div class="header-left">
-    <img class="logo" src="image/logo.png" alt="Лого">
-    <nav class="nav">
-      <a href="main.html">главная</a>
-      <div class="nav-item--tours">
-        <a href="#">туры</a>
-        <div class="nav-dropdown">
-          <a href="tours/tours.html#odnodnevnye">однодневные</a>
-          <a href="tours/tours.html#mnogodnevnye">многодневные</a>
-          <a href="tours/tours.html#gornye">горные</a>
-        </div>
-      </div>
-      <a href="#">контакты</a>
-      <a href="gidy.html">гидам</a>
-    </nav>
+<header class="header">
+  <a href="main.html" class="logo-link"><img class="logo" src="image/dagtrip_logo.svg" alt="ДагТрип"></a>
+  <div class="nav-links">
+    <a href="main.html">Главная</a>
+    <a href="tours/tours.html">Туры</a>
+    <a href="#contacts">Контакты</a>
+    <a href="gidy.html" class="active">Гидам</a>
   </div>
-  <div class="header-btns">
-    <a href="#" class="header-btn-reg" id="regOpenBtn">регистрация</a>
-    <a href="#" class="header-btn-login" id="authOpenBtn">вход</a>
+  <div class="nav-right">
+    <a href="#" class="btn-ghost" id="regOpenBtn">Регистрация</a>
+    <a href="#" class="btn-solid" id="authOpenBtn">Войти</a>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="guide-hero">
-  <div class="guide-hero-bg-shapes">
-    <div class="guide-hero-shape1"></div>
-    <div class="guide-hero-shape2"></div>
-  </div>
   <div class="guide-hero-content">
     <div class="guide-hero-left">
       <div class="guide-hero-label"><div class="guide-hero-label-dot"></div>более 50 гидов уже в команде</div>
-      <h1 class="guide-hero-title">Стань гидом<br>в <span>ДагТур</span></h1>
+      <h1 class="guide-hero-title">Стань гидом<br>в <em>ДагТрип</em></h1>
       <p class="guide-hero-sub">Превращай знание родного Дагестана в стабильный доход. Заполни анкету и присоединяйся к команде настоящих проводников.</p>
       <div class="guide-hero-stats">
         <div><div class="hstat-val">50+</div><div class="hstat-label">гидов в команде</div></div>
@@ -68,25 +55,23 @@
   </div>
 </section>
 
-<!-- WHY BECOME A GUIDE -->
 <div class="section">
-  <div class="why-title">Почему ДагТур</div>
-  <h2 class="why-headline">Зарабатывай на том,<br>что <span>любишь</span></h2>
+  <span class="coord-eyebrow">Почему ДагТрип</span>
+  <h2 class="why-headline">Зарабатывай на том,<br>что <em>любишь</em></h2>
   <p class="why-desc">Мы берём на себя маркетинг, платежи и поддержку — ты занимаешься только туристами и маршрутами.</p>
   <div class="benefits-grid">
-    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка1.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Стабильный доход</div><div class="benefit-desc">Средний гид зарабатывает от 40 000 ₽ в месяц в сезон. Прозрачные выплаты без задержек.</div></div>
-    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка2.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Поток туристов</div><div class="benefit-desc">Мы привлекаем клиентов через рекламу и SEO. Тебе не нужно искать людей самому.</div></div>
-    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка3.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Страховка и защита</div><div class="benefit-desc">Каждый тур застрахован. Поддержка команды 24/7 в любой ситуации на маршруте.</div></div>
-    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка4.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Личный кабинет</div><div class="benefit-desc">Управляй расписанием, смотри заявки и доход в одном удобном приложении.</div></div>
-    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка5.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Обучение и рост</div><div class="benefit-desc">Тренинги по сервису, первой помощи и навыкам гида. Помогаем расти профессионально.</div></div>
-    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка6.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div><div class="benefit-title">Команда рядом</div><div class="benefit-desc">Чат гидов, совместные поездки, корпоративы. Ты не один — ты часть семьи ДагТур.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка1.png" alt=""></div><div class="benefit-title">Стабильный доход</div><div class="benefit-desc">Средний гид зарабатывает от 40 000 ₽ в месяц в сезон. Прозрачные выплаты без задержек.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка2.png" alt=""></div><div class="benefit-title">Поток туристов</div><div class="benefit-desc">Мы привлекаем клиентов через рекламу и SEO. Тебе не нужно искать людей самому.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка3.png" alt=""></div><div class="benefit-title">Страховка и защита</div><div class="benefit-desc">Каждый тур застрахован. Поддержка команды 24/7 в любой ситуации на маршруте.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка4.png" alt=""></div><div class="benefit-title">Личный кабинет</div><div class="benefit-desc">Управляй расписанием, смотри заявки и доход в одном удобном приложении.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка5.png" alt=""></div><div class="benefit-title">Обучение и рост</div><div class="benefit-desc">Тренинги по сервису, первой помощи и навыкам гида. Помогаем расти профессионально.</div></div>
+    <div class="benefit-card"><div class="benefit-ico"><img src="image/иконка6.png" alt=""></div><div class="benefit-title">Команда рядом</div><div class="benefit-desc">Чат гидов, совместные поездки, корпоративы. Ты не один — ты часть семьи ДагТрип.</div></div>
   </div>
 </div>
 
-<!-- INCOME CALCULATOR -->
 <section class="calc-section">
   <div class="calc-inner">
-    <div class="calc-label">Калькулятор дохода</div>
+    <span class="coord-eyebrow" style="color:#ff8a5c">Калькулятор дохода</span>
     <h2 class="calc-headline">Сколько ты можешь зарабатывать?</h2>
     <p class="calc-sub">Подбери параметры и узнай свой потенциальный доход</p>
     <div class="calc-grid">
@@ -118,11 +103,10 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="how-section">
   <div class="how-inner">
-    <div class="how-label">Процесс</div>
-    <h2 class="how-headline">Как стать гидом ДагТур</h2>
+    <span class="coord-eyebrow">Процесс</span>
+    <h2 class="how-headline">Как стать гидом ДагТрип</h2>
     <div class="steps-grid">
       <div class="step"><div class="step-num filled">1</div><div class="step-title">Заполни анкету</div><div class="step-desc">Расскажи о себе, опыте и любимых маршрутах. Займёт 5 минут.</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-title">Собеседование</div><div class="step-desc">Созвон с командой. Расскажем об условиях и ответим на вопросы.</div></div>
@@ -132,12 +116,11 @@
   </div>
 </section>
 
-<!-- FORM SECTION -->
 <section class="form-section" id="form-section">
   <div class="form-inner">
     <div class="form-left">
-      <div class="form-label">Анкета</div>
-      <h2 class="form-headline">Стань частью<br>команды <span>ДагТур</span></h2>
+      <span class="coord-eyebrow">Анкета</span>
+      <h2 class="form-headline">Стань частью<br>команды <em>ДагТрип</em></h2>
       <p class="form-desc">Заполни анкету — мы рассмотрим её в течение 2 рабочих дней и свяжемся с тобой в WhatsApp.</p>
       <div class="form-progress" id="fp-display">
         <div class="fp-step active" id="fp1"><div class="fp-num">1</div><div class="fp-text">О себе</div></div>
@@ -145,9 +128,9 @@
         <div class="fp-step" id="fp3"><div class="fp-num">3</div><div class="fp-text">Контакты</div></div>
       </div>
       <div class="guide-testimonials">
-        <div class="gt-card"><div class="gt-avatar gt-av1">АХ</div><div><div class="gt-name">Ахмед Хасавов</div><div class="gt-role">Гид · 3 года в ДагТур</div><div class="gt-text">«Начинал с нуля — теперь провожу 12–15 туров в месяц. Команда помогла с первыми группами и рекламой.»</div><div class="gt-income">Зарабатывает от 80 000 ₽/мес</div></div></div>
-        <div class="gt-card"><div class="gt-avatar gt-av2">МА</div><div><div class="gt-name">Магомед Алиев</div><div class="gt-role">Гид-водитель · 2 года</div><div class="gt-text">«Мне нравится что всё через приложение — расписание, деньги, связь с туристами. Легко планировать.»</div><div class="gt-income">Зарабатывает от 55 000 ₽/мес</div></div></div>
-        <div class="gt-card"><div class="gt-avatar gt-av3">ЗА</div><div><div class="gt-name">Зарема Абдуллаева</div><div class="gt-role">Гид-историк · 1.5 года</div><div class="gt-text">«Я историк по образованию — не думала, что это можно монетизировать. ДагТур открыл новое направление.»</div><div class="gt-income">Зарабатывает от 45 000 ₽/мес</div></div></div>
+        <div class="gt-card"><div class="gt-avatar av1">АХ</div><div><div class="gt-name">Ахмед Хасавов</div><div class="gt-role">Гид · 3 года в ДагТрип</div><div class="gt-text">«Начинал с нуля — теперь провожу 12–15 туров в месяц. Команда помогла с первыми группами и рекламой.»</div><div class="gt-income">Зарабатывает от 80 000 ₽/мес</div></div></div>
+        <div class="gt-card"><div class="gt-avatar av2">МА</div><div><div class="gt-name">Магомед Алиев</div><div class="gt-role">Гид-водитель · 2 года</div><div class="gt-text">«Мне нравится что всё через приложение — расписание, деньги, связь с туристами. Легко планировать.»</div><div class="gt-income">Зарабатывает от 55 000 ₽/мес</div></div></div>
+        <div class="gt-card"><div class="gt-avatar av3">ЗА</div><div><div class="gt-name">Зарема Абдуллаева</div><div class="gt-role">Гид-историк · 1.5 года</div><div class="gt-text">«Я историк по образованию — не думала, что это можно монетизировать. ДагТрип открыл новое направление.»</div><div class="gt-income">Зарабатывает от 45 000 ₽/мес</div></div></div>
       </div>
     </div>
     <div class="the-form">
@@ -189,39 +172,37 @@
       <div class="form-success" id="form-success">
         <div class="form-success-ico">🎉</div>
         <div class="form-success-title">Анкета отправлена!</div>
-        <div class="form-success-sub">Мы рассмотрим её в течение 2 рабочих дней и напишем в WhatsApp. Добро пожаловать в команду ДагТур!</div>
+        <div class="form-success-sub">Мы рассмотрим её в течение 2 рабочих дней и напишем в WhatsApp. Добро пожаловать в команду ДагТрип!</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GUIDES PREVIEW -->
 <section class="guides-preview">
   <div class="guides-inner">
-    <div class="gp-label">Наша команда</div>
-    <h2 class="gp-headline">Познакомься с гидами ДагТур</h2>
+    <span class="coord-eyebrow">Наша команда</span>
+    <h2 class="gp-headline">Познакомься с гидами ДагТрип</h2>
     <p class="gp-sub">Опытные проводники, влюблённые в Дагестан — скоро ты один из них.</p>
     <div class="guides-grid">
       <div class="guide-card"><div class="guide-photo"><div class="guide-photo-bg gp1"></div><div class="guide-photo-overlay"></div><div class="guide-name-badge">Ахмед Х.</div><div class="guide-rating">★ 4.9</div></div><div class="guide-body"><div class="guide-gname">Ахмед Хасавов</div><div class="guide-spec">Горные маршруты · 8 лет</div><div class="guide-tags"><span class="gtag">Каньон</span><span class="gtag">Джип</span><span class="gtag">МЧС</span></div></div></div>
       <div class="guide-card"><div class="guide-photo"><div class="guide-photo-bg gp2"></div><div class="guide-photo-overlay"></div><div class="guide-name-badge">Магомед А.</div><div class="guide-rating">★ 4.8</div></div><div class="guide-body"><div class="guide-gname">Магомед Алиев</div><div class="guide-spec">Джип-туры · 6 лет</div><div class="guide-tags"><span class="gtag">Кахиб-Гоор</span><span class="gtag">Горные дороги</span></div></div></div>
       <div class="guide-card"><div class="guide-photo"><div class="guide-photo-bg gp3"></div><div class="guide-photo-overlay"></div><div class="guide-name-badge">Зарема А.</div><div class="guide-rating">★ 5.0</div></div><div class="guide-body"><div class="guide-gname">Зарема Абдуллаева</div><div class="guide-spec">Историко-культурные · 4 года</div><div class="guide-tags"><span class="gtag">Гамсутль</span><span class="gtag">Дербент</span></div></div></div>
-      <div class="guide-card" style="border:2px dashed var(--border-m);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;min-height:220px;" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
-        <div style="font-size:32px;margin-bottom:10px;">+</div>
-        <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px;">Это можешь быть ты</div>
-        <div style="font-size:12px;color:var(--muted);">Присоединяйся к команде</div>
+      <div class="guide-card guide-card-add" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
+        <div class="guide-card-add-plus">+</div>
+        <div class="guide-card-add-title">Это можешь быть ты</div>
+        <div class="guide-card-add-sub">Присоединяйся к команде</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq-section">
   <div class="faq-inner">
     <div class="faq-left">
-      <div class="faq-label">FAQ</div>
+      <span class="coord-eyebrow">FAQ</span>
       <h2 class="faq-headline">Часто задаваемые вопросы</h2>
       <p class="faq-desc">Не нашёл ответ? Напиши нам — ответим в течение часа.</p>
-      <a href="#" class="faq-contact-btn">💬 Написать в WhatsApp</a>
+      <a href="#" class="faq-contact-btn">Написать в WhatsApp</a>
     </div>
     <div class="faq-right">
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Нужен ли опыт в туризме?</div><div class="faq-toggle">+</div></div><div class="faq-a">Нет. Мы берём людей с нулевым опытом — главное знание региона, общительность и желание развиваться.</div></div>
@@ -234,34 +215,41 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <img src="image/footer.png" alt="" class="footer-bg">
+<footer id="contacts">
   <div class="footer-inner">
-    <div class="footer-content">
-      <div class="footer-col">
-        <a href="#">Главная</a>
-        <a href="#">Туры</a>
-        <a href="#">О компании</a>
-        <a href="#">Гидам</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
-        <a href="tel:+97777777777" class="footer-phone">+97 7777 7777 77</a>
+    <div class="footer-title">До встречи<br>в <em>горах</em></div>
+    <div class="footer-sub">Ответим быстро и поможем выбрать маршрут</div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-col-title">Навигация</div>
+        <a class="footer-link" href="main.html">Главная</a>
+        <a class="footer-link" href="tours/tours.html">Туры</a>
+        <a class="footer-link" href="#">О компании</a>
+        <a class="footer-link" href="gidy.html">Гидам</a>
       </div>
-      <div class="footer-col">
-        <a href="#">@dagtour</a>
-        <a href="#">Написать ВКонтакте</a>
-        <a href="#">Написать нам в Telegram</a>
-        <a href="#">Написать нам в WhatsApp</a>
-        <a href="#">Написать нам в Instagram</a>
-        <a href="#">Разработка сайта</a>
-        <a href="/review.html">Написать отзыв</a>
+      <div>
+        <div class="footer-col-title">Связь</div>
+        <a class="footer-link" href="#">@dagtrip</a>
+        <a class="footer-link" href="#">Написать ВКонтакте</a>
+        <a class="footer-link" href="#">Написать в Telegram</a>
+        <a class="footer-link" href="#">Написать в WhatsApp</a>
       </div>
+      <div>
+        <div class="footer-col-title">Прочее</div>
+        <a class="footer-link" href="tel:+97777777777">+97 7777 7777 77</a>
+        <a class="footer-link" href="review.html">Написать отзыв</a>
+        <a class="footer-link" href="#">Политика конфиденциальности</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ДагТрип</span>
+      <span class="coord" style="color:rgba(247,243,234,.4)">42.05°N · 47.04°E</span>
     </div>
   </div>
 </footer>
 
-<!-- AUTH -->
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-modal">
     <button class="auth-close" id="authClose">✕</button>
